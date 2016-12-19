@@ -1,3 +1,17 @@
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# for the maven
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -7,3 +21,13 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+
+# especifcs
+/META-INF/application.properties
+/bin/
+/logs/
+/.settings/
+*.classpath
+*.project
+.metadata
+*.jasper
