@@ -41,7 +41,7 @@ public class AnuncioRole extends SuperClassRole<Anuncio> {
 		if(!ValidationUtil.validarDtIniFin(entidade.getDataInicial(), entidade.getDataVencimento())){
 			throw new ExceptionValidation("Data inicial do anuncio deverá ser anterior ou igual a data final!");
 		}
-		
+		 
 		return ((Anuncio)anuncioDAO.insert(entidade));
 	}
 
