@@ -5,7 +5,7 @@ import java.util.Date;
 public class ValidationUtil {
 /* 
  * TODAS AS VALIDACOES INDEPENDENTES DO NOME DO METODO DEVERÁ RETORNAR FALSE CASO SEJA INVALIDO E TRUE CASO ESTEJA VALIDADO, PARA EVITAR CONFUSOES
- */
+ */ 
 	
 	
 	public static boolean validarDtIniFin(Date dtInicial,Date dtFinal){

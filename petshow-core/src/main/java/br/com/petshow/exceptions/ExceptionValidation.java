@@ -11,3 +11,4 @@ public class ExceptionValidation extends Exception {
 		super(message);
 	}
 }
+ 

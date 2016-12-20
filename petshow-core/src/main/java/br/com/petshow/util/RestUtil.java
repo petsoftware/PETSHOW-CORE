@@ -13,7 +13,7 @@ public class RestUtil {
 	
 	public static Response getResponseValidationErro(String mensagem){
 		return Response.status(Response.Status.BAD_REQUEST).entity(new MapErroRetornoRest(EnumErrosSistema.ERRO_VALIDACAO, mensagem)).build();
-	}
+	} 
 	
 	
 	public static Response getResponseErroInesperado(Throwable ex){
