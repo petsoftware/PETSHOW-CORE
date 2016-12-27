@@ -8,6 +8,7 @@ import br.com.petshow.exceptions.ExceptionValidation;
 public class RestUtil {
 
 	public static Response getResponseValidationErro(ExceptionValidation ex){
+		ex.printStackTrace();
 		return getResponseValidationErro(ex.getMessage());
 	}
 	
@@ -17,6 +18,7 @@ public class RestUtil {
 	
 	
 	public static Response getResponseErroInesperado(Throwable ex){
+		ex.printStackTrace();
 		return getResponseValidationErro(ex.getMessage());
 	}
 	

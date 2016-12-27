@@ -35,7 +35,7 @@ public class AnuncioDAO extends SuperClassDAO<Anuncio> {
 		List<Anuncio> list = criteria.list();
 		
 		return list;*/
-		return manager.createNamedQuery(Anuncio.ANUNCIO_POR_USUARIO).setParameter("idUsuario", (int)idUsuario).getResultList();
+		return manager.createNamedQuery(Anuncio.ANUNCIO_POR_USUARIO).setParameter("idUsuario", idUsuario).getResultList();
 	}
 
 }

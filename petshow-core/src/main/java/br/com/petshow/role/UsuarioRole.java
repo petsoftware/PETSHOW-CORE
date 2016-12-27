@@ -1,5 +1,7 @@
 package br.com.petshow.role;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,10 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 
 	public Usuario consultaPorNomeLogin(String nmLogin) {
 		return this.usuarioDAO.consultaPorNomeLogin(nmLogin);
+	}
+	
+	public List<Usuario> consultaPorNomeOuAnimal(String nome)  throws ExceptionValidation{
+		return this.usuarioDAO.consultaPorNomeOuAnimal(nome);
 	}
 	/**
 	 * Retorna o Usuario logado

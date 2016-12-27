@@ -6,15 +6,23 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+@NamedQueries({@NamedQuery(name = Agendamento.AGENDAMENTO_PENDENTE, query = "FROM Agendamento a inner join a.servico as s where s.id=:idServico and a.dataAgendamento > :dataHJ and s.flExcluido=false"  )})
+
+
 @Entity
 @Table(name = "AGENDAMENTO")
 public class Agendamento   extends Entidade{
 
+	
+	public static final String AGENDAMENTO_PENDENTE="agendamentoPendente";
+	
 	@ManyToOne
 	@JoinColumn(name = "ID_TUTOR" ,referencedColumnName="ID")
 	private Tutor tutor;

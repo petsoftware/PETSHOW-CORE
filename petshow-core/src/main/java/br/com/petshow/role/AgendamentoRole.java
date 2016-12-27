@@ -1,11 +1,16 @@
 package br.com.petshow.role;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.petshow.dao.AgendamentoDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Agendamento;
+import br.com.petshow.model.Servico;
+import br.com.petshow.util.ValidationUtil;
 
 public class AgendamentoRole extends SuperClassRole<Agendamento> {
 
@@ -35,5 +40,17 @@ public class AgendamentoRole extends SuperClassRole<Agendamento> {
 		// TODO Auto-generated method stub
 		return this.agendamentoDAO.find(codigo);
 	}
-
+	
+	
+	public  List<Agendamento> getAgendamentosPendentes(long idUsuario,Date dtHoje)   throws  ExceptionValidation{
+		if(!ValidationUtil.isCampoComValor(idUsuario)){
+			throw new ExceptionValidation("O código não foi informado!");
+		}
+		if(!ValidationUtil.isCampoComValor(dtHoje)){
+			throw new ExceptionValidation("A Data não foi informada!");
+		}
+		return this.agendamentoDAO.getAgendamentosPendentes(idUsuario, dtHoje);
+	}
+	
+	
 }

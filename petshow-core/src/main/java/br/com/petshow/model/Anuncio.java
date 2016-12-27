@@ -22,7 +22,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 
 // ver querie dps
-@NamedQueries({ @NamedQuery(name = Anuncio.ANUNCIO_POR_USUARIO, query = "FROM Anuncio where 1=:idUsuario" )})
+@NamedQueries({ @NamedQuery(name = Anuncio.ANUNCIO_POR_USUARIO, query = "FROM Anuncio a where usuario.id=:idUsuario order by a.dataCadastro desc" )})
 
 									
 @Entity

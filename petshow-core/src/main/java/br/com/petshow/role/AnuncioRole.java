@@ -63,6 +63,14 @@ public class AnuncioRole extends SuperClassRole<Anuncio> {
 
 
 	public Anuncio update(Anuncio entidade)  throws  ExceptionValidation{
+		
+		// No futuro deverá passar diretamente o codigo da foto
+		
+		Anuncio verFoto = this.find(entidade.getId());
+		
+		entidade.setFoto(verFoto.getFoto());
+		
+		
 		if(!ValidationUtil.isCampoComValor(entidade.getDescricao())){
 			throw new ExceptionValidation("O campo de descrição do anuncio não foi informado!");
 		}
@@ -72,9 +80,7 @@ public class AnuncioRole extends SuperClassRole<Anuncio> {
 		if(!ValidationUtil.isCampoComValor(entidade.getDataVencimento())){
 			throw new ExceptionValidation("O campo de data de final do anuncio não foi informado!");
 		}
-		if(!ValidationUtil.isCampoComValor(entidade.getFoto())){
-			throw new ExceptionValidation("O campo de foto  do anuncio não foi informado!");
-		}
+		
 		
 		if(!ValidationUtil.validarDtIniFin(entidade.getDataInicial(), entidade.getDataVencimento())){
 			throw new ExceptionValidation("Data inicial do anuncio deverá ser anterior ou igual a data final!");
@@ -84,6 +90,9 @@ public class AnuncioRole extends SuperClassRole<Anuncio> {
 	}
 	
 	public List<Anuncio> consultaPorUsuario(long idUsuario)  throws  ExceptionValidation{
+		if(!ValidationUtil.isCampoComValor(idUsuario)){
+			throw new ExceptionValidation("O código não foi informado!");
+		}
 		return this.anuncioDAO.consultaPorUsuario(idUsuario);
 	}
 	

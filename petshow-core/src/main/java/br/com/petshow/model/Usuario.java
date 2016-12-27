@@ -46,9 +46,13 @@ import br.com.petshow.enums.EnumTipoUser;
 			@NamedQuery(name=Usuario.FIND_BY_EMAIL	,query="FROM Usuario u WHERE u.email = :email")
 		}
 )
+
 */
 
-@NamedQueries({ @NamedQuery(name = Usuario.FIND_POR_NOME_LOGIN, query = "FROM Usuario usu WHERE usu.nmLogin = :nmLogin")})
+
+@NamedQueries({ @NamedQuery(name = Usuario.FIND_POR_NOME_LOGIN, query = "FROM Usuario usu WHERE usu.nmLogin = :nmLogin"), 
+				@NamedQuery(name = Usuario.FIND_POR_NM_ANIMAL, query = "FROM Usuario usu WHERE usu.nome like '%:nome%' ")/* acrescentar animal*/})
+
 @Entity
 @Table(name="USUARIO")
 public class Usuario extends Entidade  implements UserDetails{
@@ -59,6 +63,7 @@ public class Usuario extends Entidade  implements UserDetails{
 		// TODO Auto-generated constructor stub
 	}
 	public static final String FIND_POR_NOME_LOGIN 	= "Usuario.porNomeLogin";
+	public static final String FIND_POR_NM_ANIMAL 	= "Usuario.porNMouAnimal";
 	
 	
 	
