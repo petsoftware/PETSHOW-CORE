@@ -51,7 +51,9 @@ import br.com.petshow.enums.EnumTipoUser;
 
 
 @NamedQueries({ @NamedQuery(name = Usuario.FIND_POR_NOME_LOGIN, query = "FROM Usuario usu WHERE usu.nmLogin = :nmLogin"), 
-				@NamedQuery(name = Usuario.FIND_POR_NM_ANIMAL, query = "FROM Usuario usu WHERE usu.nome like '%:nome%' ")/* acrescentar animal*/})
+				@NamedQuery(name = Usuario.FIND_POR_NM_ANIMAL, query = "FROM Usuario usu WHERE usu.nome like '%:nome%' ")/* acrescentar animal*/
+			   
+})
 
 @Entity
 @Table(name="USUARIO")
@@ -65,42 +67,45 @@ public class Usuario extends Entidade  implements UserDetails{
 	public static final String FIND_POR_NOME_LOGIN 	= "Usuario.porNomeLogin";
 	public static final String FIND_POR_NM_ANIMAL 	= "Usuario.porNMouAnimal";
 	
+	@Column(name="FL_PRE_CADASTRO")
+	private boolean flPreCadastro;
 	
-	
+	@Column(name="FOTO_PERFIL" , length=10485760)
+	private String foto;
 	
 	@Column(name="CIDADE")
 	private String cidade;
-	@JsonIgnore
+	
 	@Column(name="ESTADO")
 	private String estado;
-	@JsonIgnore
+	
 	@Column(name="PAIS")
 	private String pais;
-	@JsonIgnore
+	
 	@Column(name="RUA")
 	private String rua;
-	@JsonIgnore
+	
 	@Column(name="BAIRRO")
 	private String bairro;
-	@JsonIgnore
+	
 	@Column(name="COMPLEMENTO")
 	private String complemento;
-	@JsonIgnore
+	
 	@Column(name="NR_ENDERECO")
 	private int nrEndereco;
-	@JsonIgnore
+	
 	@Column(name="NR_CEP")
 	private int nrCep;
-	@JsonIgnore
+	
 	@Column(name="CNPJ_CPF")
 	private String cnpjCpf;
-	@JsonIgnore
+	
 	@Column(name="RAZAO_SOCIAL")
 	private String razaoSocial;
-	@JsonIgnore
+	
 	@Column(name="TF_USUARIO")
 	private int telefone;
-	@JsonIgnore
+	
 	@Column(name="DDD_USUARIO")
 	private int ddd;
 	
@@ -117,20 +122,20 @@ public class Usuario extends Entidade  implements UserDetails{
 	@OneToMany
 	@JoinColumn(name = "ID_USUARIO" )
 	private List<Venda> vendas;
-	@JsonIgnore
+	
 	@Column(name="EMAIL",nullable=false)
 	private String email;
-	@JsonIgnore
+	
 	@Column(name="SENHA",nullable=false)
 	private String password;
 
 	@Column(name="NM_USUARIO")
 	private String nome;
-	@JsonIgnore
+	
 	@Column(name="TP_USER")
 	private EnumTipoUser tipoUser = EnumTipoUser.MASTER;
 	
-	@JsonIgnore
+	
 	@Column(name="NM_LOGIN",nullable=false)
 	private String nmLogin;
 	
@@ -140,6 +145,14 @@ public class Usuario extends Entidade  implements UserDetails{
 	
 	
 	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	public String getNmLogin() {
 		return nmLogin;
 	}
@@ -147,7 +160,7 @@ public class Usuario extends Entidade  implements UserDetails{
 	public void setNmLogin(String nmLogin) {
 		this.nmLogin = nmLogin;
 	}
-	@JsonIgnore
+	
 	public String getPassword() {
 		return password;
 	}

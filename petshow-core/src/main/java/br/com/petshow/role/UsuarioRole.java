@@ -11,6 +11,7 @@ import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Tutor;
 import br.com.petshow.model.Usuario;
+import br.com.petshow.util.ValidationUtil;
 /**
  * 
  * @author antoniorafael
@@ -22,6 +23,36 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	@Autowired
 	private UsuarioDAO usuarioDAO ;
 
+	public Usuario insertPreCadastro(Usuario entidade) throws ExceptionValidation{
+		
+		
+
+		if(!ValidationUtil.isCampoComValor(entidade.getNome())){
+			throw new ExceptionValidation("O campo de nome não foi informado!");
+		}
+		if(!ValidationUtil.isCampoComValor(entidade.getPassword())){
+			throw new ExceptionValidation("O campo de senha não foi informado!");
+		}
+		if(!ValidationUtil.isCampoComValor(entidade.getEmail())){
+			throw new ExceptionValidation("O campo de e-mail não foi informado!");
+		}
+		if(!ValidationUtil.isCampoComValor(entidade.getCnpjCpf())){
+			throw new ExceptionValidation("O campo de CNPJ não foi informado!");
+		}
+		if(!ValidationUtil.isCampoComValor(entidade.getNmLogin())){
+			throw new ExceptionValidation("O campo de nome de login não foi informado!");
+		}
+	
+
+		List<Usuario> usuarios=consultaPorNmLogin(entidade.getNmLogin());
+		if(usuarios !=null && usuarios.size()>0){
+			throw new ExceptionValidation("Nome de usuário já existe favor informar um diferente!");
+		}
+		
+
+		return (Usuario) this.usuarioDAO.insert(entidade);
+	}
+	
 	public Usuario insert(Usuario entidade) throws ExceptionValidation{
 		
 		return (Usuario) this.usuarioDAO.insert(entidade);
@@ -59,6 +90,10 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	public static  Usuario  getUsuarioLogado(){
 
 		return (Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+	}
+	
+	public List<Usuario>  consultaPorNmLogin(String nmLogin)  throws ExceptionValidation{
+		return this.usuarioDAO.consultaPorNmLogin(nmLogin);
 	}
 
 	

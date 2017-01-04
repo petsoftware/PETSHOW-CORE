@@ -1,6 +1,9 @@
 package br.com.petshow.model;
 
 import java.util.Date;
+
+
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -10,12 +13,19 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import br.com.petshow.enums.EnumTipoAnimal;
+
+
+
 
 @Entity
 @Table(name = "ANIMAL")
@@ -24,6 +34,7 @@ public class Animal extends Entidade {
 	
 	
 	@OneToMany
+	@JsonIgnore
 	@JoinColumn(name = "ID_ANIMAL" )
 	private List<Tutor> tutores;
 	
@@ -44,6 +55,9 @@ public class Animal extends Entidade {
 	
 	@Column(name = "FL_CASTRADO")
 	private boolean castrado;
+	
+	@Column(name = "FL_SEXO")
+	private String flSexo;
 	
 	// private vacinas colocar?
 	
@@ -94,5 +108,15 @@ public class Animal extends Entidade {
 	public void setCastrado(boolean castrado) {
 		this.castrado = castrado;
 	}
+
+	public String getFlSexo() {
+		return flSexo;
+	}
+
+	public void setFlSexo(String flSexo) {
+		this.flSexo = flSexo;
+	}
+
+
 
 }
