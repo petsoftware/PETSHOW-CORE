@@ -109,6 +109,13 @@ public class Usuario extends Entidade  implements UserDetails{
 	@Column(name="DDD_USUARIO")
 	private int ddd;
 	
+	
+	@Column(name="TF_USUARIO2")
+	private int telefone2;
+	
+	@Column(name="DDD_USUARIO2")
+	private int ddd2;
+	
 	@JsonIgnore
 	@OneToMany
 	@JoinColumn(name = "ID_USUARIO" )
@@ -143,8 +150,43 @@ public class Usuario extends Entidade  implements UserDetails{
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Acesso> acessos;
 	
+	@Column(name="FL_TP_ESTABELECIMENTO")
+	private String flTpEstabelecimento;
 	
 	
+	
+	public String getFlTpEstabelecimento() {
+		return flTpEstabelecimento;
+	}
+
+	public void setFlTpEstabelecimento(String flTpEstabelecimento) {
+		this.flTpEstabelecimento = flTpEstabelecimento;
+	}
+
+	public boolean isFlPreCadastro() {
+		return flPreCadastro;
+	}
+
+	public void setFlPreCadastro(boolean flPreCadastro) {
+		this.flPreCadastro = flPreCadastro;
+	}
+
+	public int getTelefone2() {
+		return telefone2;
+	}
+
+	public void setTelefone2(int telefone2) {
+		this.telefone2 = telefone2;
+	}
+
+	public int getDdd2() {
+		return ddd2;
+	}
+
+	public void setDdd2(int ddd2) {
+		this.ddd2 = ddd2;
+	}
+
 	public String getFoto() {
 		return foto;
 	}

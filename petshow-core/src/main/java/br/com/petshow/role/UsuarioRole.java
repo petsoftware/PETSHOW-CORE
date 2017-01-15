@@ -66,7 +66,18 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 
 	
 	public Usuario update(Usuario entidade) throws ExceptionValidation{
-	
+		Usuario existente =null;
+		if(entidade.getFoto() == null || entidade.getFoto().trim().equals("")){
+			existente =  find(entidade.getId());
+			
+			if(existente.getFoto() == null || existente.getFoto().trim().equals("")){
+				throw new ExceptionValidation("O campo de foto do perfil não foi informado!");
+			}else{
+				entidade.setFoto(existente.getFoto());
+			}
+		}
+		// verificar como irá ficar o tipo de usuario
+		
 		return (Usuario) this.usuarioDAO.update(entidade);
 	}
 

@@ -1,25 +1,37 @@
 package br.com.petshow.model;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+
+@NamedQueries({ @NamedQuery(name = Venda.VENDA_POR_USUARIO, query = "FROM Venda v where usuario.id=:idUsuario order by v.dataCadastro desc" )})
 
 @Entity
 @Table(name = "VENDA")
 public class Venda extends Entidade {
 
-	@ElementCollection
-	@CollectionTable(name = "FOTO_VENDA")
-	private Set<String> fotos;// no maximo 3
+	
+	public static final String VENDA_POR_USUARIO="vendaUsuario";
+	
+
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name = "FOTO_VENDA" )
+	@Column(length=10485760)
+	private List<String> fotos;// no maximo 3
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
@@ -27,11 +39,16 @@ public class Venda extends Entidade {
 	
 	@Column(name = "DESCRICAO",nullable=false)
 	private String descricao;
+	
+	@Column(name = "DESCRICAO_RESUMIDA",nullable=false)
+	private String descResumida;
 		
 	@Column(name = "DT_CADASTRO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
+	
 	@Column(name = "DT_VENCIMENTO",nullable=false)
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataVencimento;
 
@@ -53,6 +70,9 @@ public class Venda extends Entidade {
 	
 	@Column(name = "BAIRRO")
 	private String bairro;
+	
+	@Column(name = "ESTADO")
+	private String estado;
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -143,7 +163,30 @@ public class Venda extends Entidade {
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+
+	public String getDescResumida() {
+		return descResumida;
+	}
+
+	public void setDescResumida(String descResumida) {
+		this.descResumida = descResumida;
+	}
 	
 	
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+
+	public List<String> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(List<String> fotos) {
+		this.fotos = fotos;
+	}	
 	
 }

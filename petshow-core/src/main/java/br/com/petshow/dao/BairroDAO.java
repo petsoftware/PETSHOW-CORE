@@ -1,0 +1,28 @@
+package br.com.petshow.dao;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import br.com.petshow.model.Anuncio;
+import br.com.petshow.model.Bairro;
+import br.com.petshow.model.Cidade;
+
+
+@Repository
+public class BairroDAO extends SuperClassDAO<Bairro>{
+	public BairroDAO() {
+		
+	}
+
+
+	public Bairro find(long codigo) {
+		// TODO Auto-generated method stub
+		return manager.find(Bairro.class, codigo);
+	}
+
+	public List<Bairro> consultaPorCidade(String idCidade)  {
+		
+		return manager.createNamedQuery(Bairro.BAIRRO_POR_CIDADE).setParameter("idCidade", idCidade).getResultList();
+	}
+}
