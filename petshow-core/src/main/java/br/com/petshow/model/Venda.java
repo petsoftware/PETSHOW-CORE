@@ -17,8 +17,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 
-@NamedQueries({ @NamedQuery(name = Venda.VENDA_POR_USUARIO, query = "FROM Venda v where usuario.id=:idUsuario order by v.dataCadastro desc" )})
+
+@NamedQueries({ @NamedQuery(name = Venda.VENDA_POR_USUARIO, query = "FROM Venda v where usuario.id=:idUsuario order by v.dataCadastro desc" ),
+		@NamedQuery(name = Venda.VENDA_POR_FILTRO, query = "FROM Venda v where v.descResumida like :palavraChave and estado.id=:idEstado and cidade.id=:idCidade order by v.dataCadastro desc" )})
 
 @Entity
 @Table(name = "VENDA")
@@ -26,6 +29,7 @@ public class Venda extends Entidade {
 
 	
 	public static final String VENDA_POR_USUARIO="vendaUsuario";
+	public static final String VENDA_POR_FILTRO="vendas";
 	
 
 	@ElementCollection(fetch=FetchType.EAGER)
@@ -54,25 +58,31 @@ public class Venda extends Entidade {
 
 	@Column(name = "TF_CELULAR")
 	private long telefoneCelular;
+	
 	@Column(name = "DDD_CELULAR")
 	private int dddCelular;
 
 	@Column(name = "TF_RESIDENCIAL")
 	private long telefoneResidencial;
+	
 	@Column(name = "DDD_RESIDENCIAL")
 	private int dddResidencial;
 	
 	@Column(name = "VL_VENDA")
 	private double vlVenda;
 	
-	@Column(name = "CIDADE")
-	private String cidade;
 	
-	@Column(name = "BAIRRO")
-	private String bairro;
+	@ManyToOne
+	@JoinColumn(name = "ID_CIDADE" ,referencedColumnName="ID")
+	private Cidade cidade;
 	
-	@Column(name = "ESTADO")
-	private String estado;
+	@ManyToOne
+	@JoinColumn(name = "ID_ESTADO" ,referencedColumnName="ID")
+	private Estado estado;
+	
+	@ManyToOne
+	@JoinColumn(name = "ID_BAIRRO" ,referencedColumnName="ID")
+	private Bairro bairro;
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -148,21 +158,7 @@ public class Venda extends Entidade {
 		this.vlVenda = vlVenda;
 	}
 
-	public String getCidade() {
-		return cidade;
-	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
 
 	public String getDescResumida() {
 		return descResumida;
@@ -172,13 +168,13 @@ public class Venda extends Entidade {
 		this.descResumida = descResumida;
 	}
 	
-	
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
+	@JsonIgnore
+	public String getFoto() {
+		if(fotos.size()>0){
+			return fotos.get(0);
+		}else{
+		 return null;
+		}
 	}
 
 	public List<String> getFotos() {
@@ -187,6 +183,30 @@ public class Venda extends Entidade {
 
 	public void setFotos(List<String> fotos) {
 		this.fotos = fotos;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
+	}
+
+	public Bairro getBairro() {
+		return bairro;
+	}
+
+	public void setBairro(Bairro bairro) {
+		this.bairro = bairro;
 	}	
 	
 }

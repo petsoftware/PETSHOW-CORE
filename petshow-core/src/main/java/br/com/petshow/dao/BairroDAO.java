@@ -21,7 +21,7 @@ public class BairroDAO extends SuperClassDAO<Bairro>{
 		return manager.find(Bairro.class, codigo);
 	}
 
-	public List<Bairro> consultaPorCidade(String idCidade)  {
+	public List<Bairro> consultaPorCidade(long idCidade)  {
 		
 		return manager.createNamedQuery(Bairro.BAIRRO_POR_CIDADE).setParameter("idCidade", idCidade).getResultList();
 	}

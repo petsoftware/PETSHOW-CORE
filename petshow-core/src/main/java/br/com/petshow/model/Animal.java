@@ -52,15 +52,26 @@ public class Animal extends Entidade {
 	@Column(name = "DT_NASCIMENTO")
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
-	
-	@Column(name = "FL_CASTRADO")
-	private boolean castrado;
-	
+			
 	@Column(name = "FL_SEXO")
 	private String flSexo;
+
+	
+	
+	@Column(name = "FL_ADOCAO")
+	private boolean flAdocao;
+	
 	
 	// private vacinas colocar?
 	
+	public boolean isFlAdocao() {
+		return flAdocao;
+	}
+
+	public void setFlAdocao(boolean flAdocao) {
+		this.flAdocao = flAdocao;
+	}
+
 	public EnumTipoAnimal getTipo() {
 		return tipo;
 	}
@@ -101,13 +112,7 @@ public class Animal extends Entidade {
 		this.dataNascimento = dataNascimento;
 	}
 
-	public boolean isCastrado() {
-		return castrado;
-	}
 
-	public void setCastrado(boolean castrado) {
-		this.castrado = castrado;
-	}
 
 	public String getFlSexo() {
 		return flSexo;
@@ -116,6 +121,8 @@ public class Animal extends Entidade {
 	public void setFlSexo(String flSexo) {
 		this.flSexo = flSexo;
 	}
+
+
 
 
 

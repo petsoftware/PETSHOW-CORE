@@ -52,7 +52,7 @@ public class BairroRole extends SuperClassRole<Bairro> {
 		
 	}
 	
-	public List<Bairro> consultaPorCidade(String idCidade)  throws  ExceptionValidation{
+	public List<Bairro> consultaPorCidade(long idCidade)  throws  ExceptionValidation{
 		if(!ValidationUtil.isCampoComValor(idCidade)){
 			throw new ExceptionValidation("Codigo da cidade não foi informada!");
 		}

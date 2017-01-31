@@ -9,12 +9,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 
-@NamedQueries({ @NamedQuery(name = Cidade.CIDADE_POR_ESTADO, query = "FROM Cidade c where estado.sigla=:uf order by c.nome asc" )})
+@NamedQueries({ @NamedQuery(name = Cidade.CIDADE_POR_ESTADO_POR_ID, query = "FROM Cidade c where estado.id=:id order by c.nome asc" ),
+			 @NamedQuery(name = Cidade.CIDADE_POR_ESTADO_POR_UF, query = "FROM Cidade c where estado.sigla=:uf order by c.nome asc" )})
 @Entity
 @Table(name = "CIDADE")
 public class Cidade  extends Entidade {
 
-	public static final String CIDADE_POR_ESTADO="cidadePorEstado";
+	public static final String CIDADE_POR_ESTADO_POR_ID="cidadePorEstadoID";
+	public static final String CIDADE_POR_ESTADO_POR_UF="cidadePorEstadoUF";
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "ID_ESTADO" ,referencedColumnName="ID")

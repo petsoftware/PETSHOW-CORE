@@ -50,11 +50,17 @@ public class CidadeRole extends SuperClassRole<Cidade> {
 		
 	}
 	
-	public List<Cidade> consultaPorEstado(String uf)  throws  ExceptionValidation{
+	public List<Cidade> consultaPorEstadoID(long id)  throws  ExceptionValidation{
+		if(!ValidationUtil.isCampoComValor(id)){
+			throw new ExceptionValidation("O id do estado não foi informada!");
+		}
+		return this.cidadeDAO.consultaPorEstadoID(id);
+	}
+	public List<Cidade> consultaPorEstadoUF(String uf)  throws  ExceptionValidation{
 		if(!ValidationUtil.isCampoComValor(uf)){
 			throw new ExceptionValidation("A UF não foi informada!");
 		}
-		return this.cidadeDAO.consultaPorEstado(uf);
+		return this.cidadeDAO.consultaPorEstadoUF(uf);
 	}
 	
 }

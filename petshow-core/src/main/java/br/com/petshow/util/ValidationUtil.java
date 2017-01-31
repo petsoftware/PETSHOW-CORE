@@ -1,5 +1,6 @@
 package br.com.petshow.util;
 
+import java.security.Timestamp;
 import java.util.Date;
 
 public class ValidationUtil {
@@ -47,6 +48,29 @@ public class ValidationUtil {
 		}
 	}
 	
+	public static boolean isDateIquals(Date data1,Timestamp data2){
+		return isDateIquals(data1.getTime(), data2.getTimestamp().getTime());
+	}
+
+	public static boolean isDateIquals(Date data1,Date data2){
+		return isDateIquals(data1.getTime(), data2.getTime());
+	}
+
+	public static boolean isDateIquals(Timestamp data1,Timestamp data2){
+		return isDateIquals(data1.getTimestamp().getTime(), data2.getTimestamp().getTime());
+	}
+
+	public static boolean isDateIquals(Timestamp data1,Date data2){
+		return isDateIquals(data1.getTimestamp().getTime(), data2.getTime());
+	}
+	
+	public static boolean isDateIquals(long mili1,long mili2){
+		if(mili1 != mili2){
+			return false;
+		}else{
+			return true;
+		}
+	}
 	
 	
 }

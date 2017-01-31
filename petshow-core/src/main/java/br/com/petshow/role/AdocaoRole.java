@@ -1,5 +1,7 @@
 package br.com.petshow.role;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,6 +48,10 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 		
 		return this.adocaoDAO.update(entidade);
 		
+	}
+
+	public List<Adocao> consultaAnimaisAdocao(long estado, long cidade, String tpAnimal, String fase, String sexo)  throws ExceptionValidation {
+		return this.adocaoDAO.consultaAnimaisAdocao(estado,  cidade,  tpAnimal,  fase, sexo);
 	}
 	
 }

@@ -99,8 +99,12 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	 * @return
 	 */
 	public static  Usuario  getUsuarioLogado(){
-
-		return (Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		
+		try{
+			return (Usuario)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		}catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public List<Usuario>  consultaPorNmLogin(String nmLogin)  throws ExceptionValidation{

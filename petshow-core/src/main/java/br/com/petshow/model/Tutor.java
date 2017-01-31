@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -30,8 +31,8 @@ public class Tutor extends Entidade {
 	private boolean donoAtual;
 
 
-	@OneToMany
-	@JoinColumn(name = "ID_TUTOR" )
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name = "ID_TUTOR")
 	private List<FotoTutor> fotos;
 	
 	

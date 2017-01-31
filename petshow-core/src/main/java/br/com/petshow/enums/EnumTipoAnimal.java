@@ -4,8 +4,7 @@ public enum EnumTipoAnimal {
 	
 	CACHORRO,
 	GATO,
-	PAPAGAIO,
-	PERIQUITO,
+	PASSARO,
 	CAVALO,
 	COBRA,
 	PEIXE,

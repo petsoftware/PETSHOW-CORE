@@ -68,7 +68,7 @@ public class VendaRole extends SuperClassRole<Venda> {
 		
 		
 		
-		if(!venda.equals(entidade.getDataCadastro())){
+		if(!ValidationUtil.isDateIquals(venda.getDataCadastro(), entidade.getDataCadastro())){
 			throw new ExceptionValidation("Data de cadastro não pode ser alterada!");
 		}
 		if(!ValidationUtil.isCampoComValor(entidade.getDescResumida())){
@@ -98,6 +98,12 @@ public class VendaRole extends SuperClassRole<Venda> {
 		}
 		return this.vendaDAO.consultaPorUsuario(id);
 	}
+	
+	public List<Venda> consultaVendasFiltros(String palavraChave,long idCidade,long idEstado)  throws  ExceptionValidation{
+		
+		return this.vendaDAO.vendas(palavraChave, idCidade, idEstado);
+	}
+
 
 	
 }
