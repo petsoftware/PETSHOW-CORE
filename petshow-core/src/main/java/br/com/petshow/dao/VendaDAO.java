@@ -40,7 +40,7 @@ public class VendaDAO extends SuperClassDAO<Venda> {
 
 	}
 
-	public List<Venda> vendas(String palavraChave,long idCidade,long idEstado)  {
+	public List<Venda> vendas(String palavraChave,long idCidade,long idEstado,int limiteRegistros)  {
 		
 		String consulta ="select * from venda ";
 		ArrayList<HashMap<String,Object>> filtros = new ArrayList<HashMap<String,Object>>(); 
@@ -69,7 +69,7 @@ public class VendaDAO extends SuperClassDAO<Venda> {
 		 	map.put("valor",new Long(idEstado));
 			filtros.add(map);
 		}
-		consulta += (where.equals("where 1=1")?"":where)+ " order by dt_cadastro desc";
+		consulta += (where.equals("where 1=1")?"":where)+ " order by dt_cadastro desc limit "+limiteRegistros;
 		Query query = manager.createNativeQuery(consulta, Venda.class);
 		
 		

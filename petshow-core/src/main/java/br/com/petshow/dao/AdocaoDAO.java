@@ -24,12 +24,12 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 		return manager.find(Adocao.class, codigo);
 	}
 
-	public List<Adocao> consultaAnimaisAdocao(long estado, long cidade, String tpAnimal, String fase, String sexo) {
+	public List<Adocao> consultaAnimaisAdocao(long estado, long cidade, String tpAnimal, String fase, String sexo, int limiteRegistros) {
 		String consulta ="select adocao.* from adocao "
 				+ "inner join tutor on    adocao.id_tutor = tutor.id"
 				+ "	inner join animal on 	animal.id= tutor.id_animal " ;
 		ArrayList<HashMap<String,Object>> filtros = new ArrayList<HashMap<String,Object>>(); 
-		String where = "where 1=1";
+		String where = " where 1=1 ";
 		boolean innerUsuario= false;
 /*		select * from adocao
 	    inner join tutor on    adocao.id_tutor = tutor.id
@@ -59,8 +59,8 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 			filtros.add(map);
 		}
 		
-		if(estado>0){
-			where+= " and usuario.id_cidade =:idCidade";
+		if(cidade>0){
+			where+= " and adocao.id_cidade =:idCidade ";
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("chave", "idCidade");
 		 	map.put("valor",new Long(cidade));
@@ -68,13 +68,13 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 			innerUsuario=true;
 		}
 		
-		if(cidade>0){
-			where+= " and usuario.id_estado =:idEstado";
+		if(estado>0){
+			where+= " and adocao.id_estado =:idEstado ";
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("chave", "idEstado");
 		 	map.put("valor",new Long(estado));
 			filtros.add(map);
-			innerUsuario=true;
+			//innerUsuario=true;
 		}
 		
 		if(innerUsuario){
@@ -82,7 +82,7 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 		}
 		
 		
-		consulta += (where.equals("where 1=1")?"":where)+ " order by dt_adocao desc";
+		consulta += (where.equals(" where 1=1 ")?"":where)+ " order by dt_adocao desc limit "+limiteRegistros;
 		Query query = manager.createNativeQuery(consulta, Adocao.class);
 		
 		

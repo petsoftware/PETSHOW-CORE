@@ -9,6 +9,7 @@ import br.com.petshow.dao.AdocaoDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Adocao;
+import br.com.petshow.util.ValidationUtil;
 
 @Service
 public class AdocaoRole extends SuperClassRole<Adocao> {
@@ -39,7 +40,9 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 
 	
 	public Adocao find(long codigo) throws ExceptionValidation {
-		
+		if(!ValidationUtil.isCampoComValor(codigo)){
+			throw new ExceptionValidation("O codigo não foi informado!");
+		}
 		return this.adocaoDAO.find(codigo);
 	}
 
@@ -50,8 +53,8 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 		
 	}
 
-	public List<Adocao> consultaAnimaisAdocao(long estado, long cidade, String tpAnimal, String fase, String sexo)  throws ExceptionValidation {
-		return this.adocaoDAO.consultaAnimaisAdocao(estado,  cidade,  tpAnimal,  fase, sexo);
+	public List<Adocao> consultaAnimaisAdocao(long estado, long cidade, String tpAnimal, String fase, String sexo,int limiteRegistros)  throws ExceptionValidation {
+		return this.adocaoDAO.consultaAnimaisAdocao(estado,  cidade,  tpAnimal,  fase, sexo, limiteRegistros);
 	}
 	
 }

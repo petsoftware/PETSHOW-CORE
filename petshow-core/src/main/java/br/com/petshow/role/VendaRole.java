@@ -99,9 +99,9 @@ public class VendaRole extends SuperClassRole<Venda> {
 		return this.vendaDAO.consultaPorUsuario(id);
 	}
 	
-	public List<Venda> consultaVendasFiltros(String palavraChave,long idCidade,long idEstado)  throws  ExceptionValidation{
+	public List<Venda> consultaVendasFiltros(String palavraChave,long idCidade,long idEstado,int limiteRegistros)  throws  ExceptionValidation{
 		
-		return this.vendaDAO.vendas(palavraChave, idCidade, idEstado);
+		return this.vendaDAO.vendas(palavraChave, idCidade, idEstado,limiteRegistros);
 	}
 
 
