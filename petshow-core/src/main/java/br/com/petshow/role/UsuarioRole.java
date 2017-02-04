@@ -11,6 +11,7 @@ import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Tutor;
 import br.com.petshow.model.Usuario;
+import br.com.petshow.model.Venda;
 import br.com.petshow.util.ValidationUtil;
 /**
  * 
@@ -111,5 +112,16 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		return this.usuarioDAO.consultaPorNmLogin(nmLogin);
 	}
 
-	
+	public List<Usuario> listaClientes(long id)  throws  ExceptionValidation{
+		if(!ValidationUtil.isCampoComValor(id)){
+			throw new ExceptionValidation("O código não foi informado!");
+		}
+		return this.usuarioDAO.listaClientes(id);
+	}
+	public List<Usuario> listaClientesAutoComplete(long id,String parteNome)  throws  ExceptionValidation{
+		if(!ValidationUtil.isCampoComValor(id)){
+			throw new ExceptionValidation("O código não foi informado!");
+		}
+		return this.usuarioDAO.listaClientesAutoComplete(id,parteNome);
+	}
 }

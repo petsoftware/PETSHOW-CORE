@@ -1,6 +1,9 @@
 package br.com.petshow.dao;
 
+import java.util.HashMap;
 import java.util.List;
+
+import javax.persistence.Query;
 
 import org.hibernate.Hibernate;
 import org.hibernate.SQLQuery;
@@ -8,6 +11,7 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import br.com.petshow.model.Animal;
+import br.com.petshow.model.Venda;
 @Repository
 public class AnimalDAO extends SuperClassDAO<Animal> {
 
@@ -23,17 +27,20 @@ public class AnimalDAO extends SuperClassDAO<Animal> {
 	}
 	
 	public  List<Animal> animaisPorDono(long idUsuario){
-		SQLQuery query =super.getManager().unwrap(Session.class).createSQLQuery("select * from animal "	).addEntity(Animal.class) ;
-				
-			/*	pENDENCIA
-				SQLQuery query =super.getManager().unwrap(Session.class).createSQLQuery("select {a.*} ,{t.*} from animal a"
-						+ "	inner join tutor t on "
-								+"t.id_animal=a.id"
-						+	"where t.id_usuario=1"
-						).addEntity("a",Animal.class).addJoin("t","a.tutores"); ;
-						*/
-		return query.list();
 		
+		String consulta="select animal.* from animal"
+				+ " inner join tutor on"
+				+ "		animal.id= tutor.id_animal"
+				+ " where tutor.id_usuario=:usuarioID";
+		Query query = manager.createNativeQuery(consulta, Animal.class);
+		
+		query.setParameter("usuarioID",idUsuario);
+		
+		
+		List<Animal> retorno = (List<Animal>) query.getResultList();
+		
+		return retorno;
+	
 	}
 	
 

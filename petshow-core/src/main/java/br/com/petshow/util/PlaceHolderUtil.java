@@ -11,7 +11,7 @@ public class PlaceHolderUtil {
 	private static final  String SEL_ANIMAL;
 	private static final  String SEL_SEXO;
 	private static final  String SEL_FASE;
-	
+	private static final  String SEL_SERVICO;
 
 
 	static{
@@ -22,6 +22,7 @@ public class PlaceHolderUtil {
 		SEL_ANIMAL="Selecione um tipo de animal";
 		SEL_SEXO="Selecione um gênero";
 		SEL_FASE="Selecione uma fase";
+		SEL_SERVICO="Selecione um servico";
 	}
 
 
@@ -64,6 +65,10 @@ public class PlaceHolderUtil {
 
 	public static String getSelFase() {
 		return SEL_FASE;
+	}
+	
+	public static String getSelServico() {
+		return SEL_SERVICO;
 	}
 
 }
