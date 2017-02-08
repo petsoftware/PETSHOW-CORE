@@ -3,7 +3,7 @@ package br.com.petshow.util;
 public class WriteConsoleUtil {
 	
 	
-	public static boolean isDebug = false;
+	public static boolean isDebug = true;
 	
 	public static void write(String write) {
 	
