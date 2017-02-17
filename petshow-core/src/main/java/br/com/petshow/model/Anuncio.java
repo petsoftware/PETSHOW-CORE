@@ -1,12 +1,8 @@
 package br.com.petshow.model;
 
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
-import javax.persistence.CollectionTable;
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,8 +11,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 /* entidade que contem os anuncios cobrados para os usuarios(promoçoes do petshop ou algo do tipo)*/
 
@@ -29,6 +23,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 @Table(name = "ANUNCIO")
 public class Anuncio extends Entidade {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8890385286046957564L;
+
 	public static final String ANUNCIO_POR_USUARIO="usuariosAnuncios";
 	
 	//@JsonIgnore

@@ -14,6 +14,11 @@ import javax.persistence.Table;
 @Table(name = "BAIRRO")
 public class Bairro   extends Entidade{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4774519105577569656L;
+
 	public static final String BAIRRO_POR_CIDADE="bairroPorCidade";
 	
 	@ManyToOne(fetch=FetchType.EAGER)

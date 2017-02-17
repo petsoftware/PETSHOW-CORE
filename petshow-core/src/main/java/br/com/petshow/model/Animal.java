@@ -33,6 +33,12 @@ public class Animal extends Entidade {
 	
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1753116276167779324L;
+
+
 	@OneToMany
 	@JsonIgnore
 	@JoinColumn(name = "ID_ANIMAL" )
