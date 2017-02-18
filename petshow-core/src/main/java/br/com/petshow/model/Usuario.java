@@ -16,19 +16,14 @@ import javax.persistence.Table;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import org.codehaus.jackson.annotate.JsonProperty;
-
 
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.GrantedAuthorityImpl;
 //import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.petshow.enums.EnumTipoUser;
-//import br.com.springsecurity.model.Role;
 
 
 
@@ -146,7 +141,7 @@ public class Usuario extends Entidade  implements UserDetails{
 	@Column(name="NM_LOGIN",nullable=false)
 	private String nmLogin;
 	
-	@JsonIgnore
+//	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Acesso> acessos;
 	
@@ -377,12 +372,14 @@ public class Usuario extends Entidade  implements UserDetails{
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
+	
 	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> result = new ArrayList<SimpleGrantedAuthority>();
-		for (Acesso acesso : acessos) {
-			result.add(new SimpleGrantedAuthority(acesso.getNmAcesso()));
+		if(acessos != null){
+			for (Acesso acesso : acessos) {
+				result.add(new SimpleGrantedAuthority(acesso.getNmAcesso()));
+			}
 		}
 		return result;
 	}
@@ -415,7 +412,7 @@ public class Usuario extends Entidade  implements UserDetails{
 		// TODO Auto-generated method stub
 		return true;
 	}
-	@JsonIgnore
+//	@JsonIgnore
 	public List<Acesso> getAcessos() {
 		return acessos;
 	}

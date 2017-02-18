@@ -9,9 +9,8 @@ import org.springframework.stereotype.Service;
 import br.com.petshow.dao.UsuarioDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.Tutor;
 import br.com.petshow.model.Usuario;
-import br.com.petshow.model.Venda;
+import br.com.petshow.util.MD5EncriptUtil;
 import br.com.petshow.util.ValidationUtil;
 /**
  * 
@@ -51,12 +50,22 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		}
 		
 
-		return (Usuario) this.usuarioDAO.insert(entidade);
+//		return (Usuario) this.usuarioDAO.insert(entidade);
+		return insertUser(entidade);
 	}
 	
 	public Usuario insert(Usuario entidade) throws ExceptionValidation{
-		
-		return (Usuario) this.usuarioDAO.insert(entidade);
+		return insertUser(entidade);
+//		return (Usuario) this.usuarioDAO.insert(entidade);
+	}
+	
+	private Usuario insertUser(Usuario user) {
+		user.setPassword(encriptPassWord(user.getPassword()));
+		return (Usuario) this.usuarioDAO.insert(user);
+	}
+	
+	private String encriptPassWord(String currentPassword) {
+		return MD5EncriptUtil.toMD5(currentPassword);
 	}
 
 	
@@ -124,4 +133,5 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		}
 		return this.usuarioDAO.listaClientesAutoComplete(id,parteNome);
 	}
+	
 }
