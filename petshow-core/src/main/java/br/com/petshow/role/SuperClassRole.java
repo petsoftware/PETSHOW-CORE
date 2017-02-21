@@ -4,8 +4,6 @@ import javax.persistence.EntityManager;
 
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.Anuncio;
-import br.com.petshow.model.Entidade;
 
 
 /**
