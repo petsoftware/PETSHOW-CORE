@@ -38,6 +38,12 @@
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
 			<version>1.0.0.Final</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-envers -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-envers</artifactId>
+			<version>5.1.0.Final</version>
+		</dependency>
 
 		<!-- Spring -->
 		<dependency>
@@ -100,7 +106,7 @@
 			<artifactId>jaxrs-api</artifactId>
 			<version>3.0.12.Final</version>
 		</dependency>
-			<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
+		<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jaxrs -->
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
@@ -121,40 +127,40 @@
 			<artifactId>resteasy-jaxb-provider</artifactId>
 			<version>3.1.0.CR2</version>
 		</dependency>
-	<!-- Spring Security Core -->
-<dependency>
-<groupId>org.springframework.security</groupId>
-<artifactId>spring-security-core</artifactId>
-<version>4.2.0.RELEASE</version>
-</dependency>
-<!-- Spring Security Config -->
-<dependency>
-<groupId>org.springframework.security</groupId>
-<artifactId>spring-security-config</artifactId>
-<version>4.2.0.RELEASE</version>
-</dependency>
-<!-- Spring Security Web -->
-<dependency>
-<groupId>org.springframework.security</groupId>
-<artifactId>spring-security-web</artifactId>
-<version>4.2.0.RELEASE</version>
-</dependency>
-<!-- Spring Security Taglibs -->
-<dependency>
-<groupId>org.springframework.security</groupId>
-<artifactId>spring-security-taglibs</artifactId>
-<version>4.2.0.RELEASE</version>
-</dependency>	
-<dependency>
-<groupId>org.springframework.security</groupId>
-<artifactId>spring-security-acl</artifactId>
-<version>4.2.0.RELEASE</version>
-</dependency>	
-<dependency>
-    <groupId>commons-logging</groupId>
-    <artifactId>commons-logging</artifactId>
-    <version>1.2</version>
-</dependency>
+		<!-- Spring Security Core -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.2.0.RELEASE</version>
+		</dependency>
+		<!-- Spring Security Config -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>4.2.0.RELEASE</version>
+		</dependency>
+		<!-- Spring Security Web -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>4.2.0.RELEASE</version>
+		</dependency>
+		<!-- Spring Security Taglibs -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-taglibs</artifactId>
+			<version>4.2.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-acl</artifactId>
+			<version>4.2.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
 
 
 	</dependencies>

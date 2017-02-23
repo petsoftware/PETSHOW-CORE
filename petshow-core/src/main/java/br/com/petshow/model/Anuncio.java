@@ -12,13 +12,16 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.envers.Audited;
+import org.hibernate.envers.RelationTargetAuditMode;
+
 /* entidade que contem os anuncios cobrados para os usuarios(promoçoes do petshop ou algo do tipo)*/
 
 
 // ver querie dps
 @NamedQueries({ @NamedQuery(name = Anuncio.ANUNCIO_POR_USUARIO, query = "FROM Anuncio a where usuario.id=:idUsuario order by a.dataCadastro desc" )})
 
-									
+@Audited(targetAuditMode=RelationTargetAuditMode.NOT_AUDITED)									
 @Entity
 @Table(name = "ANUNCIO")
 public class Anuncio extends Entidade {
