@@ -6,16 +6,9 @@ import java.util.List;
 
 import javax.persistence.Query;
 
-import org.hibernate.Criteria;
-
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import br.com.petshow.model.Adocao;
-import br.com.petshow.model.Anuncio;
 import br.com.petshow.model.Perdido;
-import br.com.petshow.model.Venda;
 /**
  * 
  * @author antoniorafael

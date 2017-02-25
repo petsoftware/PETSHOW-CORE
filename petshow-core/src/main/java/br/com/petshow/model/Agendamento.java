@@ -8,7 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,6 +20,11 @@ import javax.persistence.TemporalType;
 public class Agendamento   extends Entidade{
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2226871396519881838L;
+
 	public static final String AGENDAMENTO_PENDENTE="agendamentoPendente";
 	
 	@ManyToOne

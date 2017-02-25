@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import br.com.petshow.model.Agendamento;
-import br.com.petshow.model.Servico;
 @Repository
 public class AgendamentoDAO extends SuperClassDAO<Agendamento> {
 

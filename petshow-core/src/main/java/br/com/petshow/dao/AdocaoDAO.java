@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.petshow.model.Adocao;
-import br.com.petshow.model.Venda;
 
 @Repository
 public class AdocaoDAO extends SuperClassDAO<Adocao> {

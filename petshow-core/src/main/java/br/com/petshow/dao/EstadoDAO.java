@@ -4,9 +4,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petshow.model.Anuncio;
-import br.com.petshow.model.Bairro;
-import br.com.petshow.model.Cidade;
 import br.com.petshow.model.Estado;
 
 

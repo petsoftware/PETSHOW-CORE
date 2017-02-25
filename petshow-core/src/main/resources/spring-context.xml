@@ -16,6 +16,7 @@
    
         <!-- Contexto do DispatcherServlet: define a infraestrutura do processamento das requisições feitas ao Servlet (DispatcherServlet) -->
 
+	
 		<bean id="postGresDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 			<property name="jndiName" value="java:comp/env/jdbc/petshow" />
 		</bean>
@@ -31,7 +32,7 @@
         <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
               <property name="entityManagerFactory" ref="entityManagerFactory" />
         </bean>
-        
+    
  
         <tx:annotation-driven />
         <!-- Define o pacote base para o escaneamento das anotações de contexto (@Component, @Repository, @Service, @Controller, etc) -->
