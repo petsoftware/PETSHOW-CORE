@@ -2,6 +2,7 @@ package br.com.petshow.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.hibernate.Criteria;
@@ -29,8 +30,13 @@ public class UsuarioDAO extends SuperClassDAO<Usuario> {
 	}
 	// metodo usado somente para fazer o login favor não alterar
 	public Usuario consultaPorNomeLogin(String nmLogin)  {
-
-		return manager.createNamedQuery(Usuario.FIND_POR_NOME_LOGIN, Usuario.class).setParameter("nmLogin", nmLogin).getSingleResult();
+		Usuario user= null;
+		try{
+			user = manager.createNamedQuery(Usuario.FIND_POR_NOME_LOGIN, Usuario.class).setParameter("nmLogin", nmLogin).getSingleResult();
+		}catch(NoResultException e){
+			return null;
+		}
+		return user; 
 	}
 	public List<Usuario> consultaPorNomeOuAnimal(String nome)  {
 

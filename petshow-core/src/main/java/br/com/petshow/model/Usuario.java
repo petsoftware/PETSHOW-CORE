@@ -55,7 +55,8 @@ import br.com.petshow.enums.EnumTipoUser;
 public class Usuario extends Entidade  implements UserDetails{
 	
 	private static final long serialVersionUID = 8937600656781400155L;
-
+	public static final String ANONYMOUS_USER = "anonymousUser";
+	
 	public Usuario() {
 		// TODO Auto-generated constructor stub
 	}

@@ -49,6 +49,10 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 			throw new ExceptionValidation("Nome de usuário já existe favor informar um diferente!");
 		}
 		
+		if(entidade.getNmLogin().equalsIgnoreCase(Usuario.ANONYMOUS_USER)){
+			throw new ExceptionValidation("Nome de login " + entidade.getNmLogin() + " é uma palavra reservada, portanto não pode ser usada.");
+		}
+		
 
 //		return (Usuario) this.usuarioDAO.insert(entidade);
 		return insertUser(entidade);
