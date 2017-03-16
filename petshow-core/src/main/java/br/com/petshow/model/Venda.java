@@ -1,8 +1,8 @@
 package br.com.petshow.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -28,6 +28,10 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class Venda extends Entidade {
 
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3092300933879378313L;
 	public static final String VENDA_POR_USUARIO="vendaUsuario";
 	public static final String VENDA_POR_FILTRO="vendas";
 	
@@ -35,7 +39,7 @@ public class Venda extends Entidade {
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "FOTO_VENDA" )
 	@Column(length=10485760)
-	private List<String> fotos;// no maximo 3
+	private List<String> fotos = new ArrayList<String>();// no maximo 3
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
