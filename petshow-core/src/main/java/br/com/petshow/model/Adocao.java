@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.util.IDUtil;
 
 @Entity
 @Table(name = "ADOCAO")
@@ -27,14 +28,23 @@ public class Adocao extends Entidade {
 	
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2535670503647345911L;
+
 	@Column(name = "DT_ADOCAO")
 	@Temporal(TemporalType.DATE)
 	private Date dataAdocao;
 	
 	@OneToOne
-	@JoinColumn(name = "ID_TUTOR" ,referencedColumnName="ID")
+	@JoinColumn(name = IDUtil.ID_TUTOR ,referencedColumnName=IDUtil.ID)
 	private Tutor tutor;
 	
+	@ManyToOne
+	@JoinColumn(name = IDUtil.ID_USUARIO ,referencedColumnName=IDUtil.ID)
+	private Usuario usuario;
+
 	@Column(name = "DESC_ADOCAO")
 	private String descAdocao;
 	
@@ -289,7 +299,13 @@ public class Adocao extends Entidade {
 		this.dataCadastro = dataCadastro;
 	}
 
-	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 	
 }

@@ -12,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,11 +21,24 @@ import javax.persistence.TemporalType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.util.IDUtil;
+
+@NamedQueries(value={
+		@NamedQuery(name=Perdido.QRY_COUNT,query="SELECT COUNT("+IDUtil.ID+") FROM Perdido")
+})
+	
 
 @Entity
 @Table(name = "PERDIDO")
 public class Perdido extends Entidade {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8218671348791628832L;
+
+	public static final String QRY_COUNT = "Pedido.qryCount";
+	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
 	private Usuario usuario;
@@ -42,15 +57,15 @@ public class Perdido extends Entidade {
 	
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_CIDADE" ,referencedColumnName="ID")
+	@JoinColumn(name = IDUtil.ID_CIDADE ,referencedColumnName=IDUtil.ID)
 	private Cidade cidade;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_ESTADO" ,referencedColumnName="ID")
+	@JoinColumn(name = IDUtil.ID_ESTADO ,referencedColumnName=IDUtil.ID)
 	private Estado estado;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_BAIRRO" ,referencedColumnName="ID")
+	@JoinColumn(name = IDUtil.ID_BAIRRO ,referencedColumnName=IDUtil.ID)
 	private Bairro bairro;
 
 	

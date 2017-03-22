@@ -1,19 +1,14 @@
 package br.com.petshow.model;
 
 import java.io.Serializable;
-import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import br.com.petshow.util.IDUtil;
 @MappedSuperclass
 public abstract class Entidade implements Serializable {
 	
@@ -38,7 +33,7 @@ public abstract class Entidade implements Serializable {
 */	
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID", nullable=false)
+	@Column(name=IDUtil.ID, nullable=false)
 	private long id;
 	/*
 	-------------------------------------------------------------------------------------------------

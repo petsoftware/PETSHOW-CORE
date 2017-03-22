@@ -95,4 +95,10 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 
 	}
 	
+	public int getCount() {
+		Query qry = manager.createNamedQuery(Perdido.QRY_COUNT);
+		qry.getSingleResult();
+		return 0;
+	}
+	
 }
