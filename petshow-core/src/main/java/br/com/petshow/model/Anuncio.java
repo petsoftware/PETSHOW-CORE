@@ -46,15 +46,15 @@ public class Anuncio extends Entidade {
 	@Column(name="DESCRICAO",nullable=false)
 	private String descricao;
 		
-	@Column(name = "DT_CADASTRO",nullable=false,columnDefinition = "timestamp without time zone ")
+	@Column(name = "DT_CADASTRO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
 	
-	@Column(name = "DT_INICIAL",nullable=false,columnDefinition = "timestamp without time zone ")
+	@Column(name = "DT_INICIAL",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicial;
 	
-	@Column(name = "DT_VENCIMENTO",nullable=false,columnDefinition = "timestamp without time zone ")
+	@Column(name = "DT_VENCIMENTO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataVencimento;
 
