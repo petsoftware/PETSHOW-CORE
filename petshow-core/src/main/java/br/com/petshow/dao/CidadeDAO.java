@@ -24,7 +24,7 @@ public class CidadeDAO extends SuperClassDAO<Cidade>{
 		System.out.println("trace descobrir lentidao:entrou consultaPorEstadoID:"+new Date().toString());
 		return manager.createNamedQuery(Cidade.CIDADE_POR_ESTADO_POR_ID).setParameter("id", id).getResultList();
 	}
-public List<Cidade> consultaPorEstadoUF(String uf)  {
+	public List<Cidade> consultaPorEstadoUF(String uf)  {
 		
 		return manager.createNamedQuery(Cidade.CIDADE_POR_ESTADO_POR_UF).setParameter("uf", uf).getResultList();
 	}

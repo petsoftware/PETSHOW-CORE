@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.AnimalDAO;
+import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Agendamento;
@@ -24,6 +25,21 @@ public class AnimalRole extends SuperClassRole<Animal> {
 	
 	public Animal insert(Animal entidade) throws ExceptionValidation{
 	
+		
+		if(!ValidationUtil.isCampoComValor(entidade.getNome())){
+			throw new ExceptionValidation("O nome não foi informado!","nome");
+		}
+		if(!ValidationUtil.isCampoComValor(entidade.getFlSexo())){
+			throw new ExceptionValidation("O nome não foi informado!","flSexo");
+		}
+		if(entidade.getTipo()==null){
+			throw new ExceptionValidation("O tipo do animal não foi informado!","tipo");
+		}
+		if(!ValidationUtil.isCampoComValor(entidade.getDataNascimento())){
+			throw new ExceptionValidation("A data de nascimento não foi informada!","dataNascimento");
+		}
+		
+		
 		return (Animal) this.animalDAO.insert(entidade);
 	}
 

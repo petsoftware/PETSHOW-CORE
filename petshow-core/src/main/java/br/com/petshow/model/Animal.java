@@ -38,6 +38,8 @@ public class Animal extends Entidade {
 	 */
 	private static final long serialVersionUID = -1753116276167779324L;
 
+	@Column(name="FOTO_PERFIL" , length=10485760)
+	private String fotoPerfil;
 
 	@OneToMany
 	@JsonIgnore
@@ -46,7 +48,7 @@ public class Animal extends Entidade {
 	
 	
 	@Column(name="TP_ANIMAL",nullable=false)
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoAnimal tipo;
 	
 	@Column(name="RACA")
@@ -126,6 +128,14 @@ public class Animal extends Entidade {
 
 	public void setFlSexo(String flSexo) {
 		this.flSexo = flSexo;
+	}
+
+	public String getFotoPerfil() {
+		return fotoPerfil;
+	}
+
+	public void setFotoPerfil(String fotoPerfil) {
+		this.fotoPerfil = fotoPerfil;
 	}
 
 

@@ -23,6 +23,17 @@ public class UsuarioDAO extends SuperClassDAO<Usuario> {
 	}
 
 
+	public Usuario findFacebook(long idFacebook)  {
+		Usuario user= null;
+		try{
+			user = manager.createNamedQuery(Usuario.IDX_POR_FACEBOOK, Usuario.class).setParameter("idFacebook", idFacebook).getSingleResult();
+		}catch(NoResultException e){
+			return null;
+		}
+		return user; 
+	}
+	
+	
 	@Override
 	public Usuario find(long codigo) {
 

@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
@@ -46,13 +47,15 @@ import br.com.petshow.enums.EnumTipoUser;
 
 
 @NamedQueries({ @NamedQuery(name = Usuario.FIND_POR_NOME_LOGIN, query = "FROM Usuario usu WHERE usu.nmLogin = :nmLogin"), 
-				@NamedQuery(name = Usuario.FIND_POR_NM_ANIMAL, query = "FROM Usuario usu WHERE usu.nome like '%:nome%' ")/* acrescentar animal*/
+				@NamedQuery(name = Usuario.FIND_POR_NM_ANIMAL, query = "FROM Usuario usu WHERE usu.nome like '%:nome%' "), 
+				@NamedQuery(name = Usuario.IDX_POR_FACEBOOK, query = "FROM Usuario usu WHERE usu.idFacebook = :idFacebook ")/* acrescentar animal*/
 			   
 })
 
 @Entity
-@Table(name="USUARIO")
-public class Usuario extends Entidade  implements UserDetails{
+@Table(name="USUARIO",indexes = { @Index(name = Usuario.IDX_POR_FACEBOOK, columnList = "ID_FACEBOOK") })
+public class Usuario extends Entidade  implements UserDetails
+{
 	
 	private static final long serialVersionUID = 8937600656781400155L;
 	public static final String ANONYMOUS_USER = "anonymousUser";
@@ -62,6 +65,10 @@ public class Usuario extends Entidade  implements UserDetails{
 	}
 	public static final String FIND_POR_NOME_LOGIN 	= "Usuario.porNomeLogin";
 	public static final String FIND_POR_NM_ANIMAL 	= "Usuario.porNMouAnimal";
+	public static final String IDX_POR_FACEBOOK 	= "Usuario.facebook";
+	
+	@Column(name = "ID_FACEBOOK" )
+	private long idFacebook;
 	
 	@Column(name="FL_PRE_CADASTRO")
 	private boolean flPreCadastro;
@@ -421,5 +428,12 @@ public class Usuario extends Entidade  implements UserDetails{
 	public void setAcessos(List<Acesso> acessos) {
 		this.acessos = acessos;
 	}
+	 public long getIdFacebook() {
+	        return this.idFacebook;
+	    }
+
+	    public void setIdFacebook(long idFacebook) {
+	        this.idFacebook = idFacebook;
+	    }
 
 }

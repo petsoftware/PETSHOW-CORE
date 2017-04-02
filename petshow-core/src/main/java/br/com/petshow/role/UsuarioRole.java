@@ -64,7 +64,9 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	}
 	
 	private Usuario insertUser(Usuario user) {
-		user.setPassword(encriptPassWord(user.getPassword()));
+		if(!user.getPassword().trim().equals("")){
+			user.setPassword(encriptPassWord(user.getPassword()));
+		}
 		return (Usuario) this.usuarioDAO.insert(user);
 	}
 	
@@ -95,6 +97,10 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		return (Usuario) this.usuarioDAO.update(entidade);
 	}
 
+	public Usuario findFacebook(long codigo) throws ExceptionValidation {
+		
+		return this.usuarioDAO.findFacebook(codigo);
+	}
 	
 	public Usuario find(long codigo) throws ExceptionValidation {
 	
