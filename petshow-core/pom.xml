@@ -9,8 +9,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Versao que estamos usando no Spring -->
-		<spring.version>4.3.3.RELEASE</spring.version>
-		<spring.security.version>4.2.0.RELEASE</spring.security.version>
+		<spring.version>4.3.5.RELEASE</spring.version>
+		<spring.security.version>4.2.2.RELEASE</spring.security.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15 -->
