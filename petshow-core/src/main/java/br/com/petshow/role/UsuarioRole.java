@@ -64,15 +64,15 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	}
 	
 	private Usuario insertUser(Usuario user) {
-		if(!user.getPassword().trim().equals("")){
-			user.setPassword(encriptPassWord(user.getPassword()));
-		}
+//		if(!user.getPassword().trim().equals("")){
+//			user.setPassword(encriptPassWord(user.getPassword()));
+//		}
 		return (Usuario) this.usuarioDAO.insert(user);
 	}
 	
-	private String encriptPassWord(String currentPassword) {
-		return MD5EncriptUtil.toMD5(currentPassword);
-	}
+//	private String encriptPassWord(String currentPassword) {
+//		return MD5EncriptUtil.toMD5(currentPassword);
+//	}
 
 	
 	public void delete(long codigo) throws ExceptionValidation,ExceptionNotFoundRecord {
