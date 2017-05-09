@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
@@ -25,6 +27,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.petshow.enums.EnumTipoUser;
+import br.com.tafera.enums.EnumFlTpEstabelecimento;
 
 
 
@@ -153,18 +156,10 @@ public class Usuario extends Entidade  implements UserDetails
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Acesso> acessos;
 	
-	@Column(name="FL_TP_ESTABELECIMENTO")
-	private String flTpEstabelecimento;
+	@Column(name="FL_TP_ESTABELECIMENTO",nullable=false,length=20)
+	@Enumerated(EnumType.STRING)
+	private EnumFlTpEstabelecimento flTpEstabelecimento = EnumFlTpEstabelecimento.USUARIO;
 	
-	
-	
-	public String getFlTpEstabelecimento() {
-		return flTpEstabelecimento;
-	}
-
-	public void setFlTpEstabelecimento(String flTpEstabelecimento) {
-		this.flTpEstabelecimento = flTpEstabelecimento;
-	}
 
 	public boolean isFlPreCadastro() {
 		return flPreCadastro;
