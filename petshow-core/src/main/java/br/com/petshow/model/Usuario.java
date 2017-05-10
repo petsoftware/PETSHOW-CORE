@@ -431,4 +431,12 @@ public class Usuario extends Entidade  implements UserDetails
 	        this.idFacebook = idFacebook;
 	    }
 
+		public EnumFlTpEstabelecimento getFlTpEstabelecimento() {
+			return flTpEstabelecimento;
+		}
+
+		public void setFlTpEstabelecimento(EnumFlTpEstabelecimento flTpEstabelecimento) {
+			this.flTpEstabelecimento = flTpEstabelecimento;
+		}
+
 }
