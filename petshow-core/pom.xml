@@ -170,7 +170,25 @@
 		    <artifactId>javax.mail</artifactId>
 		    <version>1.5.5</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>br.com.barcadero</groupId>
+			<artifactId>mvn-commons</artifactId>
+			<version>1.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jaxrs</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-client</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<build>

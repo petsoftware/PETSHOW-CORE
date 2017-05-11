@@ -10,7 +10,7 @@ import br.com.petshow.dao.UsuarioDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Usuario;
-import br.com.petshow.util.MD5EncriptUtil;
+import br.com.petshow.runnable.ThreadSendMail;
 import br.com.petshow.util.ValidationUtil;
 /**
  * 
@@ -53,27 +53,16 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 			throw new ExceptionValidation("Nome de login " + entidade.getNmLogin() + " é uma palavra reservada, portanto não pode ser usada.");
 		}
 		
-
-//		return (Usuario) this.usuarioDAO.insert(entidade);
 		return insertUser(entidade);
 	}
 	
 	public Usuario insert(Usuario entidade) throws ExceptionValidation{
 		return insertUser(entidade);
-//		return (Usuario) this.usuarioDAO.insert(entidade);
 	}
 	
 	private Usuario insertUser(Usuario user) {
-//		if(!user.getPassword().trim().equals("")){
-//			user.setPassword(encriptPassWord(user.getPassword()));
-//		}
 		return (Usuario) this.usuarioDAO.insert(user);
 	}
-	
-//	private String encriptPassWord(String currentPassword) {
-//		return MD5EncriptUtil.toMD5(currentPassword);
-//	}
-
 	
 	public void delete(long codigo) throws ExceptionValidation,ExceptionNotFoundRecord {
 	
@@ -92,8 +81,6 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 				entidade.setFoto(existente.getFoto());
 			}
 		}
-		// verificar como irá ficar o tipo de usuario
-		
 		return (Usuario) this.usuarioDAO.update(entidade);
 	}
 
@@ -142,6 +129,37 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 			throw new ExceptionValidation("O código não foi informado!");
 		}
 		return this.usuarioDAO.listaClientesAutoComplete(id,parteNome);
+	}
+	
+	public static void main(String[] args) {
+		
+		Usuario usuario = new Usuario();
+		usuario.setEmail("rafasystec@yahoo.com.br");
+		usuario.setNome("Rafael");
+		new UsuarioRole().sendEmail(usuario );
+	}
+	
+	public void sendEmail(Usuario usuario) {
+		Thread runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),"contato@barcadero.com.br", getEmailContet(usuario), getSubjectNewUser()));
+		runEmail.start();
+	}
+	
+	private String getEmailContet(Usuario usuario) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Olá").append(usuario.getNome()).append(", tudo bem?").append("\n\n")
+			.append("Você está recebendo este e-mail porque se cadatrou na plataforma Petshow").append("\n")
+			.append("Para você realmente efetivar seu cadastro, clique no link abaixo:").append("\n")
+			.append(genarateSecuryteLink()).append("\n");
+		builder.append("Muito obrigado e aproveite o sistema.");
+		return builder.toString();
+	}
+	
+	private String getSubjectNewUser () {
+		return "NOVO USUÁRIO - Solicitação PETSHOW";
+	}
+	
+	private String genarateSecuryteLink() {
+		return null;
 	}
 	
 }

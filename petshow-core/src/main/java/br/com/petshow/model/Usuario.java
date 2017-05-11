@@ -158,7 +158,7 @@ public class Usuario extends Entidade  implements UserDetails
 	
 	@Column(name="FL_TP_ESTABELECIMENTO",nullable=false,length=20)
 	@Enumerated(EnumType.STRING)
-	private EnumFlTpEstabelecimento flTpEstabelecimento = EnumFlTpEstabelecimento.USUARIO;
+	private EnumFlTpEstabelecimento flTpEstabelecimento = EnumFlTpEstabelecimento.PETSHOP;
 	
 
 	public boolean isFlPreCadastro() {
