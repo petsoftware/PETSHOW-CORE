@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
@@ -25,6 +27,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 //import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.petshow.enums.EnumTipoUser;
+import br.com.tafera.enums.EnumFlTpEstabelecimento;
 
 
 
@@ -153,10 +156,9 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Acesso> acessos;
 	
-	@Column(name="FL_TP_ESTABELECIMENTO")
-	private String flTpEstabelecimento;
-	
-	
+	@Column(name="FL_TP_ESTABELECIMENTO",nullable=false,length=20)
+	@Enumerated(EnumType.STRING)
+	private EnumFlTpEstabelecimento flTpEstabelecimento = EnumFlTpEstabelecimento.PETSHOP;
 	@Column(name="URL_FACEBOOK")
 	private String URLFacebook;
 	
@@ -169,13 +171,6 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 		URLFacebook = uRLFacebook;
 	}
 
-	public String getFlTpEstabelecimento() {
-		return flTpEstabelecimento;
-	}
-
-	public void setFlTpEstabelecimento(String flTpEstabelecimento) {
-		this.flTpEstabelecimento = flTpEstabelecimento;
-	}
 
 	public boolean isFlPreCadastro() {
 		return flPreCadastro;
@@ -295,7 +290,7 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
-			return false; 
+			return false;
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -405,7 +400,7 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 
 	@JsonIgnore
 	public String getUsername() {
-		return getNmLogin();      
+		return getNmLogin();
 	}
 
 	@JsonIgnore
@@ -447,5 +442,13 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	    public void setIdFacebook(Long idFacebook) {
 	        this.idFacebook = idFacebook;
 	    }
+
+		public EnumFlTpEstabelecimento getFlTpEstabelecimento() {
+			return flTpEstabelecimento;
+		}
+
+		public void setFlTpEstabelecimento(EnumFlTpEstabelecimento flTpEstabelecimento) {
+			this.flTpEstabelecimento = flTpEstabelecimento;
+		}
 
 }

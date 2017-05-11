@@ -9,10 +9,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- Versao que estamos usando no Spring -->
-		<spring.version>4.3.3.RELEASE</spring.version>
-		<spring.security.version>4.2.0.RELEASE</spring.security.version>
-		<smack.version>4.2.0</smack.version>
-		<json-simple.version>1.1.1</json-simple.version>
+		<spring.version>4.3.5.RELEASE</spring.version>
+		<spring.security.version>4.2.2.RELEASE</spring.security.version>
 	</properties>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15 -->
@@ -86,32 +84,6 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
-		<dependency>
-   			 <groupId>org.springframework</groupId>
-    		<artifactId>spring-messaging</artifactId>
-    		<version>${spring.version}</version>
-    	</dependency>
-<!-- Dependency for webdevolxmmp -->
-		<dependency>
-			<groupId>org.igniterealtime.smack</groupId>
-			<artifactId>smack-java7</artifactId>
-			<version>${smack.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.igniterealtime.smack</groupId>
-			<artifactId>smack-tcp</artifactId>
-			<version>${smack.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.igniterealtime.smack</groupId>
-			<artifactId>smack-extensions</artifactId>
-			<version>${smack.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>${json-simple.version}</version>
 		</dependency>
 		<!-- Dependency for tests -->
 		<dependency>
@@ -198,7 +170,25 @@
 		    <artifactId>javax.mail</artifactId>
 		    <version>1.5.5</version>
 		</dependency>
-		
+		<dependency>
+			<groupId>br.com.barcadero</groupId>
+			<artifactId>mvn-commons</artifactId>
+			<version>1.0</version>
+			<exclusions>
+				<exclusion>
+					<groupId>log4j</groupId>
+					<artifactId>log4j</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-jaxrs</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>org.jboss.resteasy</groupId>
+					<artifactId>resteasy-client</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 	</dependencies>
 
 	<build>
