@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import br.com.petshow.enums.EnumCor;
 import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.util.IDUtil;
 
@@ -88,6 +89,8 @@ public class Perdido extends Entidade {
 	@Column(name = "DESC_RACA",nullable=true)
 	private String raca;
 	
+	@Column(name = "DESC_NOME",nullable=true)
+	private String nome;
 	
 	@Column(name = "FL_ACONTECIMENTO",nullable=false)
 	private String flAcontecimento;
@@ -96,7 +99,22 @@ public class Perdido extends Entidade {
 	@Enumerated(EnumType.STRING)
 	private EnumTipoAnimal tpAnimal;
 	
+	@Column(name="TP_COR_PRINCIPAL",nullable=false)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumCor tpCorPrincipal;
 	
+	@Column(name="TP_COR_SEGUNDARIA",nullable=false)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumCor tpCorSegundaria;
+	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 	public EnumTipoAnimal getTpAnimal() {
 		return tpAnimal;
@@ -157,6 +175,22 @@ public class Perdido extends Entidade {
 
 	public Estado getEstado() {
 		return estado;
+	}
+
+	public EnumCor getTpCorPrincipal() {
+		return tpCorPrincipal;
+	}
+
+	public void setTpCorPrincipal(EnumCor tpCorPrincipal) {
+		this.tpCorPrincipal = tpCorPrincipal;
+	}
+
+	public EnumCor getTpCorSegundaria() {
+		return tpCorSegundaria;
+	}
+
+	public void setTpCorSegundaria(EnumCor tpCorSegundaria) {
+		this.tpCorSegundaria = tpCorSegundaria;
 	}
 
 	public void setEstado(Estado estado) {

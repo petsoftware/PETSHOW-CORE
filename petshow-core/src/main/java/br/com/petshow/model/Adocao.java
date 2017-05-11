@@ -20,6 +20,7 @@ import javax.persistence.TemporalType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.util.IDUtil;
 
 @Entity
@@ -37,9 +38,6 @@ public class Adocao extends Entidade {
 	@Temporal(TemporalType.DATE)
 	private Date dataAdocao;
 	
-	@OneToOne
-	@JoinColumn(name = IDUtil.ID_TUTOR ,referencedColumnName=IDUtil.ID)
-	private Tutor tutor;
 	
 	@ManyToOne
 	@JoinColumn(name = IDUtil.ID_USUARIO ,referencedColumnName=IDUtil.ID)
@@ -96,6 +94,15 @@ public class Adocao extends Entidade {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
 	
+	@Column(name="TP_ANIMAL",nullable=false)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumTipoAnimal tipo;
+	
+	@Column(name="RACA")
+	private String raca;
+	
+	@Column(name = "FL_SEXO")
+	private String flSexo;
 	
 
 	@JsonIgnore
@@ -121,16 +128,7 @@ public class Adocao extends Entidade {
 
 
 
-	public Tutor getTutor() {
-		return tutor;
-	}
-
-
-
-	public void setTutor(Tutor tutor) {
-		this.tutor = tutor;
-	}
-
+	
 
 
 	public String getDescAdocao() {
@@ -305,6 +303,42 @@ public class Adocao extends Entidade {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+
+
+	public EnumTipoAnimal getTipo() {
+		return tipo;
+	}
+
+
+
+	public void setTipo(EnumTipoAnimal tipo) {
+		this.tipo = tipo;
+	}
+
+
+
+	public String getRaca() {
+		return raca;
+	}
+
+
+
+	public void setRaca(String raca) {
+		this.raca = raca;
+	}
+
+
+
+	public String getFlSexo() {
+		return flSexo;
+	}
+
+
+
+	public void setFlSexo(String flSexo) {
+		this.flSexo = flSexo;
 	}
 	
 	

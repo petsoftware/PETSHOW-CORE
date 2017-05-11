@@ -54,7 +54,7 @@ import br.com.petshow.enums.EnumTipoUser;
 
 @Entity
 @Table(name="USUARIO",indexes = { @Index(name = Usuario.IDX_POR_FACEBOOK, columnList = "ID_FACEBOOK") })
-public class Usuario extends Entidade  implements UserDetails
+public class Usuario extends Entidade  implements UserDetails// comentar implementacao
 {
 	
 	private static final long serialVersionUID = 8937600656781400155L;
@@ -68,7 +68,7 @@ public class Usuario extends Entidade  implements UserDetails
 	public static final String IDX_POR_FACEBOOK 	= "Usuario.facebook";
 	
 	@Column(name = "ID_FACEBOOK" )
-	private long idFacebook;
+	private Long idFacebook;
 	
 	@Column(name="FL_PRE_CADASTRO")
 	private boolean flPreCadastro;
@@ -157,7 +157,18 @@ public class Usuario extends Entidade  implements UserDetails
 	private String flTpEstabelecimento;
 	
 	
+	@Column(name="URL_FACEBOOK")
+	private String URLFacebook;
 	
+	
+	public String getURLFacebook() {
+		return URLFacebook;
+	}
+
+	public void setURLFacebook(String uRLFacebook) {
+		URLFacebook = uRLFacebook;
+	}
+
 	public String getFlTpEstabelecimento() {
 		return flTpEstabelecimento;
 	}
@@ -284,7 +295,7 @@ public class Usuario extends Entidade  implements UserDetails
 			if (other.nome != null)
 				return false;
 		} else if (!nome.equals(other.nome))
-			return false;
+			return false; 
 		if (password == null) {
 			if (other.password != null)
 				return false;
@@ -380,7 +391,7 @@ public class Usuario extends Entidade  implements UserDetails
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+	//comentar daqui
 	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> result = new ArrayList<SimpleGrantedAuthority>();
@@ -394,7 +405,7 @@ public class Usuario extends Entidade  implements UserDetails
 
 	@JsonIgnore
 	public String getUsername() {
-		return getNmLogin();
+		return getNmLogin();      
 	}
 
 	@JsonIgnore
@@ -420,6 +431,7 @@ public class Usuario extends Entidade  implements UserDetails
 		// TODO Auto-generated method stub
 		return true;
 	}
+	// ate aqui
 //	@JsonIgnore
 	public List<Acesso> getAcessos() {
 		return acessos;
@@ -428,11 +440,11 @@ public class Usuario extends Entidade  implements UserDetails
 	public void setAcessos(List<Acesso> acessos) {
 		this.acessos = acessos;
 	}
-	 public long getIdFacebook() {
+	 public Long getIdFacebook() {
 	        return this.idFacebook;
 	    }
 
-	    public void setIdFacebook(long idFacebook) {
+	    public void setIdFacebook(Long idFacebook) {
 	        this.idFacebook = idFacebook;
 	    }
 

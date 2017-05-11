@@ -17,6 +17,15 @@ public class ValidationUtil {
 		}
 	}
 	
+	public static boolean isCampoComValor(Object valor){
+		if(valor==null){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
+	
 	public static boolean isCampoComValor(int valor){
 		if(valor==0){
 			return false;
