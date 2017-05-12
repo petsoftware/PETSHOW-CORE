@@ -30,7 +30,7 @@ public class Amigo extends Entidade {
 	private Usuario amigo;
 
 	@Column(name="FL_SEGUIR")
-	public boolean flSeguir;
+	private boolean flSeguir;
 
 	public Usuario getUsuario() {
 		return usuario;

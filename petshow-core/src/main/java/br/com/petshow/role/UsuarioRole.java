@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import br.com.barcadero.commons.security.HandleEncrypt;
 import br.com.petshow.dao.UsuarioDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.SecurityLogin;
 import br.com.petshow.model.Usuario;
 import br.com.petshow.runnable.ThreadSendMail;
 import br.com.petshow.util.ValidationUtil;
@@ -131,25 +133,25 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		return this.usuarioDAO.listaClientesAutoComplete(id,parteNome);
 	}
 	
-	public static void main(String[] args) {
-		
-		Usuario usuario = new Usuario();
-		usuario.setEmail("rafasystec@yahoo.com.br");
-		usuario.setNome("Rafael");
-		new UsuarioRole().sendEmail(usuario );
-	}
+//	public static void main(String[] args) {
+//		
+//		Usuario usuario = new Usuario();
+//		usuario.setEmail("rafasystec@yahoo.com.br");
+//		usuario.setNome("Rafael");
+//		new UsuarioRole().sendEmail(usuario );
+//	}
 	
-	public void sendEmail(Usuario usuario) {
-		Thread runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),"contato@barcadero.com.br", getEmailContet(usuario), getSubjectNewUser()));
+	public void sendEmail(Usuario usuario, SecurityLogin securityLogin) {
+		Thread runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),"contato@barcadero.com.br", getEmailContet(usuario,securityLogin), getSubjectNewUser()));
 		runEmail.start();
 	}
 	
-	private String getEmailContet(Usuario usuario) {
+	private String getEmailContet(Usuario usuario, SecurityLogin securityLogin) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Olá").append(usuario.getNome()).append(", tudo bem?").append("\n\n")
 			.append("Você está recebendo este e-mail porque se cadatrou na plataforma Petshow").append("\n")
 			.append("Para você realmente efetivar seu cadastro, clique no link abaixo:").append("\n")
-			.append(genarateSecuryteLink()).append("\n");
+			.append(genarateSecuryteLink(securityLogin)).append("\n");
 		builder.append("Muito obrigado e aproveite o sistema.");
 		return builder.toString();
 	}
@@ -158,8 +160,17 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		return "NOVO USUÁRIO - Solicitação PETSHOW";
 	}
 	
-	private String genarateSecuryteLink() {
-		return null;
+	private String genarateSecuryteLink(SecurityLogin securityLogin) {
+		String emailCrypt = HandleEncrypt.encrypt(securityLogin.getEmail());
+		return "http://localhost:8082/Petshow-WEB?seckey="+securityLogin.getKey()+"&lg="+ emailCrypt;
+	}
+	
+	public SecurityLogin genarateSecurityLogin(Usuario usuario) {
+		SecurityLogin securityLogin = new SecurityLogin();
+		securityLogin.setEmail(usuario.getEmail());
+		securityLogin.setUserId(usuario.getId());
+		securityLogin.setValidate(false);
+		return securityLogin;
 	}
 	
 }

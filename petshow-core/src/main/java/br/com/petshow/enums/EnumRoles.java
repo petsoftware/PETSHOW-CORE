@@ -1,4 +1,4 @@
-package br.com.tafera.enums;
+package br.com.petshow.enums;
 
 /**
  * Obtem os tipos possiveis de permissoes para o sistema.

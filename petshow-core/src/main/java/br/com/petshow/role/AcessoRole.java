@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.petshow.dao.AcessoDAO;
+import br.com.petshow.enums.EnumRoles;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Acesso;
-import br.com.tafera.enums.EnumRoles;
 
 @Service
 public class AcessoRole extends SuperClassRole<Acesso> {

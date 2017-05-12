@@ -2,8 +2,8 @@ package br.com.petshow.dao;
 
 import javax.persistence.Query;
 
+import br.com.petshow.enums.EnumRoles;
 import br.com.petshow.model.Acesso;
-import br.com.tafera.enums.EnumRoles;
 
 public class AcessoDAO extends SuperClassDAO<Acesso> {
 
