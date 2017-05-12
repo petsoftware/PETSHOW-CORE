@@ -8,6 +8,7 @@ import br.com.petshow.dao.SecurityLoginDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.SecurityLogin;
+import br.com.petshow.util.KeyNewUserValidateUtil;
 
 @Service
 public class SecurityLoginRole extends SuperClassRole<SecurityLogin> {
@@ -19,10 +20,10 @@ public class SecurityLoginRole extends SuperClassRole<SecurityLogin> {
 	public SecurityLogin insert(SecurityLogin entidade) throws ExceptionValidation {
 		// TODO Auto-generated method stub
 		if(entidade==null){
-			throw new ExceptionValidation("SecurityLogin tem o sel valor nulo");
+			throw new ExceptionValidation("SecurityLogin tem o seu valor nulo");
 		}
-		String crypt = HandleEncrypt.encrypt(entidade.getEmail());
-		entidade.setKey(crypt);
+		String cryptKey = KeyNewUserValidateUtil.genarateKeyValue(entidade);
+		entidade.setKey(cryptKey);
 		entidade.setValidate(false);
 		return dao.insert(entidade);
 	}

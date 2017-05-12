@@ -148,7 +148,7 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	
 	private String getEmailContet(Usuario usuario, SecurityLogin securityLogin) {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Olá").append(usuario.getNome()).append(", tudo bem?").append("\n\n")
+		builder.append("Olá ").append(usuario.getNome()).append(", tudo bem?").append("\n\n")
 			.append("Você está recebendo este e-mail porque se cadatrou na plataforma Petshow").append("\n")
 			.append("Para você realmente efetivar seu cadastro, clique no link abaixo:").append("\n")
 			.append(genarateSecuryteLink(securityLogin)).append("\n");
@@ -162,7 +162,7 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	
 	private String genarateSecuryteLink(SecurityLogin securityLogin) {
 		String emailCrypt = HandleEncrypt.encrypt(securityLogin.getEmail());
-		return "http://localhost:8082/Petshow-WEB?seckey="+securityLogin.getKey()+"&lg="+ emailCrypt;
+		return "http://localhost:8080/Petshow-WEB/private/PageValidateNewUser.xhtml?seckey="+securityLogin.getKey()+"&lg="+ emailCrypt;
 	}
 	
 	public SecurityLogin genarateSecurityLogin(Usuario usuario) {
