@@ -11,7 +11,7 @@ import br.com.petshow.model.Usuario;
  */
 public class KeyNewUserValidateUtil {
 	
-	public static final String KEY_SEPARATOR = "#$%&!";
+	public static final String KEY_SEPARATOR = "#%=";
 	/**
 	 * Validar a chave
 	 * @param user
@@ -56,9 +56,15 @@ public class KeyNewUserValidateUtil {
 				.concat(""+securityLogin.getId()));
 		return cryptKey;
 	}
-	
+	/**
+	 * 
+	 * @param key
+	 * @return String[] onde posicao [0] = email, [1] = user id e [2]
+	 */
 	public static String[] getKeyParts(String key) {
-		return key.split(KEY_SEPARATOR);
+		String keyDecrypted = HandleEncrypt.decrypt(key);
+		return keyDecrypted.split(KEY_SEPARATOR);
 	}
+	
 
 }

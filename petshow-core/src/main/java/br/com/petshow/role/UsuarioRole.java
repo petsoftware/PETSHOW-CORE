@@ -1,5 +1,7 @@
 package br.com.petshow.role;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -159,10 +161,21 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	private String getSubjectNewUser () {
 		return "NOVO USUÁRIO - Solicitação PETSHOW";
 	}
-	
+	/**
+	 * 
+	 * @param securityLogin
+	 * @return
+	 */
 	private String genarateSecuryteLink(SecurityLogin securityLogin) {
 		String emailCrypt = HandleEncrypt.encrypt(securityLogin.getEmail());
-		return "http://localhost:8080/Petshow-WEB/private/PageValidateNewUser.xhtml?seckey="+securityLogin.getKey()+"&lg="+ emailCrypt;
+		String erro = "";
+		try {
+			return "http://localhost:8080/Petshow-WEB/private/PageValidateNewUser.xhtml?seckey="+URLEncoder.encode(securityLogin.getKey(), "UTF-8") +"&lg="+URLEncoder.encode(emailCrypt,"UTF-8") ;
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			erro = e.getMessage();
+		}
+		return "Não foi possível gerar o link pois : ".concat(erro); 
 	}
 	
 	public SecurityLogin genarateSecurityLogin(Usuario usuario) {
