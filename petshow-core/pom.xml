@@ -11,8 +11,11 @@
 		<!-- Versao que estamos usando no Spring -->
 		<spring.version>4.3.5.RELEASE</spring.version>
 		<spring.security.version>4.2.2.RELEASE</spring.security.version>
+		<smack.version>4.2.0</smack.version>
+		<json-simple.version>1.1.1</json-simple.version>
 	</properties>
 	<dependencies>
+	
 		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15 -->
 		<dependency>
 			<groupId>org.bouncycastle</groupId>
@@ -184,7 +187,29 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-java7</artifactId>
+			<version>${smack.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-tcp</artifactId>
+			<version>${smack.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-extensions</artifactId>
+			<version>${smack.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>${json-simple.version}</version>
+		</dependency>
 	</dependencies>
+
 
 	<build>
 		<plugins>
@@ -199,4 +224,6 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	
 </project>
