@@ -12,7 +12,9 @@ public enum EnumRoles {
 	 */
 	ROLE_ADMIN("ROLE_ADMIN"),
 	ROLE_CONV("ROLE_CONV"),
-	ROLE_PRIVATE("ROLE_PRIVATE");
+	ROLE_PRIVATE("ROLE_PRIVATE"),
+	ROLE_PETSHOP("ROLE_PETSHOP"),
+	ROLE_ONG("ROLE_ONG");
 	
 	private final String value;
 	private EnumRoles(String value) {

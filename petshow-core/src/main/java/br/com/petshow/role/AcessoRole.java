@@ -1,5 +1,7 @@
 package br.com.petshow.role;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +41,10 @@ public class AcessoRole extends SuperClassRole<Acesso> {
 		return null;
 	}
 	
+	public List<Acesso> findAll() {
+		return acessoDAO.findAll();
+	}
+	
 	public Acesso findAcesso(EnumRoles roles) {
 		return acessoDAO.findAcesso(roles);
 	}
@@ -49,6 +55,16 @@ public class AcessoRole extends SuperClassRole<Acesso> {
 
 	public void setAcessoDAO(AcessoDAO acessoDAO) {
 		this.acessoDAO = acessoDAO;
+	}
+	
+	public void load() {
+		System.out.println("Carregando as Roles para o Spring Security");
+		List<Acesso> list = acessoDAO.findAll();
+		if(list != null && list.size() == 0){
+			for (EnumRoles role : EnumRoles.values()) {
+				acessoDAO.insert(new Acesso(role.getValue()));
+			}
+		}
 	}
 
 }

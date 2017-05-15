@@ -16,6 +16,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -161,6 +162,8 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	private EnumFlTpEstabelecimento flTpEstabelecimento = EnumFlTpEstabelecimento.PETSHOP;
 	@Column(name="URL_FACEBOOK")
 	private String URLFacebook;
+	@Column(name="FL_VALIDATED",nullable=false)
+	private boolean validated = false;
 	
 	
 	public String getURLFacebook() {
@@ -449,6 +452,14 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 
 		public void setFlTpEstabelecimento(EnumFlTpEstabelecimento flTpEstabelecimento) {
 			this.flTpEstabelecimento = flTpEstabelecimento;
+		}
+
+		public boolean isValidated() {
+			return validated;
+		}
+
+		public void setValidated(boolean validated) {
+			this.validated = validated;
 		}
 
 }
