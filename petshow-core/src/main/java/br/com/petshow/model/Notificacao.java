@@ -25,7 +25,7 @@ import br.com.petshow.util.IDUtil;
 @Table(name = "NOTIFICACAO",indexes = { @Index(name = Notificacao.IDX_POR_USUARIO, columnList = "ID_USUARIO_DESTINATARIO,FL_EXCLUIDA") })
 public class Notificacao  extends Entidade {
 
-	public static final String IDX_POR_USUARIO	= "Notificacao.USUARIO";
+	public static final String IDX_POR_USUARIO	= "Notificacao_USUARIO";
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO_REMETENTE" ,referencedColumnName=IDUtil.ID)
 	private Usuario usuarioRemetente;

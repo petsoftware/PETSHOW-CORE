@@ -68,7 +68,7 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	}
 	public static final String FIND_POR_NOME_LOGIN 	= "Usuario.porNomeLogin";
 	public static final String FIND_POR_NM_ANIMAL 	= "Usuario.porNMouAnimal";
-	public static final String IDX_POR_FACEBOOK 	= "Usuario.facebook";
+	public static final String IDX_POR_FACEBOOK 	= "UsuarioFacebook"; 
 	
 	@Column(name = "ID_FACEBOOK" )
 	private Long idFacebook;

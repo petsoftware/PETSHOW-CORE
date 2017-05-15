@@ -21,7 +21,7 @@ import br.com.petshow.util.IDUtil;
 @Table(name = "SMARTPHONE_REG",indexes = { @Index(name = SmartphoneREG.IDX_POR_FACEBOOK, columnList = IDUtil.ID_USUARIO) })
 public class SmartphoneREG  extends Entidade {
 
-	public static final String IDX_POR_FACEBOOK 	= "SmartphoneREG.facebook";
+	public static final String IDX_POR_FACEBOOK 	= "SmartphoneREG_Facebook";
 	
 	@OneToOne
 	@JoinColumn(name = IDUtil.ID_USUARIO  ,referencedColumnName=IDUtil.ID)

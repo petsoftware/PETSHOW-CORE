@@ -99,11 +99,11 @@ public class Perdido extends Entidade {
 	@Enumerated(EnumType.STRING)
 	private EnumTipoAnimal tpAnimal;
 	
-	@Column(name="TP_COR_PRINCIPAL",nullable=false)
+	@Column(name="TP_COR_PRINCIPAL",nullable=true)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumCor tpCorPrincipal;
 	
-	@Column(name="TP_COR_SEGUNDARIA",nullable=false)
+	@Column(name="TP_COR_SEGUNDARIA",nullable=true)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumCor tpCorSegundaria;
 	
