@@ -135,14 +135,6 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		return this.usuarioDAO.listaClientesAutoComplete(id,parteNome);
 	}
 	
-//	public static void main(String[] args) {
-//		
-//		Usuario usuario = new Usuario();
-//		usuario.setEmail("rafasystec@yahoo.com.br");
-//		usuario.setNome("Rafael");
-//		new UsuarioRole().sendEmail(usuario );
-//	}
-	
 	public void sendEmail(Usuario usuario, SecurityLogin securityLogin) {
 		Thread runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),"contato@barcadero.com.br", getEmailContet(usuario,securityLogin), getSubjectNewUser()));
 		runEmail.start();
