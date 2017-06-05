@@ -2,11 +2,11 @@ package br.com.petshow.role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.ComLocalDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.ComFotoTutor;
 import br.com.petshow.model.ComLocal;
 
 /**
@@ -15,6 +15,7 @@ import br.com.petshow.model.ComLocal;
  *
  */
 @Service
+@Transactional
 public class ComLocalRole extends SuperClassRole<ComLocal> {
 
 	@Autowired

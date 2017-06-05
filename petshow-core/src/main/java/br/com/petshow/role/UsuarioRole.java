@@ -7,6 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.barcadero.commons.security.HandleEncrypt;
 import br.com.petshow.dao.UsuarioDAO;
@@ -22,15 +25,14 @@ import br.com.petshow.util.ValidationUtil;
  *
  */
 @Service
+@Transactional
 public class UsuarioRole extends SuperClassRole<Usuario> {
 
 	@Autowired
 	private UsuarioDAO usuarioDAO ;
 
+	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW,isolation=Isolation.DEFAULT)
 	public Usuario insertPreCadastro(Usuario entidade) throws ExceptionValidation{
-		
-		
-
 		if(!ValidationUtil.isCampoComValor(entidade.getNome())){
 			throw new ExceptionValidation("O campo de nome não foi informado!");
 		}
@@ -75,16 +77,7 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 
 	
 	public Usuario update(Usuario entidade) throws ExceptionValidation{
-//		Usuario existente =null;
-//		if(entidade.getFoto() == null || entidade.getFoto().trim().equals("")){
-//			existente =  find(entidade.getId());
-//			
-//			if(existente.getFoto() == null || existente.getFoto().trim().equals("")){
-//				throw new ExceptionValidation("O campo de foto do perfil não foi informado!");
-//			}else{
-//				entidade.setFoto(existente.getFoto());
-//			}
-//		}
+
 		return (Usuario) this.usuarioDAO.update(entidade);
 	}
 

@@ -1,7 +1,5 @@
 package br.com.petshow.role;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,13 +7,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import br.com.petshow.dao.PerdidoDAO;
 import br.com.petshow.dao.VacinaDAO;
 import br.com.petshow.enums.EnumVacina;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.Perdido;
 import br.com.petshow.model.Vacina;
 import br.com.petshow.util.DateUtil;
 import br.com.petshow.util.ValidationUtil;
@@ -23,6 +20,7 @@ import br.com.petshow.util.ValidationUtil;
 
 
 @Service
+@Transactional
 public class VacinaRole extends SuperClassRole<Vacina> {
 
 	@Autowired

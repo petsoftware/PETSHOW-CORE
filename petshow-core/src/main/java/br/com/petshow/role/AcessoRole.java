@@ -4,6 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.AcessoDAO;
 import br.com.petshow.enums.EnumRoles;
@@ -12,6 +15,7 @@ import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Acesso;
 
 @Service
+@Transactional
 public class AcessoRole extends SuperClassRole<Acesso> {
 
 	@Autowired
@@ -56,7 +60,7 @@ public class AcessoRole extends SuperClassRole<Acesso> {
 	public void setAcessoDAO(AcessoDAO acessoDAO) {
 		this.acessoDAO = acessoDAO;
 	}
-	
+	@Transactional(isolation=Isolation.DEFAULT,readOnly=false,propagation=Propagation.SUPPORTS)
 	public void load() {
 		System.out.println("Carregando as Roles para o Spring Security");
 		List<Acesso> list = acessoDAO.findAll();

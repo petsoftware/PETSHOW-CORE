@@ -4,12 +4,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Session;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+/*
+ * --------------------------------------------------------------------------
+ * Spring recommends that you only annotate concrete classes (and methods of concrete classes) 
+ * with the @Transactional annotation, as opposed to annotating interfaces. You certainly can 
+ * place the @Transactional annotation on an interface (or an interface method), but this works 
+ * only as you would expect it to if you are using interface-based proxies.
+ * --------------------------------------------------------------------------
+ * 
+ */
 
-
-@Transactional
+//@Transactional
 public  abstract class SuperClassDAO<T>  {
 	private final String MSG_SUCESS_SAVE = "Registro salvo com sucesso!";
 	private final String MSG_SUCESS_DEL  = "Registro excluido!";

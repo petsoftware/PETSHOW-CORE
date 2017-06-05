@@ -2,8 +2,10 @@ package br.com.petshow.role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
-import br.com.barcadero.commons.security.HandleEncrypt;
 import br.com.petshow.dao.SecurityLoginDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
@@ -11,12 +13,13 @@ import br.com.petshow.model.SecurityLogin;
 import br.com.petshow.util.KeyNewUserValidateUtil;
 
 @Service
+@Transactional
 public class SecurityLoginRole extends SuperClassRole<SecurityLogin> {
 
 	
 	@Autowired
 	private SecurityLoginDAO dao;
-	@Override
+	@Transactional(readOnly=false,propagation=Propagation.REQUIRED,isolation=Isolation.DEFAULT)
 	public SecurityLogin insert(SecurityLogin entidade) throws ExceptionValidation {
 		// TODO Auto-generated method stub
 		if(entidade==null){

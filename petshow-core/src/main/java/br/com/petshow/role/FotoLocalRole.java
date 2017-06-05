@@ -2,11 +2,11 @@ package br.com.petshow.role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.FotoLocalDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.FotoEvento;
 import br.com.petshow.model.FotoLocal;
 /**
  * 
@@ -14,6 +14,7 @@ import br.com.petshow.model.FotoLocal;
  *
  */
 @Service
+@Transactional
 public class FotoLocalRole extends SuperClassRole<FotoLocal> {
 
 	@Autowired
