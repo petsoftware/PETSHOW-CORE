@@ -6,7 +6,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 @NamedQueries(
-	value={ @NamedQuery(name=Acesso.FIND_ACESSO,query="FROM Acesso WHERE nmAcesso=:nmAcesso")
+	value={ @NamedQuery(name=Acesso.FIND_ACESSO,query="FROM Acesso WHERE nmAcesso=:nmAcesso"),
+			@NamedQuery(name=Acesso.FIND_ALL,query="FROM Acesso ")
+			
 })
 
 @Entity
@@ -18,7 +20,18 @@ public class Acesso extends Entidade{
 	 */
 	private static final long serialVersionUID = 1605062018857041116L;
 	public static final String FIND_ACESSO 		= "Acesso.findAcesso";
+	public static final String FIND_ALL 		= "Acesso.findAll";
 	public static final String PARAM_NM_ACESSO 	= "nmAcesso";
+	
+	public Acesso() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Acesso(final String nmAcesso) {
+		// TODO Auto-generated constructor stub
+		this.setNmAcesso(nmAcesso);
+	}
+	
 	
 	@Column(name = "NM_ACESSO",nullable=false)
 	private String nmAcesso;

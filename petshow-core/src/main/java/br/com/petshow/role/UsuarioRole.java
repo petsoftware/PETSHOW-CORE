@@ -75,16 +75,16 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 
 	
 	public Usuario update(Usuario entidade) throws ExceptionValidation{
-		Usuario existente =null;
-		if(entidade.getFoto() == null || entidade.getFoto().trim().equals("")){
-			existente =  find(entidade.getId());
-			
-			if(existente.getFoto() == null || existente.getFoto().trim().equals("")){
-				throw new ExceptionValidation("O campo de foto do perfil não foi informado!");
-			}else{
-				entidade.setFoto(existente.getFoto());
-			}
-		}
+//		Usuario existente =null;
+//		if(entidade.getFoto() == null || entidade.getFoto().trim().equals("")){
+//			existente =  find(entidade.getId());
+//			
+//			if(existente.getFoto() == null || existente.getFoto().trim().equals("")){
+//				throw new ExceptionValidation("O campo de foto do perfil não foi informado!");
+//			}else{
+//				entidade.setFoto(existente.getFoto());
+//			}
+//		}
 		return (Usuario) this.usuarioDAO.update(entidade);
 	}
 
@@ -134,14 +134,6 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		}
 		return this.usuarioDAO.listaClientesAutoComplete(id,parteNome);
 	}
-	
-//	public static void main(String[] args) {
-//		
-//		Usuario usuario = new Usuario();
-//		usuario.setEmail("rafasystec@yahoo.com.br");
-//		usuario.setNome("Rafael");
-//		new UsuarioRole().sendEmail(usuario );
-//	}
 	
 	public void sendEmail(Usuario usuario, SecurityLogin securityLogin) {
 		Thread runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),"contato@barcadero.com.br", getEmailContet(usuario,securityLogin), getSubjectNewUser()));

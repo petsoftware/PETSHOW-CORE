@@ -2,6 +2,7 @@ package br.com.petshow.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,6 +17,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -163,6 +167,13 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	private EnumFlTpEstabelecimento flTpEstabelecimento ;
 	@Column(name="URL_FACEBOOK")
 	private String URLFacebook;
+	@Column(name="FL_VALIDATED",nullable=false)
+	private boolean validated = false;
+	
+
+	@Column(nullable=false,name="DT_CADASTRO")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtCadastro = new Date();
 	
 	
 	public String getURLFacebook() {
@@ -451,6 +462,22 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 
 		public void setFlTpEstabelecimento(EnumFlTpEstabelecimento flTpEstabelecimento) {
 			this.flTpEstabelecimento = flTpEstabelecimento;
+		}
+
+		public boolean isValidated() {
+			return validated;
+		}
+
+		public void setValidated(boolean validated) {
+			this.validated = validated;
+		}
+
+		public Date getDtCadastro() {
+			return dtCadastro;
+		}
+
+		public void setDtCadastro(Date dtCadastro) {
+			this.dtCadastro = dtCadastro;
 		}
 
 }
