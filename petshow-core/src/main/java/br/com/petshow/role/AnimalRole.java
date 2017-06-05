@@ -46,6 +46,9 @@ public class AnimalRole extends SuperClassRole<Animal> {
 	@Override
 	public void delete(long codigo) throws ExceptionValidation,ExceptionNotFoundRecord {
 	
+		if(!ValidationUtil.isCampoComValor(codigo)){
+			throw new ExceptionValidation("O id não foi informado!","id");
+		}
 		 this.animalDAO.delete(codigo);
 	}
 

@@ -9,6 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.petshow.model.Adocao;
+import br.com.petshow.model.Usuario;
 
 @Repository
 public class AdocaoDAO extends SuperClassDAO<Adocao> {
@@ -95,4 +96,9 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 		return retorno;
 	}
 
+	public List<Adocao> consultaPorUsuario(Long id)  {
+
+		return manager.createNamedQuery(Adocao.FIND_POR_USUARIO).setParameter("id", id).getResultList();
+
+	}
 }

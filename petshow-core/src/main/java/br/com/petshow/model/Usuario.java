@@ -22,12 +22,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import br.com.petshow.enums.EnumFlTpEstabelecimento;
+
 //import org.springframework.security.core.GrantedAuthority;
 //import org.springframework.security.core.authority.GrantedAuthorityImpl;
 //import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.petshow.enums.EnumTipoUser;
-import br.com.tafera.enums.EnumFlTpEstabelecimento;
+
 
 
 
@@ -157,8 +159,8 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	private List<Acesso> acessos;
 	
 	@Column(name="FL_TP_ESTABELECIMENTO",nullable=false,length=20)
-	@Enumerated(EnumType.STRING)
-	private EnumFlTpEstabelecimento flTpEstabelecimento = EnumFlTpEstabelecimento.PETSHOP;
+	@Enumerated(EnumType.ORDINAL)
+	private EnumFlTpEstabelecimento flTpEstabelecimento ;
 	@Column(name="URL_FACEBOOK")
 	private String URLFacebook;
 	
@@ -386,7 +388,7 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	//comentar daqui
+//	//comentar daqui
 	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> result = new ArrayList<SimpleGrantedAuthority>();
@@ -396,7 +398,7 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 			}
 		}
 		return result;
-	}
+	} 
 
 	@JsonIgnore
 	public String getUsername() {

@@ -9,6 +9,7 @@ import br.com.petshow.dao.PerdidoDAO;
 import br.com.petshow.dao.TutorDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Adocao;
 import br.com.petshow.model.Perdido;
 import br.com.petshow.model.Servico;
 import br.com.petshow.model.Tutor;
@@ -52,5 +53,13 @@ public class PerdidoRole extends SuperClassRole<Perdido> {
 
 	public List<Perdido> consultaPorFiltros(String tpAnimal,String tpPerdidoAchado,long estado,long cidade,long bairro, int limiteRegistros)   throws ExceptionValidation {
 		return this.perdidoDAO.consultaPorFiltros(tpAnimal, tpPerdidoAchado, estado, cidade, bairro,limiteRegistros);
+	}
+	
+	public List<Perdido> consultaPorUsuario(Long id)  throws ExceptionValidation {
+		
+		if(!ValidationUtil.isCampoComValor(id)){
+			throw new ExceptionValidation("O id não foi informado!");
+		}
+		return this.perdidoDAO.consultaPorUsuario(id);
 	}
 }

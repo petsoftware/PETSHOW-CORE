@@ -12,6 +12,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -20,8 +22,15 @@ import javax.persistence.TemporalType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.enums.EnumPorteAnimal;
 import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.util.IDUtil;
+
+
+
+
+@NamedQueries({ @NamedQuery(name = Adocao.FIND_POR_USUARIO, query = "FROM Adocao a WHERE a.usuario.id = :id order by a.dataAdocao desc")})
+
 
 @Entity
 @Table(name = "ADOCAO")
@@ -32,6 +41,7 @@ public class Adocao extends Entidade {
 	/**
 	 * 
 	 */
+	public static final String FIND_POR_USUARIO 	= "Adocao.porUsuario";
 	private static final long serialVersionUID = -2535670503647345911L;
 
 	@Column(name = "DT_ADOCAO")
@@ -53,7 +63,7 @@ public class Adocao extends Entidade {
 	
 	
 	@Column(name="FASE",nullable=true)
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	private EnumFaseVida fase;
 	
 	@Column(name = "FL_VACINADO")
@@ -104,6 +114,10 @@ public class Adocao extends Entidade {
 	@Column(name = "FL_SEXO")
 	private String flSexo;
 	
+	
+	@Column(name="TP_PORTE",nullable=true)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumPorteAnimal porteAnimal;
 
 	@JsonIgnore
 	public String getFoto() {
@@ -139,6 +153,18 @@ public class Adocao extends Entidade {
 
 	public void setDescAdocao(String descAdocao) {
 		this.descAdocao = descAdocao;
+	}
+
+
+
+	public EnumPorteAnimal getPorteAnimal() {
+		return porteAnimal;
+	}
+
+
+
+	public void setPorteAnimal(EnumPorteAnimal porteAnimal) {
+		this.porteAnimal = porteAnimal;
 	}
 
 

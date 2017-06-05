@@ -25,7 +25,8 @@ import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.util.IDUtil;
 
 @NamedQueries(value={
-		@NamedQuery(name=Perdido.QRY_COUNT,query="SELECT COUNT("+IDUtil.ID+") FROM Perdido")
+		@NamedQuery(name=Perdido.QRY_COUNT,query="SELECT COUNT("+IDUtil.ID+") FROM Perdido"),
+		@NamedQuery(name = Perdido.FIND_POR_USUARIO, query = "FROM Perdido p WHERE p.usuario.id=:id order by p.dataCadastro desc")
 })
 	
 
@@ -39,6 +40,7 @@ public class Perdido extends Entidade {
 	private static final long serialVersionUID = -8218671348791628832L;
 
 	public static final String QRY_COUNT = "Pedido.qryCount";
+	public static final String FIND_POR_USUARIO = "Perdido.porUsuario";
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
@@ -86,8 +88,11 @@ public class Perdido extends Entidade {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
 
-	@Column(name = "DESC_RACA",nullable=true)
-	private String raca;
+	@ManyToOne
+	@JoinColumn(name = "ID_RACA",referencedColumnName=IDUtil.ID,nullable=true)
+	private Racas raca;
+	
+	
 	
 	@Column(name = "DESC_NOME",nullable=true)
 	private String nome;
@@ -96,7 +101,7 @@ public class Perdido extends Entidade {
 	private String flAcontecimento;
 	
 	@Column(name="TP_ANIMAL",nullable=false)
-	@Enumerated(EnumType.STRING)
+	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoAnimal tpAnimal;
 	
 	@Column(name="TP_COR_PRINCIPAL",nullable=true)
@@ -107,6 +112,13 @@ public class Perdido extends Entidade {
 	@Enumerated(EnumType.ORDINAL)
 	private EnumCor tpCorSegundaria;
 	
+	@Column(name = "DT_RESOLVIDO",nullable=true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtResolvido;
+	
+	
+	@Column(name = "FL_SEXO")
+	private String flSexo;
 
 	public String getNome() {
 		return nome;
@@ -118,6 +130,14 @@ public class Perdido extends Entidade {
 
 	public EnumTipoAnimal getTpAnimal() {
 		return tpAnimal;
+	}
+
+	public String getFlSexo() {
+		return flSexo;
+	}
+
+	public void setFlSexo(String flSexo) {
+		this.flSexo = flSexo;
 	}
 
 	public void setTpAnimal(EnumTipoAnimal tpAnimal) {
@@ -149,11 +169,22 @@ public class Perdido extends Entidade {
 		this.fotos = fotos;
 	}
 
-	public String getRaca() {
+
+	public Racas getRaca() {
 		return raca;
 	}
+	
+	
 
-	public void setRaca(String raca) {
+	public Date getDtResolvido() {
+		return dtResolvido;
+	}
+
+	public void setDtResolvido(Date dtResolvido) {
+		this.dtResolvido = dtResolvido;
+	}
+
+	public void setRaca(Racas raca) {
 		this.raca = raca;
 	}
 

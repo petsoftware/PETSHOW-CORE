@@ -35,6 +35,7 @@ public class JsonUtil {
     }
 
     public static <T> List<T> jsonToList(T instanceClass, String json, Class clazz) throws Exception {
+    	// erro convertendo datas ficando com um dia a manos vou contiuar e depois procurar ocorreu na tela de lista de vacina
         ObjectMapper mapper = new ObjectMapper();
         TypeFactory t = TypeFactory.defaultInstance();
         List list = (List)mapper.readValue(json, t.constructCollectionType(ArrayList.class, clazz));

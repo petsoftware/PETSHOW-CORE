@@ -21,7 +21,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.DynamicUpdate;
 
+import br.com.petshow.enums.EnumFrequenciaVermifugacao;
 import br.com.petshow.enums.EnumTipoAnimal;
 
 
@@ -29,6 +31,7 @@ import br.com.petshow.enums.EnumTipoAnimal;
 
 @Entity
 @Table(name = "ANIMAL")
+@DynamicUpdate
 public class Animal extends Entidade {
 	
 	
@@ -41,10 +44,10 @@ public class Animal extends Entidade {
 	@Column(name="FOTO_PERFIL" , length=10485760)
 	private String fotoPerfil;
 
-	@OneToMany
-	@JsonIgnore
-	@JoinColumn(name = "ID_ANIMAL" )
-	private List<Tutor> tutores;
+//	@OneToMany
+//	@JsonIgnore
+//	@JoinColumn(name = "ID_ANIMAL" )
+//	private List<Tutor> tutores;
 	
 	
 	@Column(name="TP_ANIMAL",nullable=false)
@@ -69,8 +72,14 @@ public class Animal extends Entidade {
 	@Column(name = "FL_ADOCAO")
 	private boolean flAdocao;
 	
+	@Column(name = "TEM_REFORCO",nullable=true)
+	private Boolean temReforco;
 	
-	// private vacinas colocar?
+	
+	@Column(name="TP_FREQUENCIA_VERMIFUGO",nullable=true)
+	@Enumerated(EnumType.ORDINAL)
+	private EnumFrequenciaVermifugacao frequenciaVermifugacao;
+	
 	
 	public boolean isFlAdocao() {
 		return flAdocao;
@@ -88,6 +97,22 @@ public class Animal extends Entidade {
 		this.tipo = tipo;
 	}
 
+	public Boolean isTemReforco() {
+		return temReforco;
+	}
+
+	public void setTemReforco(Boolean temReforco) {
+		this.temReforco = temReforco;
+	}
+
+	public EnumFrequenciaVermifugacao getFrequenciaVermifugacao() {
+		return frequenciaVermifugacao;
+	}
+
+	public void setFrequenciaVermifugacao(EnumFrequenciaVermifugacao frequenciaVermifugacao) {
+		this.frequenciaVermifugacao = frequenciaVermifugacao;
+	}
+
 	public String getRaca() {
 		return raca;
 	}
@@ -100,13 +125,13 @@ public class Animal extends Entidade {
 		return nome;
 	}
 
-	public List<Tutor> getTutores() {
-		return tutores;
-	}
-
-	public void setTutores(List<Tutor> tutores) {
-		this.tutores = tutores;
-	}
+//	public List<Tutor> getTutores() {
+//		return tutores;
+//	}
+//
+//	public void setTutores(List<Tutor> tutores) {
+//		this.tutores = tutores;
+//	}
 
 	public void setNome(String nome) {
 		this.nome = nome;

@@ -35,6 +35,9 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 	
 	public void delete(long codigo) throws ExceptionValidation,ExceptionNotFoundRecord  {
 		
+		if(!ValidationUtil.isCampoComValor(codigo)){
+			throw new ExceptionValidation("O id não foi informado!");
+		}
 		 this.adocaoDAO.delete(codigo);
 	}
 
@@ -55,6 +58,14 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 
 	public List<Adocao> consultaAnimaisAdocao(long estado, long cidade, String tpAnimal, String fase, String sexo,int limiteRegistros)  throws ExceptionValidation {
 		return this.adocaoDAO.consultaAnimaisAdocao(estado,  cidade,  tpAnimal,  fase, sexo, limiteRegistros);
+	}
+	
+	public List<Adocao> consultaPorUsuario(Long id)  throws ExceptionValidation {
+	
+		if(!ValidationUtil.isCampoComValor(id)){
+			throw new ExceptionValidation("O id não foi informado!");
+		}
+		return this.adocaoDAO.consultaPorUsuario(id);
 	}
 	
 }

@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.petshow.model.Adocao;
 import br.com.petshow.model.Perdido;
 /**
  * 
@@ -99,6 +100,12 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 		Query qry = manager.createNamedQuery(Perdido.QRY_COUNT);
 		qry.getSingleResult();
 		return 0;
+	}
+	
+	public List<Perdido> consultaPorUsuario(Long id)  {
+
+		return manager.createNamedQuery(Perdido.FIND_POR_USUARIO).setParameter("id", id).getResultList();
+
 	}
 	
 }
