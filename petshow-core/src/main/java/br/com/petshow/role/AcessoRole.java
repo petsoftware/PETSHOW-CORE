@@ -60,7 +60,7 @@ public class AcessoRole extends SuperClassRole<Acesso> {
 	public void setAcessoDAO(AcessoDAO acessoDAO) {
 		this.acessoDAO = acessoDAO;
 	}
-	@Transactional(isolation=Isolation.DEFAULT,readOnly=false,propagation=Propagation.SUPPORTS)
+	@Transactional(isolation=Isolation.DEFAULT,readOnly=false,propagation=Propagation.REQUIRED)
 	public void load() {
 		System.out.println("Carregando as Roles para o Spring Security");
 		List<Acesso> list = acessoDAO.findAll();
