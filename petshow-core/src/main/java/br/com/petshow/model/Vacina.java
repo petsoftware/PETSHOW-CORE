@@ -13,10 +13,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
-
-import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import br.com.petshow.enums.EnumVacina;
 
@@ -27,6 +23,11 @@ import br.com.petshow.enums.EnumVacina;
 @Table(name = "VACINA")
 public class Vacina extends Entidade {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5848435645926346376L;
+
 	public static final String FIND_POR_ANIMAL 	= "Vacina.animal"; 
 	
 	@ManyToOne

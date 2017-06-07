@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.VacinaDAO;
@@ -25,9 +27,9 @@ public class VacinaRole extends SuperClassRole<Vacina> {
 
 	@Autowired
 	private VacinaDAO vacinaDAO;
-	@Override
+	@Transactional(isolation=Isolation.DEFAULT,propagation=Propagation.REQUIRED,readOnly=false)
 	public Vacina insert(Vacina entidade) throws ExceptionValidation {
-		Vacina retorno =(Vacina) this.vacinaDAO.insert(entidade);
+		Vacina vacina =(Vacina) this.vacinaDAO.insert(entidade);
 		
 		
 		if(!ValidationUtil.isCampoComValor(entidade.getData())){
@@ -48,7 +50,7 @@ public class VacinaRole extends SuperClassRole<Vacina> {
 			vacinaProx.setTpVacina(EnumVacina.getEnum(entidade.getTpVacina().getId()));
 			vacinaProx.setData(entidade.getPrevisaoProxima());
 		
-			HashMap<String,String> dados= new VacinaRole().getRegrasVacina(vacinaProx.getTpVacina(),vacinaProx.getData());
+			HashMap<String,String> dados= getRegrasVacina(vacinaProx.getTpVacina(),vacinaProx.getData());
 
 			Calendar calendar =  Calendar.getInstance();
 			calendar.set( Integer.parseInt(dados.get("dtProx").substring(6,10)),  Integer.parseInt(dados.get("dtProx").substring(3,5))-1, Integer.parseInt(dados.get("dtProx").substring(0,2)));
@@ -62,7 +64,7 @@ public class VacinaRole extends SuperClassRole<Vacina> {
 		
 		
 		
-		return retorno;
+		return vacina;
 	}
 
 	@Override
