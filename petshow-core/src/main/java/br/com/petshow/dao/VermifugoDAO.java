@@ -2,8 +2,11 @@ package br.com.petshow.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.springframework.stereotype.Repository;
 
+import br.com.petshow.model.Amigo;
 import br.com.petshow.model.Vacina;
 import br.com.petshow.model.Vermifugo;
 
@@ -16,9 +19,14 @@ public class VermifugoDAO extends SuperClassDAO<Vermifugo>{
 		return manager.find(Vermifugo.class, codigo);
 	}
 	
-	public List<Vermifugo> consultaPorAnimal(long idAnimal)  {
-		
-		return manager.createNamedQuery(Vermifugo.FIND_POR_ANIMAL).setParameter("idAnimal", idAnimal).getResultList();
+	public Vermifugo consultaPorAnimal(long idAnimal)  {
+		Vermifugo ver= null;
+		try{
+			ver =(Vermifugo) manager.createNamedQuery(Vermifugo.FIND_POR_ANIMAL).setParameter("idAnimal", idAnimal).getSingleResult();
+		}catch(NoResultException e){
+			return null;
+		}
+		return ver;
 	}
 
 }
