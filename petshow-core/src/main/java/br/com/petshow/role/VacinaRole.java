@@ -47,7 +47,7 @@ public class VacinaRole extends SuperClassRole<Vacina> {
 			Vacina vacinaProx= new Vacina();
 			vacinaProx.setAnimal(entidade.getAnimal());
 			vacinaProx.setEstabelecimento(entidade.getEstabelecimento());
-			vacinaProx.setTpVacina(EnumVacina.getEnum(entidade.getTpVacina().getId()));
+			vacinaProx.setTpVacina(EnumVacina.getEnum(entidade.getTpVacina().getIdProxima()));
 			vacinaProx.setData(entidade.getPrevisaoProxima());
 		
 			HashMap<String,String> dados= getRegrasVacina(vacinaProx.getTpVacina(),vacinaProx.getData());
