@@ -19,7 +19,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -274,45 +273,6 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 		this.email = email;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result + ((password == null) ? 0 : password.hashCode());
-		result = prime * result + ((tipoUser == null) ? 0 : tipoUser.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Usuario other = (Usuario) obj;
-		if (email == null) {
-			if (other.email != null)
-				return false;
-		} else if (!email.equals(other.email))
-			return false;
-		if (nome == null) {
-			if (other.nome != null)
-				return false;
-		} else if (!nome.equals(other.nome))
-			return false;
-		if (password == null) {
-			if (other.password != null)
-				return false;
-		} else if (!password.equals(other.password))
-			return false;
-		if (tipoUser != other.tipoUser)
-			return false;
-		return true;
-	}
 	public String getCidade() {
 		return cidade;
 	}
@@ -479,5 +439,170 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 		public void setDtCadastro(Date dtCadastro) {
 			this.dtCadastro = dtCadastro;
 		}
+
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = super.hashCode();
+			result = prime * result + ((acessos == null) ? 0 : acessos.hashCode());
+			result = prime * result + ((anuncios == null) ? 0 : anuncios.hashCode());
+			result = prime * result + ((bairro == null) ? 0 : bairro.hashCode());
+			result = prime * result + ((cidade == null) ? 0 : cidade.hashCode());
+			result = prime * result + ((cnpjCpf == null) ? 0 : cnpjCpf.hashCode());
+			result = prime * result + ((complemento == null) ? 0 : complemento.hashCode());
+			result = prime * result + ddd;
+			result = prime * result + ddd2;
+			result = prime * result + ((dtCadastro == null) ? 0 : dtCadastro.hashCode());
+			result = prime * result + ((email == null) ? 0 : email.hashCode());
+			result = prime * result + ((estado == null) ? 0 : estado.hashCode());
+			result = prime * result + (flPreCadastro ? 1231 : 1237);
+			result = prime * result + ((flTpEstabelecimento == null) ? 0 : flTpEstabelecimento.hashCode());
+			result = prime * result + ((foto == null) ? 0 : foto.hashCode());
+			result = prime * result + ((idFacebook == null) ? 0 : idFacebook.hashCode());
+			result = prime * result + ((nmLogin == null) ? 0 : nmLogin.hashCode());
+			result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+			result = prime * result + nrCep;
+			result = prime * result + nrEndereco;
+			result = prime * result + ((pais == null) ? 0 : pais.hashCode());
+			result = prime * result + ((password == null) ? 0 : password.hashCode());
+			result = prime * result + ((razaoSocial == null) ? 0 : razaoSocial.hashCode());
+			result = prime * result + ((rua == null) ? 0 : rua.hashCode());
+			result = prime * result + ((servicos == null) ? 0 : servicos.hashCode());
+			result = prime * result + telefone;
+			result = prime * result + telefone2;
+			result = prime * result + ((tipoUser == null) ? 0 : tipoUser.hashCode());
+			result = prime * result + (validated ? 1231 : 1237);
+			result = prime * result + ((vendas == null) ? 0 : vendas.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (!super.equals(obj))
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			Usuario other = (Usuario) obj;
+			if (acessos == null) {
+				if (other.acessos != null)
+					return false;
+			} else if (!acessos.equals(other.acessos))
+				return false;
+			if (anuncios == null) {
+				if (other.anuncios != null)
+					return false;
+			} else if (!anuncios.equals(other.anuncios))
+				return false;
+			if (bairro == null) {
+				if (other.bairro != null)
+					return false;
+			} else if (!bairro.equals(other.bairro))
+				return false;
+			if (cidade == null) {
+				if (other.cidade != null)
+					return false;
+			} else if (!cidade.equals(other.cidade))
+				return false;
+			if (cnpjCpf == null) {
+				if (other.cnpjCpf != null)
+					return false;
+			} else if (!cnpjCpf.equals(other.cnpjCpf))
+				return false;
+			if (complemento == null) {
+				if (other.complemento != null)
+					return false;
+			} else if (!complemento.equals(other.complemento))
+				return false;
+			if (ddd != other.ddd)
+				return false;
+			if (ddd2 != other.ddd2)
+				return false;
+			if (dtCadastro == null) {
+				if (other.dtCadastro != null)
+					return false;
+			} else if (!dtCadastro.equals(other.dtCadastro))
+				return false;
+			if (email == null) {
+				if (other.email != null)
+					return false;
+			} else if (!email.equals(other.email))
+				return false;
+			if (estado == null) {
+				if (other.estado != null)
+					return false;
+			} else if (!estado.equals(other.estado))
+				return false;
+			if (flPreCadastro != other.flPreCadastro)
+				return false;
+			if (flTpEstabelecimento != other.flTpEstabelecimento)
+				return false;
+			if (foto == null) {
+				if (other.foto != null)
+					return false;
+			} else if (!foto.equals(other.foto))
+				return false;
+			if (idFacebook == null) {
+				if (other.idFacebook != null)
+					return false;
+			} else if (!idFacebook.equals(other.idFacebook))
+				return false;
+			if (nmLogin == null) {
+				if (other.nmLogin != null)
+					return false;
+			} else if (!nmLogin.equals(other.nmLogin))
+				return false;
+			if (nome == null) {
+				if (other.nome != null)
+					return false;
+			} else if (!nome.equals(other.nome))
+				return false;
+			if (nrCep != other.nrCep)
+				return false;
+			if (nrEndereco != other.nrEndereco)
+				return false;
+			if (pais == null) {
+				if (other.pais != null)
+					return false;
+			} else if (!pais.equals(other.pais))
+				return false;
+			if (password == null) {
+				if (other.password != null)
+					return false;
+			} else if (!password.equals(other.password))
+				return false;
+			if (razaoSocial == null) {
+				if (other.razaoSocial != null)
+					return false;
+			} else if (!razaoSocial.equals(other.razaoSocial))
+				return false;
+			if (rua == null) {
+				if (other.rua != null)
+					return false;
+			} else if (!rua.equals(other.rua))
+				return false;
+			if (servicos == null) {
+				if (other.servicos != null)
+					return false;
+			} else if (!servicos.equals(other.servicos))
+				return false;
+			if (telefone != other.telefone)
+				return false;
+			if (telefone2 != other.telefone2)
+				return false;
+			if (tipoUser != other.tipoUser)
+				return false;
+			if (validated != other.validated)
+				return false;
+			if (vendas == null) {
+				if (other.vendas != null)
+					return false;
+			} else if (!vendas.equals(other.vendas))
+				return false;
+			return true;
+		}
+		
+		
 
 }

@@ -5,16 +5,17 @@ package br.com.petshow.role;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.NotificacaoDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-
 import br.com.petshow.model.Notificacao;
-import br.com.petshow.model.Usuario;
 import br.com.petshow.util.ValidationUtil;
 
+@Service
+@Transactional
 public class NotificacaoRole extends SuperClassRole<Notificacao> {
 
 	

@@ -30,7 +30,7 @@ public class AnimalRole extends SuperClassRole<Animal> {
 			throw new ExceptionValidation("O nome não foi informado!","nome");
 		}
 		if(!ValidationUtil.isCampoComValor(entidade.getFlSexo())){
-			throw new ExceptionValidation("O nome não foi informado!","flSexo");
+			throw new ExceptionValidation("O SEXO do animal não foi informado!","flSexo");
 		}
 		if(entidade.getTipo()==null){
 			throw new ExceptionValidation("O tipo do animal não foi informado!","tipo");

@@ -4,15 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.PerdidoDAO;
-import br.com.petshow.dao.TutorDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.Adocao;
 import br.com.petshow.model.Perdido;
-import br.com.petshow.model.Servico;
-import br.com.petshow.model.Tutor;
 import br.com.petshow.util.ValidationUtil;
 /**
  * 
@@ -20,6 +17,7 @@ import br.com.petshow.util.ValidationUtil;
  *
  */
 @Service
+@Transactional
 public class PerdidoRole extends SuperClassRole<Perdido> {
 	@Autowired
 	private PerdidoDAO perdidoDAO;

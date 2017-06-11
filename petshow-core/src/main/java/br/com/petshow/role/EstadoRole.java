@@ -4,19 +4,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import br.com.petshow.dao.BairroDAO;
 import br.com.petshow.dao.EstadoDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-
-import br.com.petshow.model.Bairro;
 import br.com.petshow.model.Estado;
-import br.com.petshow.util.ValidationUtil;
 
 
 
 @Service
+@Transactional
 public class EstadoRole extends SuperClassRole<Estado> {
 
 	@Autowired

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.CidadeDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
@@ -15,6 +16,7 @@ import br.com.petshow.util.ValidationUtil;
 
 
 @Service
+@Transactional
 public class CidadeRole extends SuperClassRole<Cidade> {
 
 	@Autowired
