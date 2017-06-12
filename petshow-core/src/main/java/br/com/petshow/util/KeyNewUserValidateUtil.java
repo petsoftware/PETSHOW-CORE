@@ -1,6 +1,5 @@
 package br.com.petshow.util;
 
-import br.com.barcadero.commons.security.HandleEncrypt;
 import br.com.petshow.model.SecurityLogin;
 import br.com.petshow.model.Usuario;
 

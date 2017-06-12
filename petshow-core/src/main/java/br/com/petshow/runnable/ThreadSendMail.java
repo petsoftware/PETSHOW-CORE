@@ -1,7 +1,7 @@
 package br.com.petshow.runnable;
 
-import br.com.barcadero.commons.mail.MailException;
-import br.com.barcadero.commons.mail.Sender;
+import br.com.petshow.util.mail.MailException;
+import br.com.petshow.util.mail.Sender;
 
 public class ThreadSendMail implements Runnable {
 
