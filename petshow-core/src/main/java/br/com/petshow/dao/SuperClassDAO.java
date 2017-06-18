@@ -6,6 +6,7 @@ import javax.persistence.PersistenceContext;
 import org.hibernate.Session;
 
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.model.Entidade;
 /*
  * --------------------------------------------------------------------------
  * Spring recommends that you only annotate concrete classes (and methods of concrete classes) 
@@ -17,7 +18,7 @@ import br.com.petshow.exceptions.ExceptionNotFoundRecord;
  */
 
 //@Transactional
-public  abstract class SuperClassDAO<T>  {
+public  abstract class SuperClassDAO<T extends Entidade>  {
 	private final String MSG_SUCESS_SAVE = "Registro salvo com sucesso!";
 	private final String MSG_SUCESS_DEL  = "Registro excluido!";
 	private final String MSG_SUCESS_UPD  = "Registro atualizado com sucesso!";
@@ -101,5 +102,8 @@ public  abstract class SuperClassDAO<T>  {
 		this.manager = manager;
 	}
 
+	public T find(Class<T> type, long id){
+		return this.manager.find(type, id);
+	}
 
 }
