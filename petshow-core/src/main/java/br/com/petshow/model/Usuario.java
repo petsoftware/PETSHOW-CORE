@@ -161,7 +161,7 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Acesso> acessos;
 	
-	@Column(name="FL_TP_ESTABELECIMENTO",nullable=false,length=20)
+	@Column(name="FL_TP_ESTABELECIMENTO",nullable=true,length=20)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumFlTpEstabelecimento flTpEstabelecimento ;
 	@Column(name="URL_FACEBOOK")
@@ -359,7 +359,7 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	public void setPassword(String password) {
 		this.password = password;
 	}
-//	//comentar daqui
+	//comentar daqui
 	@JsonIgnore
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		List<SimpleGrantedAuthority> result = new ArrayList<SimpleGrantedAuthority>();
