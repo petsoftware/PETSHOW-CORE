@@ -1,19 +1,15 @@
 package br.com.petshow.role;
 
-import java.util.List;
-
-import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.SmartphoneREGDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.Adocao;
 import br.com.petshow.model.SmartphoneREG;
-import br.com.petshow.util.IDUtil;
 import br.com.petshow.util.ValidationUtil;
-
+@Transactional(propagation=Propagation.REQUIRED)
 public class SmartphoneREGRole  extends SuperClassRole<SmartphoneREG> {
 
 	@Autowired
