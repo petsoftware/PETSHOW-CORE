@@ -1,7 +1,7 @@
 package br.com.petshow.enums;
 
 public enum EnumFaseVida {
-	FILHOTE("Filhote",0), ADULTO("Adulto",1),IDOSO("Idoso",2);
+	FILHOTE("FILHOTE",0), ADULTO("ADULTO",1),IDOSO("IDOSO",2);
 		
 	
 	private int id;

@@ -8,6 +8,7 @@ import br.com.petshow.dao.PerfilAdocaoDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.PerfilAdocao;
+import br.com.petshow.model.Usuario;
 
 @Service
 @Transactional
@@ -37,6 +38,10 @@ public class PerfilAdocaoRole extends SuperClassRole<PerfilAdocao>{
 	public PerfilAdocao find(long codigo) throws ExceptionValidation {
 		
 		return dao.find(codigo);
+	}
+	
+	public PerfilAdocao findPerfilByUser(Usuario usuario) {
+		return dao.findPerfilByUser(usuario);
 	}
 
 	

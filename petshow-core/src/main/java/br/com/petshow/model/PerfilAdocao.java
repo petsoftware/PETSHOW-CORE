@@ -1,34 +1,56 @@
 package br.com.petshow.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 import br.com.petshow.enums.EnumFaseVida;
 import br.com.petshow.enums.EnumPorteAnimal;
 import br.com.petshow.enums.EnumTipoAnimal;
-
+/**
+ * Para manter a tabela PEFIL_ADOCAO que tem as preferencia de adoção de um usuario.
+ * @author Rafael ROcha
+ * @since versao 1.0 dia 11/08/2017 as 14:31
+ * @version 1.0
+ */
+@NamedQueries({
+	@NamedQuery(name=PerfilAdocao.FIND_BY_USER,query="FROM PerfilAdocao WHERE usuario = :usuario")
+})
+@Entity
+@Table(name="PERFIL_ADOCAO")
 public class PerfilAdocao extends Entidade {
+	public PerfilAdocao() {
+		
+	}
 	
+	public PerfilAdocao(Usuario usuario) {
+		this.setUsuario(usuario);
+	}
+	
+	public static final String FIND_BY_USER = "br.com.petshow.model.PerfilAdocao.findByUser";
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4395064518878223454L;
-	@Column(name="",nullable=false, length=2)
+	@Column(name="FASE_VIDA",nullable=false, length=2)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumFaseVida faseVida;
-	@Column(name="",nullable=false, length=2)
+	@Column(name="TIPO_ANIMAL",nullable=false, length=2)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoAnimal tipoAnimal;
-	@Column(name="",nullable=false, length=2)
+	@Column(name="PORTE_ANIMAL",nullable=false, length=2)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumPorteAnimal porteAnimal;
 	
 	@ManyToOne
-	@JoinColumn(name = "ID_CLIENTE" ,referencedColumnName="ID")
-	private Usuario cliente;
+	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
+	private Usuario usuario;
 
 	public EnumFaseVida getFaseVida() {
 		return faseVida;
@@ -54,48 +76,14 @@ public class PerfilAdocao extends Entidade {
 		this.porteAnimal = porteAnimal;
 	}
 
-	public Usuario getCliente() {
-		return cliente;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setCliente(Usuario cliente) {
-		this.cliente = cliente;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = super.hashCode();
-		result = prime * result + ((cliente == null) ? 0 : cliente.hashCode());
-		result = prime * result + ((faseVida == null) ? 0 : faseVida.hashCode());
-		result = prime * result + ((porteAnimal == null) ? 0 : porteAnimal.hashCode());
-		result = prime * result + ((tipoAnimal == null) ? 0 : tipoAnimal.hashCode());
-		return result;
-	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!super.equals(obj))
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		PerfilAdocao other = (PerfilAdocao) obj;
-		if (cliente == null) {
-			if (other.cliente != null)
-				return false;
-		} else if (!cliente.equals(other.cliente))
-			return false;
-		if (faseVida != other.faseVida)
-			return false;
-		if (porteAnimal != other.porteAnimal)
-			return false;
-		if (tipoAnimal != other.tipoAnimal)
-			return false;
-		return true;
-	}
-	
-	
 
 }
