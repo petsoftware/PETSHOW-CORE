@@ -19,7 +19,8 @@ public class PerfilAdocaoDAO extends SuperClassDAO<PerfilAdocao> {
 	}
 	
 	public PerfilAdocao findPerfilByUser(Usuario usuario) {
-		TypedQuery<PerfilAdocao> qry = manager.createNamedQuery(PerfilAdocao.FIND_BY_USER, PerfilAdocao.class);
+		TypedQuery<PerfilAdocao> qry = manager.createNamedQuery(PerfilAdocao.FIND_BY_USER, PerfilAdocao.class)
+				.setParameter("usuario", usuario);
 		return qry.getSingleResult();
 	}
 

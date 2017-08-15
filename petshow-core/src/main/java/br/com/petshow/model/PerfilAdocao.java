@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 import br.com.petshow.enums.EnumFaseVida;
 import br.com.petshow.enums.EnumPorteAnimal;
+import br.com.petshow.enums.EnumSexo;
 import br.com.petshow.enums.EnumTipoAnimal;
 /**
  * Para manter a tabela PEFIL_ADOCAO que tem as preferencia de adoção de um usuario.
@@ -47,6 +48,9 @@ public class PerfilAdocao extends Entidade {
 	@Column(name="PORTE_ANIMAL",nullable=false, length=2)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumPorteAnimal porteAnimal;
+	@Column(name="SEXO")
+	@Enumerated(EnumType.ORDINAL)
+	private EnumSexo sexo;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
@@ -82,6 +86,14 @@ public class PerfilAdocao extends Entidade {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public EnumSexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(EnumSexo sexo) {
+		this.sexo = sexo;
 	}
 
 
