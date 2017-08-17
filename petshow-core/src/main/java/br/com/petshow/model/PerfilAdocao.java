@@ -51,6 +51,8 @@ public class PerfilAdocao extends Entidade {
 	@Column(name="SEXO")
 	@Enumerated(EnumType.ORDINAL)
 	private EnumSexo sexo;
+	@Column(name="FL_ATIVO")
+	private boolean flAtivo = true;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
@@ -94,6 +96,14 @@ public class PerfilAdocao extends Entidade {
 
 	public void setSexo(EnumSexo sexo) {
 		this.sexo = sexo;
+	}
+
+	public boolean isFlAtivo() {
+		return flAtivo;
+	}
+
+	public void setFlAtivo(boolean flAtivo) {
+		this.flAtivo = flAtivo;
 	}
 
 
