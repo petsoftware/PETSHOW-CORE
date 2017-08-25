@@ -10,9 +10,8 @@ import br.com.petshow.dao.AgendamentoDAO;
 import br.com.petshow.dao.ServicoDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.Anuncio;
-import br.com.petshow.model.PerfilAnimal;
 import br.com.petshow.model.Servico;
+import br.com.petshow.model.Usuario;
 import br.com.petshow.util.ValidationUtil;
 /**
  * 
@@ -98,5 +97,8 @@ public class ServicoRole extends SuperClassRole<Servico> {
 		return this.servicoDAO.consultaPorNome(idUsuario, nmServico);
 	}
 
+	public long numeroDeServicosAtivos(Usuario usuario) {
+		return this.servicoDAO.numeroDeServicosAtivos(usuario);
+	}
 
 }

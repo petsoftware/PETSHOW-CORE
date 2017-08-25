@@ -98,4 +98,8 @@ public class AnuncioRole extends SuperClassRole<Anuncio> {
 		return this.anuncioDAO.consultaPorUsuario(idUsuario);
 	}
 	
+	public long numeroDeAnunciosFeitos(Usuario usuario){
+		return this.anuncioDAO.countAnunciosAtivos(usuario);
+	}
+	
 }

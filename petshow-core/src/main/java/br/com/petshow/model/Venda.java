@@ -20,8 +20,11 @@ import javax.persistence.TemporalType;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 
-@NamedQueries({ @NamedQuery(name = Venda.VENDA_POR_USUARIO, query = "FROM Venda v where usuario.id=:idUsuario order by v.dataCadastro desc" ),
-		@NamedQuery(name = Venda.VENDA_POR_FILTRO, query = "FROM Venda v where v.descResumida like :palavraChave and estado.id=:idEstado and cidade.id=:idCidade order by v.dataCadastro desc" )})
+@NamedQueries({ 
+	@NamedQuery(name = Venda.VENDA_POR_USUARIO, query = "FROM Venda v where usuario.id=:idUsuario order by v.dataCadastro desc" ),
+	@NamedQuery(name = Venda.VENDA_POR_FILTRO, 	query = "FROM Venda v where v.descResumida like :palavraChave and estado.id=:idEstado and cidade.id=:idCidade order by v.dataCadastro desc" ),
+	@NamedQuery(name = Venda.COUNT_VENDAS, 		query = "SELECT COUNT(v) FROM Venda v WHERE usuario = :usuario" )
+})
 
 @Entity
 @Table(name = "VENDA")
@@ -31,10 +34,10 @@ public class Venda extends Entidade {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3092300933879378313L;
-	public static final String VENDA_POR_USUARIO="vendaUsuario";
-	public static final String VENDA_POR_FILTRO="vendas";
-	
+	private static final long serialVersionUID 		= -3092300933879378313L;
+	public static final String VENDA_POR_USUARIO	= "vendaUsuario";
+	public static final String VENDA_POR_FILTRO		= "vendas";
+	public static final String COUNT_VENDAS			= "br.com.petshow.model.Venda.countVendas";
 
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "FOTO_VENDA" )

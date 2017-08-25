@@ -10,6 +10,7 @@ import br.com.petshow.dao.AdocaoDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Adocao;
+import br.com.petshow.model.Usuario;
 import br.com.petshow.util.ValidationUtil;
 
 @Service
@@ -23,20 +24,11 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 		System.out.println("TODO Auto-generated constructor stub " );
 	}
 	
-	/*@Autowired
-	public AdocaoRole(AdocaoDAO adocaoDAO) {
-		System.out.println("TODO Auto-generated constructor stub >>>>>>>>>>>");
-	}*/
-	
-	
 	public Adocao insert(Adocao entidade) throws ExceptionValidation {
-		// TODO Auto-generated method stub
 		return this.adocaoDAO.insert(entidade);
 	}
 
-	
 	public void delete(long codigo) throws ExceptionValidation,ExceptionNotFoundRecord  {
-		
 		if(!ValidationUtil.isCampoComValor(codigo)){
 			throw new ExceptionValidation("O id não foi informado!");
 		}
@@ -53,7 +45,6 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 
 	
 	public Adocao update(Adocao entidade) throws ExceptionValidation {
-		
 		return this.adocaoDAO.update(entidade);
 		
 	}
@@ -63,11 +54,14 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 	}
 	
 	public List<Adocao> consultaPorUsuario(Long id)  throws ExceptionValidation {
-	
 		if(!ValidationUtil.isCampoComValor(id)){
 			throw new ExceptionValidation("O id não foi informado!");
 		}
 		return this.adocaoDAO.consultaPorUsuario(id);
+	}
+	
+	public int numeroDeAdocoesDoUsuario(Usuario usuario) {
+		return 0;
 	}
 	
 }

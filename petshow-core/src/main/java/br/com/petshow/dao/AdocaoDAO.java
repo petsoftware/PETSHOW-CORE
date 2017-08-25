@@ -97,8 +97,7 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 	}
 
 	public List<Adocao> consultaPorUsuario(Long id)  {
-
 		return manager.createNamedQuery(Adocao.FIND_POR_USUARIO).setParameter("id", id).getResultList();
-
 	}
+
 }

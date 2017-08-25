@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.Criteria;
 
@@ -13,6 +14,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import br.com.petshow.model.Anuncio;
+import br.com.petshow.model.Usuario;
 import br.com.petshow.model.Venda;
 /**
  * 
@@ -33,11 +35,7 @@ public class VendaDAO extends SuperClassDAO<Venda> {
 	}
 
 	public List<Venda> consultaPorUsuario(long idUsuario)  {
-
-
 		return manager.createNamedQuery(Venda.VENDA_POR_USUARIO).setParameter("idUsuario", idUsuario).getResultList();
-
-
 	}
 
 	public List<Venda> vendas(String palavraChave,long idCidade,long idEstado,int limiteRegistros)  {
@@ -78,30 +76,14 @@ public class VendaDAO extends SuperClassDAO<Venda> {
 		}
 		
 		List<Venda> retorno = (List<Venda>) query.getResultList();
-		
-		
 		return retorno;
 		
-//
-//		Criteria criteria =super.getManager().unwrap(Session.class).createCriteria(Venda.class);
-//		
-//		if(palavraChave!=null && !palavraChave.trim().equals("")){
-//			criteria.add(Restrictions.like("descResumida", "%"+palavraChave+"%"));
-//		}
-//		if(idCidade>0){
-//			criteria.add(Restrictions.eq("id_cidade", idCidade));
-//		}
-//		if(idEstado>0){
-//			criteria.add(Restrictions.eq("id_estado", idEstado));
-//		}
-//		
-//		
-//		
-//		List<Venda> list = criteria.list();
-//		
-//		return list;
-		//return manager.createNamedQuery(Venda.VENDA_POR_FILTRO).setParameter("palavraChave", "%"+palavraChave+"%").setParameter("idCidade", idCidade).setParameter("idEstado", idEstado).getResultList();
-		//return manager.createNamedQuery(Venda.VENDA_POR_FILTRO).setParameter("palavrahave", palavraChave).setParameter("idCidade", idCidade).getResultList();
+	}
+	
+	public long numeroDeVendasRegistradoNoSistema(Usuario usuario) {
+		TypedQuery<Long> qry = manager.createNamedQuery(Venda.COUNT_VENDAS, Long.class)
+				.setParameter("usuario", usuario);
+		return qry.getSingleResult();
 	}
 
 }

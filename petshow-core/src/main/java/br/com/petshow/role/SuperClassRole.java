@@ -2,6 +2,8 @@ package br.com.petshow.role;
 
 import javax.persistence.EntityManager;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 
@@ -30,7 +32,7 @@ import br.com.petshow.exceptions.ExceptionValidation;
  * @author Rafel Rocha
  * @since version 1.0 Beta
  */
-
+@Transactional
 public abstract class SuperClassRole<T>{
 
 

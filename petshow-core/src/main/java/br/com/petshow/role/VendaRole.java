@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import br.com.petshow.dao.VendaDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.Anuncio;
 import br.com.petshow.model.Usuario;
 import br.com.petshow.model.Venda;
 import br.com.petshow.util.ValidationUtil;
@@ -104,6 +103,9 @@ public class VendaRole extends SuperClassRole<Venda> {
 		return this.vendaDAO.vendas(palavraChave, idCidade, idEstado,limiteRegistros);
 	}
 
+	public long numeroDeVendasRegistradasNoSistema(Usuario usuario) {
+		return vendaDAO.numeroDeVendasRegistradoNoSistema(usuario);
+	}
 
 	
 }

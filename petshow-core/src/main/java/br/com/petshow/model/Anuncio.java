@@ -19,7 +19,11 @@ import org.hibernate.envers.RelationTargetAuditMode;
 
 
 // ver querie dps
-@NamedQueries({ @NamedQuery(name = Anuncio.ANUNCIO_POR_USUARIO, query = "FROM Anuncio a where usuario.id=:idUsuario order by a.dataCadastro desc" )})
+@NamedQueries({ 
+	@NamedQuery(name = Anuncio.ANUNCIO_POR_USUARIO, query = "FROM Anuncio a where usuario.id=:idUsuario order by a.dataCadastro desc" ),
+	@NamedQuery(name = Anuncio.COUNT_ANUNCIO_USUARIO, query = "SELECT COUNT(a) FROM Anuncio a WHERE usuario = :usuario AND ativo = :ativo" )
+	
+})
 
 @Audited(targetAuditMode=RelationTargetAuditMode.NOT_AUDITED)									
 @Entity
@@ -32,6 +36,7 @@ public class Anuncio extends Entidade {
 	private static final long serialVersionUID = 8890385286046957564L;
 
 	public static final String ANUNCIO_POR_USUARIO="usuariosAnuncios";
+	public static final String COUNT_ANUNCIO_USUARIO="br.com.petshow.model.Anuncio.countAnuncioUsuario";
 	
 	//@JsonIgnore
 	//@ElementCollection
@@ -53,7 +58,19 @@ public class Anuncio extends Entidade {
 	@Column(name = "DT_INICIAL",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataInicial;
+	@Column(name = "ATIVO")
+	private boolean ativo = true;
 	
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
+
 	@Column(name = "DT_VENCIMENTO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataVencimento;

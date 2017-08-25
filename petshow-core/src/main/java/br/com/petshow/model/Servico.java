@@ -12,15 +12,22 @@ import javax.persistence.Table;
 
 
 @NamedQueries({ @NamedQuery(name = Servico.SERVICO_POR_USUARIO, query = "FROM Servico s where usuario.id=:idUsuario and s.flExcluido=false order by s.flAtivo desc" ),
-				@NamedQuery(name = Servico.NOME_DISPONIVEL, query = "FROM Servico s where usuario.id=:idUsuario and s.nmServico=:nmServico and s.flExcluido=false" )})
+				@NamedQuery(name = Servico.NOME_DISPONIVEL, query = "FROM Servico s where usuario.id=:idUsuario and s.nmServico=:nmServico and s.flExcluido=false" ),
+				@NamedQuery(name = Servico.COUNT_SERVICOS_ATIVOS, query = "SELECT COUNT(s) FROM Servico s WHERE usuario = :usuario AND flAtivo = :flAtivo" )
+})
 
 
 @Entity
 @Table(name = "SERVICO")
 public class Servico extends Entidade{
 
-	public static final String SERVICO_POR_USUARIO="servicoPorUsuario";
-	public static final String NOME_DISPONIVEL="nmDisponivel";
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6591678939817953911L;
+	public static final String SERVICO_POR_USUARIO		= "servicoPorUsuario";
+	public static final String NOME_DISPONIVEL			= "nmDisponivel";
+	public static final String COUNT_SERVICOS_ATIVOS 	= "br.com.petshow.model.Servico.countServicosAtivos";
 	
 	
 	@ManyToOne
