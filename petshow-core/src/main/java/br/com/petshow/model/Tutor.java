@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -17,7 +15,8 @@ import javax.persistence.Table;
 @Table(name = "TUTOR")
 public class Tutor extends Entidade {
 	
-	
+	private static final long serialVersionUID = 3676304632917516440L;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
 	private Usuario usuario;

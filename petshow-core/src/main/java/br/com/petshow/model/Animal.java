@@ -2,25 +2,15 @@ package br.com.petshow.model;
 
 import java.util.Date;
 
-
-
-import java.util.List;
-
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.DynamicUpdate;
 
 import br.com.petshow.enums.EnumFrequenciaVermifugacao;
@@ -48,7 +38,8 @@ public class Animal extends Entidade {
 //	@JsonIgnore
 //	@JoinColumn(name = "ID_ANIMAL" )
 //	private List<Tutor> tutores;
-	
+	@Transient
+	private Tutor tutor;
 	
 	@Column(name="TP_ANIMAL",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
@@ -163,8 +154,13 @@ public class Animal extends Entidade {
 		this.fotoPerfil = fotoPerfil;
 	}
 
+	public Tutor getTutor() {
+		return tutor;
+	}
 
-
+	public void setTutor(Tutor tutor) {
+		this.tutor = tutor;
+	}
 
 
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import br.com.petshow.dao.TutorDAO;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
-import br.com.petshow.model.Servico;
 import br.com.petshow.model.Tutor;
 /**
  * 
@@ -15,6 +14,10 @@ import br.com.petshow.model.Tutor;
  */
 @Service
 public class TutorRole extends SuperClassRole<Tutor> {
+	
+	public TutorRole() {
+	}
+	
 	@Autowired
 	private TutorDAO tutorDAO;
 
