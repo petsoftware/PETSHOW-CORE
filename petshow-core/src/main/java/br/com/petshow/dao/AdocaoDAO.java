@@ -5,9 +5,17 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
+import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.model.Adocao;
 import br.com.petshow.model.Usuario;
 
@@ -98,6 +106,39 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 
 	public List<Adocao> consultaPorUsuario(Long id)  {
 		return manager.createNamedQuery(Adocao.FIND_POR_USUARIO).setParameter("id", id).getResultList();
+	}
+	/**
+	 * R
+	 * @param estado
+	 * @param cidade
+	 * @param tpAnimal
+	 * @param fase
+	 * @param sexo
+	 * @param limiteRegistros
+	 * @return lista com as adoções disponiveis
+	 * @author Rafael ROcha
+	 */
+	public List<Adocao> consultarAnimaisDisponíveisParaAdocao(long estado, long cidade, EnumTipoAnimal tpAnimal, EnumFaseVida fase, EnumSexo sexo, int limiteRegistros) {
+		CriteriaBuilder builder = getManager().getCriteriaBuilder();
+		CriteriaQuery<Adocao> criteria = builder.createQuery(Adocao.class);
+		Root<Adocao> root = criteria.from(Adocao.class);
+		ParameterExpression<EnumTipoAnimal> pTipoAnimal = builder.parameter(EnumTipoAnimal.class,"tipo");
+		ParameterExpression<EnumSexo> pSexoAnimal 		= builder.parameter(EnumSexo.class,"sexo");
+		ParameterExpression<EnumFaseVida> pFaseVida 	= builder.parameter(EnumFaseVida.class,"fase");
+		//Building the select
+		criteria.select(root).where(
+				builder.and(
+						builder.equal(root.get("tipo"), pTipoAnimal),
+						builder.equal(root.get("flSexo"), pSexoAnimal),
+						builder.equal(root.get("fase"),pFaseVida)
+				)
+		);
+		
+		TypedQuery<Adocao> qry = getManager().createQuery(criteria).setMaxResults(limiteRegistros)
+				.setParameter("tipo", tpAnimal)
+				.setParameter("sexo", sexo)
+				.setParameter("fase", fase);
+		return qry.getResultList();
 	}
 
 }

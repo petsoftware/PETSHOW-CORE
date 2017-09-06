@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.dao.AdocaoDAO;
+import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Adocao;
@@ -62,6 +65,10 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 	
 	public int numeroDeAdocoesDoUsuario(Usuario usuario) {
 		return 0;
+	}
+	
+	public List<Adocao> consultarAnimaisDisponíveisParaAdocao(long estado, long cidade, EnumTipoAnimal tpAnimal, EnumFaseVida fase, EnumSexo sexo, int limiteRegistros) {
+		return adocaoDAO.consultarAnimaisDisponíveisParaAdocao(estado, cidade, tpAnimal, fase, sexo, limiteRegistros);
 	}
 	
 }

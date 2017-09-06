@@ -1,8 +1,8 @@
 package br.com.petshow.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -14,15 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 import br.com.petshow.enums.EnumFaseVida;
 import br.com.petshow.enums.EnumPorteAnimal;
+import br.com.petshow.enums.EnumSexo;
 import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.util.IDUtil;
 
@@ -35,18 +33,16 @@ import br.com.petshow.util.IDUtil;
 @Entity
 @Table(name = "ADOCAO")
 public class Adocao extends Entidade {
-	
-	
-	
+
 	/**
 	 * 
 	 */
-	public static final String FIND_POR_USUARIO 	= "Adocao.porUsuario";
-	private static final long serialVersionUID = -2535670503647345911L;
+	public static final String FIND_POR_USUARIO = "Adocao.porUsuario";
+	private static final long serialVersionUID 	= -2535670503647345911L;
 
 	@Column(name = "DT_ADOCAO")
 	@Temporal(TemporalType.DATE)
-	private Date dataAdocao;
+	private Date dataAdocao ;
 	
 	
 	@ManyToOne
@@ -54,26 +50,29 @@ public class Adocao extends Entidade {
 	private Usuario usuario;
 
 	@Column(name = "DESC_ADOCAO")
-	private String descAdocao;
+	private String descAdocao = "";
+	
+	@Column(name = "TITULO")
+	private String titulo = "";
+	
 	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "FOTO_ADOCAO" )
 	@Column(length=10485760)
-	private List<String> fotos;// no maximo 3
-	
+	private List<String> fotos = new ArrayList<String>();// no maximo 3
 	
 	@Column(name="FASE",nullable=true)
 	@Enumerated(EnumType.ORDINAL)
-	private EnumFaseVida fase;
+	private EnumFaseVida fase = EnumFaseVida.FILHOTE;
 	
 	@Column(name = "FL_VACINADO")
-	private boolean flVacinado;
+	private boolean flVacinado = false;
 	
 	@Column(name = "FL_VERMIFUGADO")
-	private boolean flVermifugado;
+	private boolean flVermifugado = false;
 	
 	@Column(name = "FL_CASTRADO")
-	private boolean castrado;
+	private boolean castrado = false;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_CIDADE" ,referencedColumnName="ID")
@@ -102,17 +101,18 @@ public class Adocao extends Entidade {
 	
 	@Column(name = "DT_CADASTRO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCadastro;
+	private Date dataCadastro = new Date();
 	
 	@Column(name="TP_ANIMAL",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
-	private EnumTipoAnimal tipo;
+	private EnumTipoAnimal tipo = EnumTipoAnimal.CACHORRO;
 	
 	@Column(name="RACA")
 	private String raca;
 	
 	@Column(name = "FL_SEXO")
-	private String flSexo;
+	@Enumerated(EnumType.ORDINAL)
+	private EnumSexo flSexo = EnumSexo.MACHO;
 	
 	
 	@Column(name="TP_PORTE",nullable=true)
@@ -128,28 +128,17 @@ public class Adocao extends Entidade {
 		}
 	}
 
-
-
 	public Date getDataAdocao() {
 		return dataAdocao;
 	}
-
-
 
 	public void setDataAdocao(Date dataAdocao) {
 		this.dataAdocao = dataAdocao;
 	}
 
-
-
-	
-
-
 	public String getDescAdocao() {
 		return descAdocao;
 	}
-
-
 
 	public void setDescAdocao(String descAdocao) {
 		this.descAdocao = descAdocao;
@@ -161,8 +150,6 @@ public class Adocao extends Entidade {
 		return porteAnimal;
 	}
 
-
-
 	public void setPorteAnimal(EnumPorteAnimal porteAnimal) {
 		this.porteAnimal = porteAnimal;
 	}
@@ -172,8 +159,6 @@ public class Adocao extends Entidade {
 	public List<String> getFotos() {
 		return fotos;
 	}
-
-
 
 	public void setFotos(List<String> fotos) {
 		this.fotos = fotos;
@@ -185,8 +170,6 @@ public class Adocao extends Entidade {
 		return fase;
 	}
 
-
-
 	public void setFase(EnumFaseVida fase) {
 		this.fase = fase;
 	}
@@ -196,8 +179,6 @@ public class Adocao extends Entidade {
 	public boolean isFlVacinado() {
 		return flVacinado;
 	}
-
-
 
 	public void setFlVacinado(boolean flVacinado) {
 		this.flVacinado = flVacinado;
@@ -209,19 +190,13 @@ public class Adocao extends Entidade {
 		return flVermifugado;
 	}
 
-
-
 	public void setFlVermifugado(boolean flVermifugado) {
 		this.flVermifugado = flVermifugado;
 	}
 
-
-
 	public boolean isCastrado() {
 		return castrado;
 	}
-
-
 
 	public void setCastrado(boolean castrado) {
 		this.castrado = castrado;
@@ -233,31 +208,21 @@ public class Adocao extends Entidade {
 		return cidade;
 	}
 
-
-
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-
-
 
 	public Estado getEstado() {
 		return estado;
 	}
 
-
-
 	public void setEstado(Estado estado) {
 		this.estado = estado;
 	}
 
-
-
 	public Bairro getBairro() {
 		return bairro;
 	}
-
-
 
 	public void setBairro(Bairro bairro) {
 		this.bairro = bairro;
@@ -269,8 +234,6 @@ public class Adocao extends Entidade {
 		return telefoneCelular;
 	}
 
-
-
 	public void setTelefoneCelular(Long telefoneCelular) {
 		this.telefoneCelular = telefoneCelular;
 	}
@@ -280,8 +243,6 @@ public class Adocao extends Entidade {
 	public Integer getDddCelular() {
 		return dddCelular;
 	}
-
-
 
 	public void setDddCelular(Integer dddCelular) {
 		this.dddCelular = dddCelular;
@@ -293,31 +254,21 @@ public class Adocao extends Entidade {
 		return telefoneResidencial;
 	}
 
-
-
 	public void setTelefoneResidencial(Long telefoneResidencial) {
 		this.telefoneResidencial = telefoneResidencial;
 	}
-
-
 
 	public Integer getDddResidencial() {
 		return dddResidencial;
 	}
 
-
-
 	public void setDddResidencial(Integer dddResidencial) {
 		this.dddResidencial = dddResidencial;
 	}
 
-
-
 	public Date getDataCadastro() {
 		return dataCadastro;
 	}
-
-
 
 	public void setDataCadastro(Date dataCadastro) {
 		this.dataCadastro = dataCadastro;
@@ -331,39 +282,35 @@ public class Adocao extends Entidade {
 		this.usuario = usuario;
 	}
 
-
-
 	public EnumTipoAnimal getTipo() {
 		return tipo;
 	}
-
-
 
 	public void setTipo(EnumTipoAnimal tipo) {
 		this.tipo = tipo;
 	}
 
-
-
 	public String getRaca() {
 		return raca;
 	}
-
-
 
 	public void setRaca(String raca) {
 		this.raca = raca;
 	}
 
+	public String getTitulo() {
+		return titulo;
+	}
 
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-	public String getFlSexo() {
+	public EnumSexo getFlSexo() {
 		return flSexo;
 	}
 
-
-
-	public void setFlSexo(String flSexo) {
+	public void setFlSexo(EnumSexo flSexo) {
 		this.flSexo = flSexo;
 	}
 	
