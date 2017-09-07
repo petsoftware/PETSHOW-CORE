@@ -17,7 +17,6 @@ import br.com.petshow.enums.EnumFaseVida;
 import br.com.petshow.enums.EnumSexo;
 import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.model.Adocao;
-import br.com.petshow.model.Usuario;
 
 @Repository
 public class AdocaoDAO extends SuperClassDAO<Adocao> {
@@ -28,7 +27,6 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 
 	@Override
 	public Adocao find(long codigo) {
-		// TODO Auto-generated method stub
 		return manager.find(Adocao.class, codigo);
 	}
 
@@ -39,10 +37,6 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 		ArrayList<HashMap<String,Object>> filtros = new ArrayList<HashMap<String,Object>>(); 
 		String where = " where 1=1 ";
 		boolean innerUsuario= false;
-/*		select * from adocao
-	    inner join tutor on    adocao.id_tutor = tutor.id
-	    inner join animal on 	animal.id= tutor.id_animal
-	    inner join usuario on usuario.id= tutor.id_usuario*/
 		
 		
 		if(!tpAnimal.trim().equals("null")){
