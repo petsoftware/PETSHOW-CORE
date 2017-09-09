@@ -17,11 +17,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
 import br.com.petshow.enums.EnumFaseVida;
 import br.com.petshow.enums.EnumPorteAnimal;
 import br.com.petshow.enums.EnumSexo;
 import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.util.DateUtil;
 import br.com.petshow.util.IDUtil;
 
 
@@ -118,6 +121,8 @@ public class Adocao extends Entidade {
 	@Column(name="TP_PORTE",nullable=true)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumPorteAnimal porteAnimal;
+	@Transient
+	private String getTempoDePublicacao = "";
 
 	@JsonIgnore
 	public String getFoto() {
@@ -312,6 +317,15 @@ public class Adocao extends Entidade {
 
 	public void setFlSexo(EnumSexo flSexo) {
 		this.flSexo = flSexo;
+	}
+
+	public String getGetTempoDePublicacao() {
+		getTempoDePublicacao = DateUtil.getTempoEntreDatasPorExtenso(dataCadastro, new Date());
+		return getTempoDePublicacao;
+	}
+
+	public void setGetTempoDePublicacao(String getTempoDePublicacao) {
+		this.getTempoDePublicacao = getTempoDePublicacao;
 	}
 	
 	
