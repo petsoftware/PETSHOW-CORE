@@ -21,7 +21,7 @@ public class PlaceHolderUtil {
 		SEL_USUARIO="Selecione um usuario";
 		SEL_ANIMAL="Selecione um tipo de animal";
 		SEL_SEXO="Selecione um gênero";
-		SEL_FASE="Selecione uma fase";
+		SEL_FASE="Selecione a fase da vida";
 		SEL_SERVICO="Selecione um servico";
 	}
 
