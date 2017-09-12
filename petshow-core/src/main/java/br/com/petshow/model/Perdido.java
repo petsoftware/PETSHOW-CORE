@@ -1,5 +1,6 @@
 package br.com.petshow.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -17,11 +18,14 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import br.com.petshow.enums.EnumAchadoPerdido;
 import br.com.petshow.enums.EnumCor;
 import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.util.DateUtil;
 import br.com.petshow.util.IDUtil;
 
 @NamedQueries(value={
@@ -52,7 +56,7 @@ public class Perdido extends Entidade {
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "FOTO_PERDIDO" )
 	@Column(length=10485760)
-	private List<String> fotos;// no maximo 3
+	private List<String> fotos = new ArrayList<>();// no maximo 3
 	
 	@Column(name = "DT_PERDIDO_ACHADO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
@@ -98,7 +102,8 @@ public class Perdido extends Entidade {
 	private String nome;
 	
 	@Column(name = "FL_ACONTECIMENTO",nullable=false)
-	private String flAcontecimento;
+	@Enumerated(EnumType.ORDINAL)
+	private EnumAchadoPerdido flAcontecimento = EnumAchadoPerdido.PERDIDO;
 	
 	@Column(name="TP_ANIMAL",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
@@ -116,9 +121,11 @@ public class Perdido extends Entidade {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtResolvido;
 	
-	
 	@Column(name = "FL_SEXO")
 	private String flSexo;
+	
+	@Transient
+	private String getTempoDePublicacao = "";
 
 	public String getNome() {
 		return nome;
@@ -146,14 +153,6 @@ public class Perdido extends Entidade {
 
 	public String getDescAcontecimento() {
 		return descAcontecimento;
-	}
-
-	public String getFlAcontecimento() {
-		return flAcontecimento;
-	}
-
-	public void setFlAcontecimento(String flAcontecimento) {
-		this.flAcontecimento = flAcontecimento;
 	}
 
 	public void setDescAcontecimento(String descAcontecimento) {
@@ -293,5 +292,25 @@ public class Perdido extends Entidade {
 		}
 	}
 	
+	public String getGetTempoDePublicacao() {
+		if(dataCadastro != null){
+			getTempoDePublicacao = DateUtil.getTempoEntreDatasPorExtenso(dataCadastro, new Date());
+		}else{
+			getTempoDePublicacao = "";
+		}
+		return getTempoDePublicacao;
+	}
+
+	public void setGetTempoDePublicacao(String getTempoDePublicacao) {
+		this.getTempoDePublicacao = getTempoDePublicacao;
+	}
+
+	public void setFlAcontecimento(EnumAchadoPerdido flAcontecimento) {
+		this.flAcontecimento = flAcontecimento;
+	}
+
+	public EnumAchadoPerdido getFlAcontecimento() {
+		return flAcontecimento;
+	}
 	
 }
