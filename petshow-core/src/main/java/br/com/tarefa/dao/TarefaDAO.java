@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petshow.dao.SuperClassDAO;
-import br.com.petshow.model.Animal;
-import br.com.petshow.model.Servico;
+import br.com.petmooby.dao.SuperClassDAO;
+import br.com.petmooby.model.Animal;
+import br.com.petmooby.model.Servico;
 import br.com.tarefa.model.Tarefa;
 
 @Repository

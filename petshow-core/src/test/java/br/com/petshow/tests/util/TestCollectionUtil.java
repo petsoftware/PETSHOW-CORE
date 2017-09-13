@@ -5,7 +5,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
-import br.com.petshow.util.CollectionUtil;
+import br.com.petmooby.util.CollectionUtil;
 
 public class TestCollectionUtil {
 	@Test

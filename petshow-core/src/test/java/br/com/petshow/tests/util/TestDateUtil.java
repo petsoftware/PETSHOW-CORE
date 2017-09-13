@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import br.com.petshow.util.DateTimeDiffer;
-import br.com.petshow.util.DateUtil;
+import br.com.petmooby.util.DateTimeDiffer;
+import br.com.petmooby.util.DateUtil;
 
 public class TestDateUtil {
 

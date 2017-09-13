@@ -2,7 +2,8 @@ package br.com.petshow.tests.util;
 
 import org.junit.Test;
 
-import br.com.petshow.util.MD5EncriptUtil;
+import br.com.petmooby.util.MD5EncriptUtil;
+
 import static org.junit.Assert.assertTrue;
 
 public class TestMDEncriptUtil {
