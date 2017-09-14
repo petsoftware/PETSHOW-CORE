@@ -8,7 +8,7 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.Adocao;
+import br.com.petmooby.enums.EnumAchadoPerdido;
 import br.com.petmooby.model.Perdido;
 /**
  * 
@@ -27,7 +27,7 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 		// TODO Auto-generated method stub
 		return manager.find(Perdido.class, codigo);
 	}
-	public List<Perdido> consultaPorFiltros(String tpAnimal,String tpPerdidoAchado,long estado,long cidade,long bairro,int limiteRegistros)  {
+	public List<Perdido> consultaPorFiltros(String tpAnimal,EnumAchadoPerdido tpPerdidoAchado,long estado,long cidade,long bairro,int limiteRegistros)  {
 
 	
 		String consulta ="select perdido.* from perdido ";
@@ -43,7 +43,7 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 			filtros.add(map);
 		}
 		
-		if(!tpPerdidoAchado.trim().equals("null")){
+		if(!tpPerdidoAchado.equals(null)){
 			where+= " and FL_ACONTECIMENTO=:flAcontecimento ";
 			HashMap<String,Object> map = new HashMap<String,Object>();
 			map.put("chave", "flAcontecimento");
@@ -78,20 +78,16 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 			filtros.add(map);
 			//innerUsuario=true;
 		}
-		
-		
-		
-		consulta += (where.equals(" where 1=1 ")?"":where)+ " order by DT_CADASTRO desc limit "+limiteRegistros;
-		Query query = manager.createNativeQuery(consulta, Perdido.class);
-		
+
+		consulta += (where.equals(" where 1=1 ")?"":where)+ " order by DT_CADASTRO desc ";
+		Query query = manager.createNativeQuery(consulta, Perdido.class).setMaxResults(limiteRegistros);
 		
 		for(HashMap<String,Object> item :filtros){
 			query.setParameter(item.get("chave").toString(), item.get("valor"));
 		}
 		
-		List<Perdido> retorno = (List<Perdido>) query.getResultList();
-		
-		
+		List<Perdido> retorno = query.getResultList();
+				
 		return retorno;
 
 	}

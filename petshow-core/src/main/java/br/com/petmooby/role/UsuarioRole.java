@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petmooby.dao.UsuarioDAO;
+import br.com.petmooby.enums.EnumFlTpEstabelecimento;
 import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
 import br.com.petmooby.exceptions.ExceptionValidation;
 import br.com.petmooby.model.SecurityLogin;
@@ -32,34 +33,34 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	private UsuarioDAO usuarioDAO ;
 
 	@Transactional(readOnly=false,propagation=Propagation.REQUIRES_NEW,isolation=Isolation.DEFAULT)
-	public Usuario insertPreCadastro(Usuario entidade) throws ExceptionValidation{
-		if(!ValidationUtil.isCampoComValor(entidade.getNome())){
+	public Usuario insertPreCadastro(Usuario usuario) throws ExceptionValidation{
+		if(!ValidationUtil.isCampoComValor(usuario.getNome())){
 			throw new ExceptionValidation("O campo de nome não foi informado!");
 		}
-		if(!ValidationUtil.isCampoComValor(entidade.getPassword())){
+		if(!ValidationUtil.isCampoComValor(usuario.getPassword())){
 			throw new ExceptionValidation("O campo de senha não foi informado!");
 		}
-		if(!ValidationUtil.isCampoComValor(entidade.getEmail())){
+		if(!ValidationUtil.isCampoComValor(usuario.getEmail())){
 			throw new ExceptionValidation("O campo de e-mail não foi informado!");
 		}
-		if(!ValidationUtil.isCampoComValor(entidade.getCnpjCpf())){
-			throw new ExceptionValidation("O campo de CNPJ não foi informado!");
+		if(!usuario.getFlTpEstabelecimento().equals(EnumFlTpEstabelecimento.USER)){
+			if(!ValidationUtil.isCampoComValor(usuario.getCnpjCpf())){
+				throw new ExceptionValidation("O campo de CNPJ não foi informado!");
+			}
 		}
-		if(!ValidationUtil.isCampoComValor(entidade.getNmLogin())){
+		if(!ValidationUtil.isCampoComValor(usuario.getNmLogin())){
 			throw new ExceptionValidation("O campo de nome de login não foi informado!");
 		}
-	
-
-		List<Usuario> usuarios=consultaPorNmLogin(entidade.getNmLogin());
+		List<Usuario> usuarios=consultaPorNmLogin(usuario.getNmLogin());
 		if(usuarios !=null && usuarios.size()>0){
 			throw new ExceptionValidation("Nome de usuário já existe favor informar um diferente!");
 		}
 		
-		if(entidade.getNmLogin().equalsIgnoreCase(Usuario.ANONYMOUS_USER)){
-			throw new ExceptionValidation("Nome de login " + entidade.getNmLogin() + " é uma palavra reservada, portanto não pode ser usada.");
+		if(usuario.getNmLogin().equalsIgnoreCase(Usuario.ANONYMOUS_USER)){
+			throw new ExceptionValidation("Nome de login " + usuario.getNmLogin() + " é uma palavra reservada, portanto não pode ser usada.");
 		}
 		
-		return insertUser(entidade);
+		return insertUser(usuario);
 	}
 	
 	public Usuario insert(Usuario entidade) throws ExceptionValidation{
@@ -155,7 +156,7 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		String emailCrypt = HandleEncrypt.encrypt(securityLogin.getEmail());
 		String erro = "";
 		try {
-			return "http://localhost:8080/Petshow-WEB/private/PageValidateNewUser.xhtml?seckey="+URLEncoder.encode(securityLogin.getKey(), "UTF-8") +"&lg="+URLEncoder.encode(emailCrypt,"UTF-8") ;
+			return "http://petmooby.com.br/petmooby/PageValidateNewUser.xhtml?seckey="+URLEncoder.encode(securityLogin.getKey(), "UTF-8") +"&lg="+URLEncoder.encode(emailCrypt,"UTF-8") ;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			erro = e.getMessage();

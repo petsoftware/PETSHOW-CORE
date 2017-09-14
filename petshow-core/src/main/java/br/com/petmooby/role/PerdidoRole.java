@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petmooby.dao.PerdidoDAO;
+import br.com.petmooby.enums.EnumAchadoPerdido;
 import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
 import br.com.petmooby.exceptions.ExceptionValidation;
 import br.com.petmooby.model.Perdido;
@@ -49,7 +50,7 @@ public class PerdidoRole extends SuperClassRole<Perdido> {
 		return this.perdidoDAO.find(codigo);
 	}
 
-	public List<Perdido> consultaPorFiltros(String tpAnimal,String tpPerdidoAchado,long estado,long cidade,long bairro, int limiteRegistros)   throws ExceptionValidation {
+	public List<Perdido> consultaPorFiltros(String tpAnimal,EnumAchadoPerdido tpPerdidoAchado,long estado,long cidade,long bairro, int limiteRegistros)   throws ExceptionValidation {
 		return this.perdidoDAO.consultaPorFiltros(tpAnimal, tpPerdidoAchado, estado, cidade, bairro,limiteRegistros);
 	}
 	
