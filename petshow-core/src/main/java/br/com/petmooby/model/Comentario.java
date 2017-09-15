@@ -12,6 +12,8 @@ import javax.persistence.TemporalType;
 @MappedSuperclass
 public abstract class Comentario  extends Entidade{
 
+	private static final long serialVersionUID = 5596911468344724176L;
+
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
 	private Usuario usuario;
