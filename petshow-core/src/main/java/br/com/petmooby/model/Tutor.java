@@ -7,14 +7,20 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
+@NamedQueries({
+	@NamedQuery(name=Tutor.FIND_BY_USER,query="FROM Tutor WHERE usuario = :usuario")
+})
+
 @Entity
 @Table(name = "TUTOR")
 public class Tutor extends Entidade {
-	
+	public static final String FIND_BY_USER = "br.com.petmooby.model.Tutor.findByUser";
 	private static final long serialVersionUID = 3676304632917516440L;
 
 	@ManyToOne

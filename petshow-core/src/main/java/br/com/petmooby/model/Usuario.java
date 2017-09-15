@@ -77,7 +77,7 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	private boolean flPreCadastro;
 	
 	@Column(name="FOTO_PERFIL" , length=10485760)
-	private String foto;
+	private String foto = "";
 	
 	@Column(name="CIDADE")
 	private String cidade;

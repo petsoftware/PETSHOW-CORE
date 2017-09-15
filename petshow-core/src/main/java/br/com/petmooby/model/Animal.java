@@ -14,6 +14,7 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.DynamicUpdate;
 
 import br.com.petmooby.enums.EnumFrequenciaVermifugacao;
+import br.com.petmooby.enums.EnumSexo;
 import br.com.petmooby.enums.EnumTipoAnimal;
 
 
@@ -33,11 +34,9 @@ public class Animal extends Entidade {
 
 	@Column(name="FOTO_PERFIL" , length=10485760)
 	private String fotoPerfil;
+	
+	private String sobre = "";
 
-//	@OneToMany
-//	@JsonIgnore
-//	@JoinColumn(name = "ID_ANIMAL" )
-//	private List<Tutor> tutores;
 	@Transient
 	private Tutor tutor;
 	
@@ -56,8 +55,10 @@ public class Animal extends Entidade {
 	private Date dataNascimento;
 			
 	@Column(name = "FL_SEXO")
-	private String flSexo;
+	private EnumSexo flSexo;
 
+	@Transient
+	private String imageAnimal;
 	
 	
 	@Column(name = "FL_ADOCAO")
@@ -116,14 +117,6 @@ public class Animal extends Entidade {
 		return nome;
 	}
 
-//	public List<Tutor> getTutores() {
-//		return tutores;
-//	}
-//
-//	public void setTutores(List<Tutor> tutores) {
-//		this.tutores = tutores;
-//	}
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -134,16 +127,6 @@ public class Animal extends Entidade {
 
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
-	}
-
-
-
-	public String getFlSexo() {
-		return flSexo;
-	}
-
-	public void setFlSexo(String flSexo) {
-		this.flSexo = flSexo;
 	}
 
 	public String getFotoPerfil() {
@@ -162,5 +145,48 @@ public class Animal extends Entidade {
 		this.tutor = tutor;
 	}
 
+	public String getSobre() {
+		return sobre;
+	}
 
+	public void setSobre(String sobre) {
+		this.sobre = sobre;
+	}
+
+	public EnumSexo getFlSexo() {
+		return flSexo;
+	}
+
+	public void setFlSexo(EnumSexo flSexo) {
+		this.flSexo = flSexo;
+	}
+
+	public String getImageAnimal() {
+		if(tipo.equals(EnumTipoAnimal.CACHORRO)){
+			imageAnimal = "ic_dog.png";
+		}else if(tipo.equals(EnumTipoAnimal.GATO)){
+			imageAnimal = "ic_cat.png";
+		}else if(tipo.equals(EnumTipoAnimal.CAVALO)){
+			imageAnimal = "ic_horse.png";
+		}else if(tipo.equals(EnumTipoAnimal.COBRA)){
+			imageAnimal = "ic_snake.png";
+		}else if(tipo.equals(EnumTipoAnimal.LAGARTO)){
+			imageAnimal = "ic_lizard.png";
+		}else if(tipo.equals(EnumTipoAnimal.PASSARO)){
+			imageAnimal = "ic_bird.png";
+		}else if(tipo.equals(EnumTipoAnimal.PEIXE)){
+			imageAnimal = "ic_fish.png";
+		}else if(tipo.equals(EnumTipoAnimal.SUINO)){
+			imageAnimal = "ic_pig.png";
+		}else if(tipo.equals(EnumTipoAnimal.OUTROS)){
+			imageAnimal = "ic_paw.png";
+		}
+			
+			
+		return imageAnimal;
+	}
+
+	public void setImageAnimal(String imageAnimal) {
+		this.imageAnimal = imageAnimal;
+	}
 }

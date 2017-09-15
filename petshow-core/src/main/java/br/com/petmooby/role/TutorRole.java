@@ -7,6 +7,7 @@ import br.com.petmooby.dao.TutorDAO;
 import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
 import br.com.petmooby.exceptions.ExceptionValidation;
 import br.com.petmooby.model.Tutor;
+import br.com.petmooby.model.Usuario;
 /**
  * 
  * @author antoniorafael
@@ -17,33 +18,29 @@ public class TutorRole extends SuperClassRole<Tutor> {
 	
 	public TutorRole() {
 	}
-	
 	@Autowired
 	private TutorDAO tutorDAO;
 
-
 	public Tutor insert(Tutor entidade) throws ExceptionValidation{
-		
 		return (Tutor) this.tutorDAO.insert(entidade);
 	}
 
-	
 	public void delete(long codigo) throws ExceptionValidation,ExceptionNotFoundRecord {
 	
 		 this.tutorDAO.delete(codigo);
 	}
 
-	
 	public Tutor update(Tutor entidade) throws ExceptionValidation{
 	
 		return (Tutor) this.tutorDAO.update(entidade);
 	}
 
-	
 	public Tutor find(long codigo) throws ExceptionValidation {
 	
 		return this.tutorDAO.find(codigo);
 	}
 
-
+	public Tutor findByUser(Usuario usuario) {
+		return tutorDAO.findByUser(usuario);
+	}
 }

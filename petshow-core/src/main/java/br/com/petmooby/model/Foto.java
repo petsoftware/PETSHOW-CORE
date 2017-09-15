@@ -10,7 +10,7 @@ import javax.persistence.TemporalType;
 @MappedSuperclass
 public abstract class Foto extends Entidade{
 
-	@Column(name="FOTO",nullable=false)
+	@Column(name="FOTO",nullable=false,length=10485760)
 	private String foto;
 	
 	@Column(name="DESCRICAO")
