@@ -16,9 +16,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -27,6 +29,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import br.com.petmooby.enums.EnumFlTpEstabelecimento;
 import br.com.petmooby.enums.EnumTipoUser;
+import br.com.petmooby.enums.EnumUF;
 
 
 
@@ -169,6 +172,16 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtCadastro = new Date();
 	
+	@Column(name="UF")
+	@Enumerated(EnumType.STRING)
+	private EnumUF uf = EnumUF.CE;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="CIDADE_CODIGO",referencedColumnName="COD_CIDADE")
+	private Cidade cidadeObj;
+	
+	@Transient
+	private Endereco endereco = new Endereco();
 	
 	public String getURLFacebook() {
 		return URLFacebook;
@@ -596,6 +609,30 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 			} else if (!vendas.equals(other.vendas))
 				return false;
 			return true;
+		}
+
+		public EnumUF getUf() {
+			return uf;
+		}
+
+		public void setUf(EnumUF uf) {
+			this.uf = uf;
+		}
+
+		public Cidade getCidadeObj() {
+			return cidadeObj;
+		}
+
+		public void setCidadeObj(Cidade cidadeObj) {
+			this.cidadeObj = cidadeObj;
+		}
+
+		public Endereco getEndereco() {
+			return endereco;
+		}
+
+		public void setEndereco(Endereco endereco) {
+			this.endereco = endereco;
 		}
 		
 		

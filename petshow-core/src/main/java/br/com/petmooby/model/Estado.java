@@ -2,9 +2,13 @@ package br.com.petmooby.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import br.com.petmooby.enums.EnumUF;
 
 
 @NamedQueries({ @NamedQuery(name = Estado.ALL, query = "FROM Estado e order by e.nome asc" )})
@@ -12,8 +16,10 @@ import javax.persistence.Table;
 @Table(name = "ESTADO")
 public class Estado   extends Entidade{
 
-	public static final String ALL = "todosEstados";
+	private static final long serialVersionUID = -4980228199205072923L;
 
+	public static final String ALL = "todosEstados";
+	
 	@Column(name="CODIGO")
 	private long codigo;
 	
@@ -22,7 +28,11 @@ public class Estado   extends Entidade{
 	
 	@Column(name="SIGLA")
 	private String sigla;
-
+	
+	@Column(name="UF")
+	@Enumerated(EnumType.ORDINAL)
+	private EnumUF uf = EnumUF.CE;
+	
 	public long getCodigo() {
 		return codigo;
 	}
@@ -45,6 +55,14 @@ public class Estado   extends Entidade{
 
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
+	}
+
+	public EnumUF getUf() {
+		return uf;
+	}
+
+	public void setUf(EnumUF uf) {
+		this.uf = uf;
 	}
 	
 	

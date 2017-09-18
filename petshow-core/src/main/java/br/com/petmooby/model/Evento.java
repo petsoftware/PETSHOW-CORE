@@ -6,11 +6,17 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import br.com.petmooby.enums.EnumUF;
 
 @Entity
 @Table(name = "EVENTO")
@@ -19,8 +25,10 @@ public class Evento extends Entidade {
 	private static final long serialVersionUID = -7835978623096055142L;
 
 	public Evento() {
-		// TODO Auto-generated constructor stub
 	}
+	
+	@Column(name="BUNNER",length=10485760)
+	private String bunner = "";
 	
 	@OneToMany(fetch=FetchType.EAGER)
 	@JoinColumn(name = "ID_EVENTO" )
@@ -36,10 +44,19 @@ public class Evento extends Entidade {
 	private String descricao;
 	
 	@Column(name="DT_INICIO",nullable= false)
-	private Date dataInicio;
+	@Temporal(TemporalType.DATE)
+	private Date dataInicio = new Date();
 	
 	@Column(nullable= false, name="DT_TERMINO")
-	private Date dataTermino;
+	@Temporal(TemporalType.DATE)
+	private Date dataTermino = new Date();
+	
+	@Column( name="CIDADE",length=50)
+	private String cidade ="";
+	
+	@Column( name="ESTADO")
+	@Enumerated(EnumType.ORDINAL)
+	private EnumUF uf = EnumUF.CE;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_LOCAL" ,referencedColumnName="ID")
@@ -111,6 +128,30 @@ public class Evento extends Entidade {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getBunner() {
+		return bunner;
+	}
+
+	public void setBunner(String bunner) {
+		this.bunner = bunner;
+	}
+
+	public String getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+
+	public EnumUF getUf() {
+		return uf;
+	}
+
+	public void setUf(EnumUF uf) {
+		this.uf = uf;
 	}
 	
 }

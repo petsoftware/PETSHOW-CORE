@@ -1,15 +1,18 @@
 package br.com.petmooby.role;
 
 import java.util.List;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.petmooby.core.jobs.JobCadMunicipiosCeara;
+import br.com.petmooby.core.jobs.JobCadMunicipiosPernambuco;
 import br.com.petmooby.dao.CidadeDAO;
+import br.com.petmooby.enums.EnumUF;
 import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
 import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Anuncio;
 import br.com.petmooby.model.Cidade;
 import br.com.petmooby.util.ValidationUtil;
 
@@ -65,4 +68,33 @@ public class CidadeRole extends SuperClassRole<Cidade> {
 		return this.cidadeDAO.consultaPorEstadoUF(uf);
 	}
 	
+	public  List<Cidade> findAllByUF(EnumUF enumUF) {
+		return this.cidadeDAO.findAllByUF(enumUF);
+	}
+	
+	public void inserirCidadesCEJob() {
+		for (String mun : JobCadMunicipiosCeara.getMunicipiosCE()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.CE.getCdIbge()+ municipio[0];
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.CE);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesPEJob() {
+		for (String mun : JobCadMunicipiosPernambuco.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.PE.getCdIbge()+ municipio[0];
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.PE);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
 }

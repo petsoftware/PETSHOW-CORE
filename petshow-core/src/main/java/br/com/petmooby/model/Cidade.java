@@ -1,6 +1,8 @@
 package br.com.petmooby.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -8,15 +10,21 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+import br.com.petmooby.enums.EnumUF;
 
-@NamedQueries({ @NamedQuery(name = Cidade.CIDADE_POR_ESTADO_POR_ID, query = "FROM Cidade c where estado.id=:id order by c.nome asc" ),
-			 @NamedQuery(name = Cidade.CIDADE_POR_ESTADO_POR_UF, query = "FROM Cidade c where estado.sigla=:uf order by c.nome asc" )})
+
+@NamedQueries({ @NamedQuery(name = Cidade.CIDADE_POR_ESTADO_POR_ID	, query = "FROM Cidade c where estado.id=:id order by c.nome asc" ),
+			 	@NamedQuery(name = Cidade.CIDADE_POR_ESTADO_POR_UF	, query = "FROM Cidade c where estado.sigla=:uf order by c.nome asc" ),
+			 	@NamedQuery(name = Cidade.FIND_ALL_BY_UF			, query = "FROM Cidade WHERE uf = :uf" )
+})
 @Entity
 @Table(name = "CIDADE")
 public class Cidade  extends Entidade {
 
-	public static final String CIDADE_POR_ESTADO_POR_ID="cidadePorEstadoID";
-	public static final String CIDADE_POR_ESTADO_POR_UF="cidadePorEstadoUF";
+	private static final long serialVersionUID = -2906194527919052578L;
+	public static final String CIDADE_POR_ESTADO_POR_ID = "cidadePorEstadoID";
+	public static final String CIDADE_POR_ESTADO_POR_UF = "cidadePorEstadoUF";
+	public static final String FIND_ALL_BY_UF		    = "br.com.petmooby.model.Cidade.findAllByUF";
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "ID_ESTADO" ,referencedColumnName="ID")
@@ -24,6 +32,17 @@ public class Cidade  extends Entidade {
 	
 	@Column(name="CODIGO")
 	private long codigo;
+	
+	@Column(name="COD_IBGE")
+	private long codIbge = 0;
+	
+	@Column(name="COD_CIDADE")
+	private long codCidade = 0;
+	
+	@Column(name="UF",length=3)
+	@Enumerated(EnumType.STRING)
+	private EnumUF uf = EnumUF.CE;
+	
 	
 	@Column(name="NOME")
 	private String nome;
@@ -50,6 +69,30 @@ public class Cidade  extends Entidade {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+
+	public long getCodIbge() {
+		return codIbge;
+	}
+
+	public void setCodIbge(long codIbge) {
+		this.codIbge = codIbge;
+	}
+
+	public long getCodCidade() {
+		return codCidade;
+	}
+
+	public void setCodCidade(long codCidade) {
+		this.codCidade = codCidade;
+	}
+
+	public EnumUF getUf() {
+		return uf;
+	}
+
+	public void setUf(EnumUF uf) {
+		this.uf = uf;
 	}
 	
 }
