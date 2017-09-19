@@ -1,13 +1,34 @@
 package br.com.petmooby.model;
 
-import br.com.petmooby.enums.EnumUF;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+import br.com.petmooby.enums.EnumUF;
+@Embeddable
 public class Endereco {
 	
+	@Column(name="UF")
+	@Enumerated(EnumType.STRING)
 	private EnumUF uf = null;
-	private Cidade cidade = null;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="CIDADE_CODIGO",referencedColumnName="COD_CIDADE")
+	private Cidade cidade ;
+	@Column(name="BAIRRO")	
 	private String bairro = "";
+	@Column(name="NUMERO")
 	private String numero = "";
+	@Column(name="COMPLEMENTO")
+	private String complemento = "";
+	@Column(name="PAIS")
+	private String pais;
+	@Column(name="RUA")
+	private String rua;
+	
 	public EnumUF getUf() {
 		return uf;
 	}
@@ -31,6 +52,24 @@ public class Endereco {
 	}
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	public String getPais() {
+		return pais;
+	}
+	public void setPais(String pais) {
+		this.pais = pais;
+	}
+	public String getRua() {
+		return rua;
+	}
+	public void setRua(String rua) {
+		this.rua = rua;
 	}
 
 }
