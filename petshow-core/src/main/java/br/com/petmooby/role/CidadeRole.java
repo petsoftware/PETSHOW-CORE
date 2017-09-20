@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petmooby.core.jobs.JobCadMunicipiosCeara;
 import br.com.petmooby.core.jobs.JobCadMunicipiosPernambuco;
+import br.com.petmooby.core.jobs.JobCadMunicipiosSaoPaulo;
 import br.com.petmooby.dao.CidadeDAO;
 import br.com.petmooby.enums.EnumUF;
 import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
@@ -94,6 +95,19 @@ public class CidadeRole extends SuperClassRole<Cidade> {
 			cidade.setEstado(null);
 			cidade.setNome(municipio[1].trim());
 			cidade.setUf(EnumUF.PE);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesSPJob() {
+		for (String mun : JobCadMunicipiosSaoPaulo.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.SP.getCdIbge()+ municipio[0];
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.SP);
 			this.cidadeDAO.insert(cidade);
 		}
 	}
