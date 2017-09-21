@@ -21,10 +21,10 @@ import javax.persistence.TemporalType;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import br.com.petmooby.enums.EnumFaseVida;
-import br.com.petmooby.enums.EnumPrioridade;
-import br.com.petmooby.model.Entidade;
-import br.com.petmooby.model.Servico;
+import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.enums.EnumPrioridade;
+import br.com.petshow.model.Entidade;
+import br.com.petshow.model.Servico;
 import br.com.tafera.enums.EnumDesenvolvedor;
 import br.com.tafera.enums.EnumStatus;
 import br.com.tafera.enums.EnumTipo;

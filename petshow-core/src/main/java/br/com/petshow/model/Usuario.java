@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -26,8 +26,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import br.com.petmooby.enums.EnumFlTpEstabelecimento;
-import br.com.petmooby.enums.EnumTipoUser;
+import br.com.petshow.enums.EnumFlTpEstabelecimento;
+import br.com.petshow.enums.EnumTipoUser;
 
 /**
  * 

@@ -1,11 +1,11 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.Bairro;
-import br.com.petmooby.model.Tratamento;
+import br.com.petshow.model.Bairro;
+import br.com.petshow.model.Tratamento;
 
 
 @Repository

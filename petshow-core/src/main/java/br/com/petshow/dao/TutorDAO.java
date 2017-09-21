@@ -1,11 +1,11 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.Tutor;
-import br.com.petmooby.model.Usuario;
+import br.com.petshow.model.Tutor;
+import br.com.petshow.model.Usuario;
 /**
  * 
  * @author antoniorafael

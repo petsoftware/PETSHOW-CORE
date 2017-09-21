@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.Animal;
-import br.com.petmooby.model.UsuarioCliente;
+import br.com.petshow.model.Animal;
+import br.com.petshow.model.UsuarioCliente;
 
 
 @Repository

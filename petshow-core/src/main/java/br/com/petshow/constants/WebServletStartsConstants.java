@@ -1,4 +1,4 @@
-package br.com.petmooby.constants;
+package br.com.petshow.constants;
 
 /**
  * Controla as configuracoes iniciais do sistema

@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import br.com.petmooby.model.VacinaCalender;
+import br.com.petshow.model.VacinaCalender;
 
 public class VacinaCalendarDAO extends SuperClassDAO<VacinaCalender> {
 

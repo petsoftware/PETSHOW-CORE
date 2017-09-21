@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,9 +13,9 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.Anuncio;
-import br.com.petmooby.model.Usuario;
-import br.com.petmooby.model.Venda;
+import br.com.petshow.model.Anuncio;
+import br.com.petshow.model.Usuario;
+import br.com.petshow.model.Venda;
 /**
  * 
  * @author antoniorafael

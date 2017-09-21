@@ -1,12 +1,12 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.hibernate.Session;
 
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.model.Entidade;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.model.Entidade;
 
 //@Transactional
 public  abstract class SuperClassDAO<T extends Entidade>  {

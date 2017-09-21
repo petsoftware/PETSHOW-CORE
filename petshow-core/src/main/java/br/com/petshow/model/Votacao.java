@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.Date;
 import java.util.List;

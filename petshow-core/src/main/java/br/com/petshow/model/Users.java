@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

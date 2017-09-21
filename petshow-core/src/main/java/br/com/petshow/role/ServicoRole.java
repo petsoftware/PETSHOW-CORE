@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.Date;
 import java.util.List;
@@ -6,13 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.petmooby.dao.AgendamentoDAO;
-import br.com.petmooby.dao.ServicoDAO;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Servico;
-import br.com.petmooby.model.Usuario;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.AgendamentoDAO;
+import br.com.petshow.dao.ServicoDAO;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Servico;
+import br.com.petshow.model.Usuario;
+import br.com.petshow.util.ValidationUtil;
 /**
  * 
  * @author antoniorafael

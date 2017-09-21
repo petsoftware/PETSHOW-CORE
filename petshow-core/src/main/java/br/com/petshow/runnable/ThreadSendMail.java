@@ -1,7 +1,7 @@
-package br.com.petmooby.runnable;
+package br.com.petshow.runnable;
 
-import br.com.petmooby.util.mail.MailException;
-import br.com.petmooby.util.mail.Sender;
+import br.com.petshow.util.mail.MailException;
+import br.com.petshow.util.mail.Sender;
 
 public class ThreadSendMail implements Runnable {
 

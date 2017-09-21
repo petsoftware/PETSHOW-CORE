@@ -36,14 +36,14 @@
  
         <tx:annotation-driven />
         <!-- Define o pacote base para o escaneamento das anotações de contexto (@Component, @Repository, @Service, @Controller, etc) -->
-        <context:component-scan base-package="br.com.petmooby.dao" >
-        	<context:include-filter type="assignable" expression="br.com.petmooby.dao.SuperClassDAO"/>
+        <context:component-scan base-package="br.com.petshow.dao" >
+        	<context:include-filter type="assignable" expression="br.com.petshow.dao.SuperClassDAO"/>
         </context:component-scan>
-        <context:component-scan base-package="br.com.petmooby.role" >
-        	<context:include-filter type="assignable" expression="br.com.petmooby.role.SuperClassRole"/>
+        <context:component-scan base-package="br.com.petshow.role" >
+        	<context:include-filter type="assignable" expression="br.com.petshow.role.SuperClassRole"/>
         </context:component-scan>
-        <context:component-scan base-package="br.com.petmooby.security" />
-        <context:component-scan base-package="br.com.petmooby.rest" />
+        <context:component-scan base-package="br.com.petshow.security" />
+        <context:component-scan base-package="br.com.petshow.rest" />
         
         <context:annotation-config />
    

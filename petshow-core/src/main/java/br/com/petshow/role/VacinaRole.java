@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -11,13 +11,13 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.petmooby.dao.VacinaDAO;
-import br.com.petmooby.enums.EnumVacina;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Vacina;
-import br.com.petmooby.util.DateUtil;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.VacinaDAO;
+import br.com.petshow.enums.EnumVacina;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Vacina;
+import br.com.petshow.util.DateUtil;
+import br.com.petshow.util.ValidationUtil;
 
 
 

@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.Date;
 
@@ -14,9 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.petmooby.enums.EnumTipoAnimal;
-import br.com.petmooby.enums.EnumVacina;
-import br.com.petmooby.enums.EnumVacinaDose;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.enums.EnumVacina;
+import br.com.petshow.enums.EnumVacinaDose;
 
 @NamedQueries({
 	@NamedQuery(name=VacinaCalender.FIND_ALL,query="FROM VacinaCalender")

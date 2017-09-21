@@ -1,15 +1,15 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.petmooby.dao.VacinaCalendarDAO;
-import br.com.petmooby.enums.EnumTipoAnimal;
-import br.com.petmooby.enums.EnumVacina;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Vacina;
-import br.com.petmooby.model.VacinaCalender;
-import br.com.petmooby.util.DateUtil;
+import br.com.petshow.dao.VacinaCalendarDAO;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.enums.EnumVacina;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Vacina;
+import br.com.petshow.model.VacinaCalender;
+import br.com.petshow.util.DateUtil;
 
 public class VacinaCalendarRole extends SuperClassRole<VacinaCalender> {
 

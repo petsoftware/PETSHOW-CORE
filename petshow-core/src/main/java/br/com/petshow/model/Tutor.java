@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TUTOR")
 public class Tutor extends Entidade {
-	public static final String FIND_BY_USER = "br.com.petmooby.model.Tutor.findByUser";
+	public static final String FIND_BY_USER = "br.com.petshow.model.Tutor.findByUser";
 	private static final long serialVersionUID = 3676304632917516440L;
 
 	@ManyToOne

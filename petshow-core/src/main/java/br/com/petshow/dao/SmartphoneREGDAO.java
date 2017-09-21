@@ -1,12 +1,12 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import br.com.petmooby.model.SmartphoneREG;
-import br.com.petmooby.util.IDUtil;
+import br.com.petshow.model.SmartphoneREG;
+import br.com.petshow.util.IDUtil;
 
 public class SmartphoneREGDAO extends SuperClassDAO<SmartphoneREG>{
 

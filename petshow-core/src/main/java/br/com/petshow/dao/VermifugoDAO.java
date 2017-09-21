@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import javax.persistence.NoResultException;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.Amigo;
-import br.com.petmooby.model.Vacina;
-import br.com.petmooby.model.Vermifugo;
+import br.com.petshow.model.Amigo;
+import br.com.petshow.model.Vacina;
+import br.com.petshow.model.Vermifugo;
 
 @Repository
 public class VermifugoDAO extends SuperClassDAO<Vermifugo>{

@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -11,15 +11,15 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.petmooby.dao.UsuarioDAO;
-import br.com.petmooby.enums.EnumFlTpEstabelecimento;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.SecurityLogin;
-import br.com.petmooby.model.Usuario;
-import br.com.petmooby.runnable.ThreadSendMail;
-import br.com.petmooby.util.HandleEncrypt;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.UsuarioDAO;
+import br.com.petshow.enums.EnumFlTpEstabelecimento;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.SecurityLogin;
+import br.com.petshow.model.Usuario;
+import br.com.petshow.runnable.ThreadSendMail;
+import br.com.petshow.util.HandleEncrypt;
+import br.com.petshow.util.ValidationUtil;
 /**
  * 
  * @author antoniorafael
@@ -43,7 +43,7 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		if(!ValidationUtil.isCampoComValor(usuario.getEmail())){
 			throw new ExceptionValidation("O campo de e-mail não foi informado!");
 		}
-		if(!usuario.getFlTpEstabelecimento().equals(EnumFlTpEstabelecimento.USER)){
+		if(usuario.getFlTpEstabelecimento().equals(EnumFlTpEstabelecimento.PETSHOP)){
 			if(!ValidationUtil.isCampoComValor(usuario.getCnpjCpf())){
 				throw new ExceptionValidation("O campo de CNPJ não foi informado!");
 			}
