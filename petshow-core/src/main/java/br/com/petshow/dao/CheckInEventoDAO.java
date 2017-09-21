@@ -1,8 +1,8 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.CheckInEvento;
+import br.com.petshow.model.CheckInEvento;
 
 @Repository
 public class CheckInEventoDAO extends SuperClassDAO<CheckInEvento> {

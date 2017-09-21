@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.List;
 import java.util.regex.Pattern;
@@ -7,15 +7,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.petmooby.core.jobs.JobCadMunicipiosCeara;
-import br.com.petmooby.core.jobs.JobCadMunicipiosPernambuco;
-import br.com.petmooby.core.jobs.JobCadMunicipiosSaoPaulo;
-import br.com.petmooby.dao.CidadeDAO;
-import br.com.petmooby.enums.EnumUF;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Cidade;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.core.jobs.JobCadMunicipiosCeara;
+import br.com.petshow.core.jobs.JobCadMunicipiosMaranhao;
+import br.com.petshow.core.jobs.JobCadMunicipiosParaiba;
+import br.com.petshow.core.jobs.JobCadMunicipiosPernambuco;
+import br.com.petshow.core.jobs.JobCadMunicipiosPiaui;
+import br.com.petshow.core.jobs.JobCadMunicipiosSaoPaulo;
+import br.com.petshow.dao.CidadeDAO;
+import br.com.petshow.enums.EnumUF;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Cidade;
+import br.com.petshow.util.ValidationUtil;
 
 
 
@@ -108,6 +111,45 @@ public class CidadeRole extends SuperClassRole<Cidade> {
 			cidade.setEstado(null);
 			cidade.setNome(municipio[1].trim());
 			cidade.setUf(EnumUF.SP);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesMAJob() {
+		for (String mun : JobCadMunicipiosMaranhao.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.MA.getCdIbge()+ municipio[0];
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.MA);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesPIJob() {
+		for (String mun : JobCadMunicipiosPiaui.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.PI.getCdIbge()+ municipio[0];
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.PI);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesPBJob() {
+		for (String mun : JobCadMunicipiosParaiba.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.PA.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.PA);
 			this.cidadeDAO.insert(cidade);
 		}
 	}

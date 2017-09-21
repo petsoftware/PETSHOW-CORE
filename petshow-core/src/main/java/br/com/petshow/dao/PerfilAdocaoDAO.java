@@ -1,11 +1,11 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.PerfilAdocao;
-import br.com.petmooby.model.Usuario;
+import br.com.petshow.model.PerfilAdocao;
+import br.com.petshow.model.Usuario;
 @Repository
 public class PerfilAdocaoDAO extends SuperClassDAO<PerfilAdocao> {
 

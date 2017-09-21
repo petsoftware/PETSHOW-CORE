@@ -1,8 +1,8 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import org.springframework.stereotype.Service;
 
-import br.com.petmooby.model.CheckInLocal;
+import br.com.petshow.model.CheckInLocal;
 @Service
 public class CheckInLocalDAO extends SuperClassDAO<CheckInLocal> {
 

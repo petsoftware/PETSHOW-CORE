@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -22,11 +23,12 @@ import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import br.com.petmooby.enums.EnumAchadoPerdido;
-import br.com.petmooby.enums.EnumCor;
-import br.com.petmooby.enums.EnumTipoAnimal;
-import br.com.petmooby.util.DateUtil;
-import br.com.petmooby.util.IDUtil;
+import br.com.petshow.enums.EnumAchadoPerdido;
+import br.com.petshow.enums.EnumCor;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.util.DateUtil;
+import br.com.petshow.util.IDUtil;
 
 @NamedQueries(value={
 		@NamedQuery(name=Perdido.QRY_COUNT,query="SELECT COUNT("+IDUtil.ID+") FROM Perdido"),
@@ -63,17 +65,8 @@ public class Perdido extends Entidade {
 	private Date dtPerdidoAchado;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = IDUtil.ID_CIDADE ,referencedColumnName=IDUtil.ID)
-	private Cidade cidade;
-	
-	@ManyToOne
-	@JoinColumn(name = IDUtil.ID_ESTADO ,referencedColumnName=IDUtil.ID)
-	private Estado estado;
-	
-	@ManyToOne
-	@JoinColumn(name = IDUtil.ID_BAIRRO ,referencedColumnName=IDUtil.ID)
-	private Bairro bairro;
+	@Embedded
+	private Endereco endereco = new Endereco();
 
 	
 	@Column(name = "TF_CELULAR",nullable=true)
@@ -122,7 +115,8 @@ public class Perdido extends Entidade {
 	private Date dtResolvido;
 	
 	@Column(name = "FL_SEXO")
-	private String flSexo;
+	@Enumerated(EnumType.ORDINAL)
+	private EnumSexo flSexo;
 	
 	@Transient
 	private String getTempoDePublicacao = "";
@@ -137,14 +131,6 @@ public class Perdido extends Entidade {
 
 	public EnumTipoAnimal getTpAnimal() {
 		return tpAnimal;
-	}
-
-	public String getFlSexo() {
-		return flSexo;
-	}
-
-	public void setFlSexo(String flSexo) {
-		this.flSexo = flSexo;
 	}
 
 	public void setTpAnimal(EnumTipoAnimal tpAnimal) {
@@ -195,18 +181,6 @@ public class Perdido extends Entidade {
 		this.dtPerdidoAchado = dtPerdidoAchado;
 	}
 
-	public Cidade getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
 	public EnumCor getTpCorPrincipal() {
 		return tpCorPrincipal;
 	}
@@ -221,18 +195,6 @@ public class Perdido extends Entidade {
 
 	public void setTpCorSegundaria(EnumCor tpCorSegundaria) {
 		this.tpCorSegundaria = tpCorSegundaria;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
-	public Bairro getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(Bairro bairro) {
-		this.bairro = bairro;
 	}
 
 	public Long getTelefoneCelular() {
@@ -311,6 +273,22 @@ public class Perdido extends Entidade {
 
 	public EnumAchadoPerdido getFlAcontecimento() {
 		return flAcontecimento;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public EnumSexo getFlSexo() {
+		return flSexo;
+	}
+
+	public void setFlSexo(EnumSexo flSexo) {
+		this.flSexo = flSexo;
 	}
 	
 }

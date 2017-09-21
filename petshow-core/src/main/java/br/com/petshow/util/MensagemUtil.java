@@ -1,7 +1,7 @@
-package br.com.petmooby.util;
+package br.com.petshow.util;
 
-import br.com.petmooby.enums.EnumSexo;
-import br.com.petmooby.model.Animal;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.model.Animal;
 
 public class MensagemUtil {
 

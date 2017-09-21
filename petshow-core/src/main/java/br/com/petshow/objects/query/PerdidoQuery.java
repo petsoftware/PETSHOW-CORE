@@ -1,30 +1,22 @@
 package br.com.petshow.objects.query;
 
-import br.com.petshow.enums.EnumFaseVida;
 import br.com.petshow.enums.EnumSexo;
 import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.enums.EnumUF;
 import br.com.petshow.model.Cidade;
 
-public class AdocaoQuery {
+public class PerdidoQuery {
 	
-	public AdocaoQuery() {
+	public PerdidoQuery() {
 		
 	}
-	private long estado 			= 0; 
-	private int limiteRegistros 	= 0;
-	private EnumTipoAnimal tpAnimal = EnumTipoAnimal.CACHORRO; 
-	private EnumFaseVida fase 		= EnumFaseVida.FILHOTE; 
-	private EnumSexo sexo 			= EnumSexo.MACHO;
-	private EnumUF	uf 				= EnumUF.CE;
 	
+	private int limiteRegistros 	= 0;
+	private EnumTipoAnimal tpAnimal ; 
+	private EnumSexo sexo 			;
+	private EnumUF	uf 				= EnumUF.CE;
 	private Cidade cidade			;
-	public long getEstado() {
-		return estado;
-	}
-	public void setEstado(long estado) {
-		this.estado = estado;
-	}
+	
 	public int getLimiteRegistros() {
 		return limiteRegistros;
 	}
@@ -37,12 +29,7 @@ public class AdocaoQuery {
 	public void setTpAnimal(EnumTipoAnimal tpAnimal) {
 		this.tpAnimal = tpAnimal;
 	}
-	public EnumFaseVida getFase() {
-		return fase;
-	}
-	public void setFase(EnumFaseVida fase) {
-		this.fase = fase;
-	}
+	
 	public EnumSexo getSexo() {
 		return sexo;
 	}

@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.List;
 
@@ -6,15 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.petmooby.dao.AdocaoDAO;
-import br.com.petmooby.enums.EnumFaseVida;
-import br.com.petmooby.enums.EnumSexo;
-import br.com.petmooby.enums.EnumTipoAnimal;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Adocao;
-import br.com.petmooby.model.Usuario;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.AdocaoDAO;
+import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Adocao;
+import br.com.petshow.model.Usuario;
+import br.com.petshow.objects.query.AdocaoQuery;
+import br.com.petshow.util.ValidationUtil;
 
 @Service
 @Transactional
@@ -67,8 +68,8 @@ public class AdocaoRole extends SuperClassRole<Adocao> {
 		return 0;
 	}
 	
-	public List<Adocao> consultarAnimaisDisponíveisParaAdocao(long estado, long cidade, EnumTipoAnimal tpAnimal, EnumFaseVida fase, EnumSexo sexo, int limiteRegistros) {
-		return adocaoDAO.consultarAnimaisDisponíveisParaAdocao(estado, cidade, tpAnimal, fase, sexo, limiteRegistros);
+	public List<Adocao> consultarAnimaisDisponíveisParaAdocao(AdocaoQuery query) {
+		return adocaoDAO.consultarAnimaisDisponíveisParaAdocao(query);
 	}
 	
 }

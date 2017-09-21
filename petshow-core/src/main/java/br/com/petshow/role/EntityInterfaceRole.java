@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 public interface EntityInterfaceRole<T> {
 	public String insert(T entidade) throws Exception;

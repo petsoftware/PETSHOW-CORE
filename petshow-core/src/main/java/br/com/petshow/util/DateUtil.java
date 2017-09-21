@@ -1,4 +1,4 @@
-package br.com.petmooby.util;
+package br.com.petshow.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
-import br.com.petmooby.enums.EnumFrequenciaVermifugacao;
+import br.com.petshow.enums.EnumFrequenciaVermifugacao;
 
 public class DateUtil {
 

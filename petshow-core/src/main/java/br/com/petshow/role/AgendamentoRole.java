@@ -1,16 +1,16 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.petmooby.dao.AgendamentoDAO;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Agendamento;
-import br.com.petmooby.model.Servico;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.AgendamentoDAO;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Agendamento;
+import br.com.petshow.model.Servico;
+import br.com.petshow.util.ValidationUtil;
 
 public class AgendamentoRole extends SuperClassRole<Agendamento> {
 

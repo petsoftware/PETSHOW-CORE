@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.Date;
 
@@ -13,7 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.petmooby.util.IDUtil;
+import br.com.petshow.util.IDUtil;
 
 @NamedQueries({ 
 	@NamedQuery(name = Notificacao.IDX_POR_USUARIO, query = "FROM Notificacao n WHERE n.usuarioDestinatario.id = :idUsuario  and flExcluida =false order by dtNotificacao desc")

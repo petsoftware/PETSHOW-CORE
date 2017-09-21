@@ -1,4 +1,4 @@
-package br.com.petmooby.enums;
+package br.com.petshow.enums;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-import br.com.petmooby.model.Tratamento;
+import br.com.petshow.model.Tratamento;
 
 
 

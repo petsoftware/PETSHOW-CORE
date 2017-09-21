@@ -1,12 +1,12 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 
 import java.util.Date;
 import java.util.List;
 
-import br.com.petmooby.enums.EnumTipoAnimal;
-import br.com.petmooby.model.Cidade;
-import br.com.petmooby.model.Racas;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.model.Cidade;
+import br.com.petshow.model.Racas;
 
 public class RacaDao extends SuperClassDAO<Racas>{
 

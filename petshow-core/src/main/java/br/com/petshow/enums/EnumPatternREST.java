@@ -1,6 +1,6 @@
-package br.com.petmooby.enums;
+package br.com.petshow.enums;
 
-import br.com.petmooby.constants.RestConstants;
+import br.com.petshow.constants.RestConstants;
 
 public enum EnumPatternREST {
 

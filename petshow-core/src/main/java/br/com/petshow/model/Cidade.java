@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -10,7 +10,7 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-import br.com.petmooby.enums.EnumUF;
+import br.com.petshow.enums.EnumUF;
 
 
 @NamedQueries({ @NamedQuery(name = Cidade.CIDADE_POR_ESTADO_POR_ID	, query = "FROM Cidade c where estado.id=:id order by c.nome asc" ),
@@ -24,7 +24,7 @@ public class Cidade  extends Entidade {
 	private static final long serialVersionUID = -2906194527919052578L;
 	public static final String CIDADE_POR_ESTADO_POR_ID = "cidadePorEstadoID";
 	public static final String CIDADE_POR_ESTADO_POR_UF = "cidadePorEstadoUF";
-	public static final String FIND_ALL_BY_UF		    = "br.com.petmooby.model.Cidade.findAllByUF";
+	public static final String FIND_ALL_BY_UF		    = "br.com.petshow.model.Cidade.findAllByUF";
 	
 	@ManyToOne(fetch=FetchType.EAGER)
 	@JoinColumn(name = "ID_ESTADO" ,referencedColumnName="ID")
@@ -45,7 +45,7 @@ public class Cidade  extends Entidade {
 	
 	
 	@Column(name="NOME")
-	private String nome;
+	private String nome = "";
 
 	public long getCodigo() {
 		return codigo;

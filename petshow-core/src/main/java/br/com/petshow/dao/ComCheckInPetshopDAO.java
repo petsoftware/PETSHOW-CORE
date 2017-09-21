@@ -1,8 +1,8 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.ComCheckInPetshop;
+import br.com.petshow.model.ComCheckInPetshop;
 /**
  * 
  * @author antoniorafael

@@ -1,13 +1,13 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.petmooby.dao.ComCheckInEventoDAO;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.CheckInPetshop;
-import br.com.petmooby.model.ComCheckInEvento;
+import br.com.petshow.dao.ComCheckInEventoDAO;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.CheckInPetshop;
+import br.com.petshow.model.ComCheckInEvento;
 /**
  * 
  * @author antoniorafael

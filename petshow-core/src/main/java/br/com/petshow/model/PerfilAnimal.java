@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 /**
  * Classe criada para guardar o perfil dos animais cadastrados no sistema.
  * @author Rafael Rocha

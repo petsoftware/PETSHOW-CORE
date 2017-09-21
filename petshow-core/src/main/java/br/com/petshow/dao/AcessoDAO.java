@@ -1,11 +1,11 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.List;
 
 import javax.persistence.Query;
 
-import br.com.petmooby.enums.EnumRoles;
-import br.com.petmooby.model.Acesso;
+import br.com.petshow.enums.EnumRoles;
+import br.com.petshow.model.Acesso;
 
 public class AcessoDAO extends SuperClassDAO<Acesso> {
 

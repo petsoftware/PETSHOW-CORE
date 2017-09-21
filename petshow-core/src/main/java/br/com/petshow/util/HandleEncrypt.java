@@ -1,4 +1,4 @@
-package br.com.petmooby.util;
+package br.com.petshow.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;

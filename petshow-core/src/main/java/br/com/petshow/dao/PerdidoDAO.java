@@ -1,15 +1,25 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.enums.EnumAchadoPerdido;
-import br.com.petmooby.model.Perdido;
+import br.com.petshow.enums.EnumAchadoPerdido;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.enums.EnumUF;
+import br.com.petshow.model.Cidade;
+import br.com.petshow.model.Perdido;
+import br.com.petshow.objects.query.PerdidoQuery;
 /**
  * 
  * @author antoniorafael
@@ -100,8 +110,38 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 	
 	public List<Perdido> consultaPorUsuario(Long id)  {
 
-		return manager.createNamedQuery(Perdido.FIND_POR_USUARIO).setParameter("id", id).getResultList();
+		return manager.createNamedQuery(Perdido.FIND_POR_USUARIO,Perdido.class).setParameter("id", id).getResultList();
 
+	}
+	/**
+	 * @author Rafael Rocha
+	 * @return
+	 */
+	public List<Perdido> consultaAnimaisPerdidos(PerdidoQuery query)  {
+		CriteriaBuilder builder = getManager().getCriteriaBuilder();
+		CriteriaQuery<Perdido> criteria = builder.createQuery(Perdido.class);
+		Root<Perdido> root = criteria.from(Perdido.class);
+		ParameterExpression<EnumTipoAnimal> pTipoAnimal = builder.parameter(EnumTipoAnimal.class,"tipo");
+		ParameterExpression<EnumSexo> pSexoAnimal 		= builder.parameter(EnumSexo.class		,"sexo");
+		ParameterExpression<EnumUF> pUf 				= builder.parameter(EnumUF.class		,"uf");
+		ParameterExpression<Cidade> pCidade 			= builder.parameter(Cidade.class		,"cidade");
+		//Building the select
+		criteria.select(root).where(
+				builder.and(
+						builder.equal(root.get("tpAnimal")	, pTipoAnimal),
+						builder.equal(root.get("flSexo"), pSexoAnimal),
+						builder.equal(root.get("endereco").get("uf"), pUf),
+						builder.equal(root.get("endereco").get("cidade"), pCidade)
+				)
+		);
+		
+		TypedQuery<Perdido> qry = getManager().createQuery(criteria).setMaxResults(query.getLimiteRegistros())
+				.setParameter("tipo"  , query.getTpAnimal())
+				.setParameter("sexo"  , query.getSexo())
+				.setParameter("uf"	  , query.getUf())
+				.setParameter("cidade", query.getCidade());
+		return qry.getResultList();
+	
 	}
 	
 }

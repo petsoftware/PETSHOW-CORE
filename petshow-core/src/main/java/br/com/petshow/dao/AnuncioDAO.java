@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.List;
 
@@ -7,8 +7,8 @@ import javax.persistence.TypedQuery;
 import org.springframework.security.config.annotation.web.configurers.AnonymousConfigurer;
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.Anuncio;
-import br.com.petmooby.model.Usuario;
+import br.com.petshow.model.Anuncio;
+import br.com.petshow.model.Usuario;
 
 @Repository
 public class AnuncioDAO extends SuperClassDAO<Anuncio> {

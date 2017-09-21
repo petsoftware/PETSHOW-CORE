@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.Date;
 
@@ -13,9 +13,9 @@ import javax.persistence.Transient;
 
 import org.hibernate.annotations.DynamicUpdate;
 
-import br.com.petmooby.enums.EnumFrequenciaVermifugacao;
-import br.com.petmooby.enums.EnumSexo;
-import br.com.petmooby.enums.EnumTipoAnimal;
+import br.com.petshow.enums.EnumFrequenciaVermifugacao;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.enums.EnumTipoAnimal;
 
 
 

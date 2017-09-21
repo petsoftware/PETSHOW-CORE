@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.petmooby.dao.AnimalDAO;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Animal;
-import br.com.petmooby.model.Tutor;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.AnimalDAO;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Animal;
+import br.com.petshow.model.Tutor;
+import br.com.petshow.util.ValidationUtil;
 
 @Transactional
 @Service

@@ -1,10 +1,10 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
-import br.com.petmooby.dao.CheckInEventoDAO;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Animal;
-import br.com.petmooby.model.CheckInEvento;
+import br.com.petshow.dao.CheckInEventoDAO;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Animal;
+import br.com.petshow.model.CheckInEvento;
 
 public class CheckInEventoRole extends SuperClassRole<CheckInEvento> {
 

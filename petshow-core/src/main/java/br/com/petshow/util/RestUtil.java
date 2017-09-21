@@ -1,9 +1,9 @@
-package br.com.petmooby.util;
+package br.com.petshow.util;
 
 import javax.ws.rs.core.Response;
 
-import br.com.petmooby.enums.EnumErrosSistema;
-import br.com.petmooby.exceptions.ExceptionValidation;
+import br.com.petshow.enums.EnumErrosSistema;
+import br.com.petshow.exceptions.ExceptionValidation;
 
 public class RestUtil {
 

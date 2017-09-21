@@ -1,4 +1,4 @@
-package br.com.petmooby.enums;
+package br.com.petshow.enums;
 
 /**
  * Enum para as UF brasileiras

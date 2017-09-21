@@ -1,9 +1,9 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 
 import java.util.List;
 
-import br.com.petmooby.model.Notificacao;
+import br.com.petshow.model.Notificacao;
 
 
 public class NotificacaoDAO extends SuperClassDAO<Notificacao> {

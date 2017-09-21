@@ -1,8 +1,8 @@
-package br.com.petmooby.util;
+package br.com.petshow.util;
 
 import java.util.ArrayList;
 
-import br.com.petmooby.enums.EnumErrosSistema;
+import br.com.petshow.enums.EnumErrosSistema;
 
 public class MapErroRetornoRest {
 	

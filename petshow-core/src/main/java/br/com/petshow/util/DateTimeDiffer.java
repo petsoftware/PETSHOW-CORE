@@ -1,4 +1,4 @@
-package br.com.petmooby.util;
+package br.com.petshow.util;
 
 public class DateTimeDiffer {
 	

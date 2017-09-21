@@ -1,4 +1,4 @@
-package br.com.petmooby.enums;
+package br.com.petshow.enums;
 
 import java.util.ArrayList;
 import java.util.List;

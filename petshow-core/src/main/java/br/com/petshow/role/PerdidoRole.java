@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.List;
 
@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.petmooby.dao.PerdidoDAO;
-import br.com.petmooby.enums.EnumAchadoPerdido;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Perdido;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.PerdidoDAO;
+import br.com.petshow.enums.EnumAchadoPerdido;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Perdido;
+import br.com.petshow.objects.query.PerdidoQuery;
+import br.com.petshow.util.ValidationUtil;
 /**
  * 
  * @author antoniorafael
@@ -60,5 +61,13 @@ public class PerdidoRole extends SuperClassRole<Perdido> {
 			throw new ExceptionValidation("O id não foi informado!");
 		}
 		return this.perdidoDAO.consultaPorUsuario(id);
+	}
+	
+	/**
+	 * @author Rafael Rocha
+	 * @return
+	 */
+	public List<Perdido> consultaAnimaisPerdidos(PerdidoQuery query)  {
+		return this.perdidoDAO.consultaAnimaisPerdidos(query);
 	}
 }

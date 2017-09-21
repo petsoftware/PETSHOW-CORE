@@ -1,8 +1,8 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.ComCheckInLocal;
+import br.com.petshow.model.ComCheckInLocal;
 @Repository
 public class ComCheckInLocalDAO extends SuperClassDAO<ComCheckInLocal> {
 

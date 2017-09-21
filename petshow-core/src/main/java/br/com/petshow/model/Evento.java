@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import br.com.petmooby.enums.EnumUF;
+import br.com.petshow.enums.EnumUF;
 
 @Entity
 @Table(name = "EVENTO")

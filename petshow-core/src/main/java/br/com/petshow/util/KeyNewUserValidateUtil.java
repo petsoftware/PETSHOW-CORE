@@ -1,7 +1,7 @@
-package br.com.petmooby.util;
+package br.com.petshow.util;
 
-import br.com.petmooby.model.SecurityLogin;
-import br.com.petmooby.model.Usuario;
+import br.com.petshow.model.SecurityLogin;
+import br.com.petshow.model.Usuario;
 
 /**
  * Classe para validar e gerar o chave(Key)

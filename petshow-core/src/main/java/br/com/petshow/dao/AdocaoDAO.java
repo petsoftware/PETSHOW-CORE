@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,10 +13,13 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.enums.EnumFaseVida;
-import br.com.petmooby.enums.EnumSexo;
-import br.com.petmooby.enums.EnumTipoAnimal;
-import br.com.petmooby.model.Adocao;
+import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.enums.EnumUF;
+import br.com.petshow.model.Adocao;
+import br.com.petshow.model.Cidade;
+import br.com.petshow.objects.query.AdocaoQuery;
 
 @Repository
 public class AdocaoDAO extends SuperClassDAO<Adocao> {
@@ -112,26 +115,32 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 	 * @return lista com as adoções disponiveis
 	 * @author Rafael ROcha
 	 */
-	public List<Adocao> consultarAnimaisDisponíveisParaAdocao(long estado, long cidade, EnumTipoAnimal tpAnimal, EnumFaseVida fase, EnumSexo sexo, int limiteRegistros) {
+	public List<Adocao> consultarAnimaisDisponíveisParaAdocao(AdocaoQuery query) {
 		CriteriaBuilder builder = getManager().getCriteriaBuilder();
 		CriteriaQuery<Adocao> criteria = builder.createQuery(Adocao.class);
 		Root<Adocao> root = criteria.from(Adocao.class);
 		ParameterExpression<EnumTipoAnimal> pTipoAnimal = builder.parameter(EnumTipoAnimal.class,"tipo");
 		ParameterExpression<EnumSexo> pSexoAnimal 		= builder.parameter(EnumSexo.class,"sexo");
 		ParameterExpression<EnumFaseVida> pFaseVida 	= builder.parameter(EnumFaseVida.class,"fase");
+		ParameterExpression<EnumUF> pUf 				= builder.parameter(EnumUF.class,"uf");
+		ParameterExpression<Cidade> pCidade 			= builder.parameter(Cidade.class,"cidade");
 		//Building the select
 		criteria.select(root).where(
 				builder.and(
-						builder.equal(root.get("tipo"), pTipoAnimal),
+						builder.equal(root.get("tipo")	, pTipoAnimal),
 						builder.equal(root.get("flSexo"), pSexoAnimal),
-						builder.equal(root.get("fase"),pFaseVida)
+						builder.equal(root.get("fase")	, pFaseVida),
+						builder.equal(root.get("endereco").get("uf"), pUf),
+						builder.equal(root.get("endereco").get("cidade"), pCidade)
 				)
 		);
 		
-		TypedQuery<Adocao> qry = getManager().createQuery(criteria).setMaxResults(limiteRegistros)
-				.setParameter("tipo", tpAnimal)
-				.setParameter("sexo", sexo)
-				.setParameter("fase", fase);
+		TypedQuery<Adocao> qry = getManager().createQuery(criteria).setMaxResults(query.getLimiteRegistros())
+				.setParameter("tipo"  , query.getTpAnimal())
+				.setParameter("sexo"  , query.getSexo())
+				.setParameter("uf"	  , query.getUf())
+				.setParameter("cidade", query.getCidade())
+				.setParameter("fase"  , query.getFase());
 		return qry.getResultList();
 	}
 

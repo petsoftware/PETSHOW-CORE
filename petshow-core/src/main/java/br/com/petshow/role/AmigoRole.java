@@ -1,4 +1,4 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,12 +6,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.petmooby.dao.AmigoDAO;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Amigo;
-import br.com.petmooby.model.Usuario;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.AmigoDAO;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Amigo;
+import br.com.petshow.model.Usuario;
+import br.com.petshow.util.ValidationUtil;
 
 public class AmigoRole  extends SuperClassRole<Amigo> {
 

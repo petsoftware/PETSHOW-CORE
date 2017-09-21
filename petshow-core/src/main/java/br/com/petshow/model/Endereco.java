@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -8,7 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
-import br.com.petmooby.enums.EnumUF;
+import br.com.petshow.enums.EnumUF;
 @Embeddable
 public class Endereco {
 	

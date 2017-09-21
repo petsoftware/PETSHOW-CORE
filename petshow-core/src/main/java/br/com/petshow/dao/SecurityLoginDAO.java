@@ -1,8 +1,8 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.SecurityLogin;
+import br.com.petshow.model.SecurityLogin;
 
 @Repository
 public class SecurityLoginDAO extends SuperClassDAO<SecurityLogin> {

@@ -1,15 +1,15 @@
-package br.com.petmooby.role;
+package br.com.petshow.role;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.petmooby.dao.RacaDao;
-import br.com.petmooby.enums.EnumTipoAnimal;
-import br.com.petmooby.exceptions.ExceptionNotFoundRecord;
-import br.com.petmooby.exceptions.ExceptionValidation;
-import br.com.petmooby.model.Racas;
-import br.com.petmooby.util.ValidationUtil;
+import br.com.petshow.dao.RacaDao;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.exceptions.ExceptionNotFoundRecord;
+import br.com.petshow.exceptions.ExceptionValidation;
+import br.com.petshow.model.Racas;
+import br.com.petshow.util.ValidationUtil;
 
 public class RacasRole extends SuperClassRole<Racas> {
 	

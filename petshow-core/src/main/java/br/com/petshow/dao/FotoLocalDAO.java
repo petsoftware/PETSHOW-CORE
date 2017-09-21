@@ -1,8 +1,8 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.FotoLocal;
+import br.com.petshow.model.FotoLocal;
 @Repository
 public class FotoLocalDAO extends SuperClassDAO<FotoLocal> {
 

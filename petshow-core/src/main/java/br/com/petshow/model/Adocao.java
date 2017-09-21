@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -21,12 +22,12 @@ import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
-import br.com.petmooby.enums.EnumFaseVida;
-import br.com.petmooby.enums.EnumPorteAnimal;
-import br.com.petmooby.enums.EnumSexo;
-import br.com.petmooby.enums.EnumTipoAnimal;
-import br.com.petmooby.util.DateUtil;
-import br.com.petmooby.util.IDUtil;
+import br.com.petshow.enums.EnumFaseVida;
+import br.com.petshow.enums.EnumPorteAnimal;
+import br.com.petshow.enums.EnumSexo;
+import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.util.DateUtil;
+import br.com.petshow.util.IDUtil;
 
 
 
@@ -78,19 +79,6 @@ public class Adocao extends Entidade {
 	@Column(name = "FL_CASTRADO")
 	private boolean castrado = false;
 	
-	@ManyToOne
-	@JoinColumn(name = "ID_CIDADE" ,referencedColumnName="ID")
-	private Cidade cidade;
-	
-	@ManyToOne
-	@JoinColumn(name = "ID_ESTADO" ,referencedColumnName="ID")
-	private Estado estado;
-	
-	@ManyToOne
-	@JoinColumn(name = "ID_BAIRRO" ,referencedColumnName="ID")
-	private Bairro bairro;
-
-	
 	@Column(name = "TF_CELULAR",nullable=true)
 	private Long telefoneCelular;
 	
@@ -125,6 +113,9 @@ public class Adocao extends Entidade {
 	@Transient
 	private String getTempoDePublicacao = "";
 
+	@Embedded
+	private Endereco endereco = new Endereco();
+	
 	@JsonIgnore
 	public String getFoto() {
 		if(fotos.size()>0){
@@ -207,34 +198,6 @@ public class Adocao extends Entidade {
 	public void setCastrado(boolean castrado) {
 		this.castrado = castrado;
 	}
-
-
-
-	public Cidade getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
-	public Bairro getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(Bairro bairro) {
-		this.bairro = bairro;
-	}
-
-
 
 	public Long getTelefoneCelular() {
 		return telefoneCelular;
@@ -327,6 +290,14 @@ public class Adocao extends Entidade {
 
 	public void setGetTempoDePublicacao(String getTempoDePublicacao) {
 		this.getTempoDePublicacao = getTempoDePublicacao;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 	

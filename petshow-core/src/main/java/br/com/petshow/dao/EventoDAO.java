@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.model.Evento;
+import br.com.petshow.model.Evento;
 
 @Repository
 public class EventoDAO extends SuperClassDAO<Evento> {

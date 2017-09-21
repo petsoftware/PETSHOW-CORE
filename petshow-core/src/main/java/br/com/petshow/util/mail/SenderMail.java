@@ -1,4 +1,4 @@
-package br.com.petmooby.util.mail;
+package br.com.petshow.util.mail;
 
 import java.util.Properties;
 

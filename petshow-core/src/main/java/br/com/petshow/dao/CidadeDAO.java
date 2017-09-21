@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,8 +9,8 @@ import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
-import br.com.petmooby.enums.EnumUF;
-import br.com.petmooby.model.Cidade;
+import br.com.petshow.enums.EnumUF;
+import br.com.petshow.model.Cidade;
 
 
 @Repository

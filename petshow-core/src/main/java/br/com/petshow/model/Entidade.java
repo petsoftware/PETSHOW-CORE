@@ -1,4 +1,4 @@
-package br.com.petmooby.model;
+package br.com.petshow.model;
 
 import java.io.Serializable;
 
@@ -8,7 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
-import br.com.petmooby.util.IDUtil;
+import br.com.petshow.util.IDUtil;
 @MappedSuperclass
 public abstract class Entidade implements Serializable {
 

@@ -1,4 +1,4 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -6,8 +6,8 @@ import java.util.Map;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import br.com.petmooby.model.Amigo;
-import br.com.petmooby.model.Usuario;
+import br.com.petshow.model.Amigo;
+import br.com.petshow.model.Usuario;
 
 public class AmigoDAO extends SuperClassDAO<Amigo> {
 

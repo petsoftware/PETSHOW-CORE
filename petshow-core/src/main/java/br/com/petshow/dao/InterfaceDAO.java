@@ -1,6 +1,6 @@
-package br.com.petmooby.dao;
+package br.com.petshow.dao;
 
-import br.com.petmooby.model.Entidade;
+import br.com.petshow.model.Entidade;
 
 
 public interface InterfaceDAO<T> {

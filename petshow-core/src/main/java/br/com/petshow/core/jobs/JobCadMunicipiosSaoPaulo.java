@@ -1,4 +1,4 @@
-package br.com.petmooby.core.jobs;
+package br.com.petshow.core.jobs;
 
 import java.util.Arrays;
 import java.util.List;
