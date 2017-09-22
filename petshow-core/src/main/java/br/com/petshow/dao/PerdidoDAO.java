@@ -9,6 +9,8 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.springframework.stereotype.Repository;
@@ -121,27 +123,29 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 		CriteriaBuilder builder = getManager().getCriteriaBuilder();
 		CriteriaQuery<Perdido> criteria = builder.createQuery(Perdido.class);
 		Root<Perdido> root = criteria.from(Perdido.class);
-		ParameterExpression<EnumTipoAnimal> pTipoAnimal = builder.parameter(EnumTipoAnimal.class,"tipo");
-		ParameterExpression<EnumSexo> pSexoAnimal 		= builder.parameter(EnumSexo.class		,"sexo");
-		ParameterExpression<EnumUF> pUf 				= builder.parameter(EnumUF.class		,"uf");
-		ParameterExpression<Cidade> pCidade 			= builder.parameter(Cidade.class		,"cidade");
-		//Building the select
-		criteria.select(root).where(
-				builder.and(
-						builder.equal(root.get("tpAnimal")	, pTipoAnimal),
-						builder.equal(root.get("flSexo"), pSexoAnimal),
-						builder.equal(root.get("endereco").get("uf"), pUf),
-						builder.equal(root.get("endereco").get("cidade"), pCidade)
-				)
-		);
+		Path<EnumTipoAnimal> pTipoAnimal = root.get("tpAnimal");
+		Path<EnumSexo> pSexoAnimal 		 = root.get("flSexo");
+		Path<EnumUF> pUf 				 = root.get("endereco").get("uf");
+		Path<Cidade> pCidade 			 = root.get("endereco").get("cidade");
+		Predicate predicate = builder.conjunction();
 		
-		TypedQuery<Perdido> qry = getManager().createQuery(criteria).setMaxResults(query.getLimiteRegistros())
-				.setParameter("tipo"  , query.getTpAnimal())
-				.setParameter("sexo"  , query.getSexo())
-				.setParameter("uf"	  , query.getUf())
-				.setParameter("cidade", query.getCidade());
-		return qry.getResultList();
+		if(query.getTpAnimal() != null){
+			predicate = builder.and(predicate,builder.equal(pTipoAnimal, query.getTpAnimal()));
+		}
+		if(query.getSexo() != null){
+			predicate = builder.and(predicate,builder.equal(pSexoAnimal, query.getSexo()));
+		}
+		if(query.getUf() != null){
+			predicate = builder.and(predicate,builder.equal(pUf, query.getUf()));
+		}
+		if(query.getCidade() != null){
+			predicate = builder.and(predicate,builder.equal(pCidade, query.getCidade()));
+		}
 	
+		criteria.where(predicate);
+		criteria.select(root);
+		return getManager().createQuery(criteria).setMaxResults(30).getResultList();	
+
 	}
 	
 }

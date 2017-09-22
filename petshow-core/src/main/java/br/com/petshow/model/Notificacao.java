@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,7 +14,10 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
+import br.com.petshow.enums.EnumAssuntoNotificacao;
+import br.com.petshow.util.DateUtil;
 import br.com.petshow.util.IDUtil;
 
 @NamedQueries({ 
@@ -25,6 +30,7 @@ import br.com.petshow.util.IDUtil;
 @Table(name = "NOTIFICACAO",indexes = { @Index(name = Notificacao.IDX_POR_USUARIO, columnList = "ID_USUARIO_DESTINATARIO,FL_EXCLUIDA") })
 public class Notificacao  extends Entidade {
 
+	private static final long serialVersionUID = 8948303763460801474L;
 	public static final String IDX_POR_USUARIO	= "Notificacao_USUARIO";
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO_REMETENTE" ,referencedColumnName=IDUtil.ID)
@@ -52,7 +58,20 @@ public class Notificacao  extends Entidade {
 	
 	@Column(name = "MSG_NOTIFICACAO")
 	private String msgNotificacao;
+	
+	@Column(name = "ASSUNTO")
+	@Enumerated(EnumType.ORDINAL)
+	private EnumAssuntoNotificacao assuntoNotificacao;
 
+	@Column(name = "EMAIL",length=50)
+	private String email = "";
+	@Column(name = "CONTATO",length=15)
+	private String contato = "";
+	@Column(name = "NOME",length=15)
+	private String nome = "";
+	
+	@Transient
+	private String getTempoDePublicacao = "";
 	
 	public String getMsgNotificacao() {
 		return msgNotificacao;
@@ -117,8 +136,45 @@ public class Notificacao  extends Entidade {
 	public void setTpNotificacao(String tpNotificacao) {
 		this.tpNotificacao = tpNotificacao;
 	}
-	
-	
-	
-	
+
+	public EnumAssuntoNotificacao getAssuntoNotificacao() {
+		return assuntoNotificacao;
+	}
+
+	public void setAssuntoNotificacao(EnumAssuntoNotificacao assuntoNotificacao) {
+		this.assuntoNotificacao = assuntoNotificacao;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getContato() {
+		return contato;
+	}
+
+	public void setContato(String contato) {
+		this.contato = contato;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getGetTempoDePublicacao() {
+		getTempoDePublicacao = DateUtil.getTempoEntreDatasPorExtenso(dtNotificacao, new Date());
+		return getTempoDePublicacao;
+	}
+
+	public void setGetTempoDePublicacao(String getTempoDePublicacao) {
+		this.getTempoDePublicacao = getTempoDePublicacao;
+	}
 }

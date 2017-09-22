@@ -13,9 +13,9 @@ public class AdocaoQuery {
 	}
 	private long estado 			= 0; 
 	private int limiteRegistros 	= 0;
-	private EnumTipoAnimal tpAnimal = EnumTipoAnimal.CACHORRO; 
-	private EnumFaseVida fase 		= EnumFaseVida.FILHOTE; 
-	private EnumSexo sexo 			= EnumSexo.MACHO;
+	private EnumTipoAnimal tpAnimal = null; 
+	private EnumFaseVida fase 		= null; 
+	private EnumSexo sexo 			= null;
 	private EnumUF	uf 				= EnumUF.CE;
 	
 	private Cidade cidade			;

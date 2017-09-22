@@ -145,11 +145,11 @@ public class CidadeRole extends SuperClassRole<Cidade> {
 		for (String mun : JobCadMunicipiosParaiba.getMunicipios()) {
 			String[] municipio 	= mun.split(Pattern.quote("|"));
 			Cidade cidade 		= new Cidade();
-			String codCidade 	= ""+EnumUF.PA.getCdIbge()+ municipio[0].trim();
+			String codCidade 	= ""+EnumUF.PB.getCdIbge()+ municipio[0].trim();
 			cidade.setCodCidade(Long.parseLong(codCidade));
 			cidade.setEstado(null);
 			cidade.setNome(municipio[1].trim());
-			cidade.setUf(EnumUF.PA);
+			cidade.setUf(EnumUF.PB);
 			this.cidadeDAO.insert(cidade);
 		}
 	}

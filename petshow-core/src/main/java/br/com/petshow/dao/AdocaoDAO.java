@@ -1,6 +1,7 @@
 package br.com.petshow.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -9,8 +10,9 @@ import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.springframework.stereotype.Repository;
 
 import br.com.petshow.enums.EnumFaseVida;
@@ -119,29 +121,35 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 		CriteriaBuilder builder = getManager().getCriteriaBuilder();
 		CriteriaQuery<Adocao> criteria = builder.createQuery(Adocao.class);
 		Root<Adocao> root = criteria.from(Adocao.class);
-		ParameterExpression<EnumTipoAnimal> pTipoAnimal = builder.parameter(EnumTipoAnimal.class,"tipo");
-		ParameterExpression<EnumSexo> pSexoAnimal 		= builder.parameter(EnumSexo.class,"sexo");
-		ParameterExpression<EnumFaseVida> pFaseVida 	= builder.parameter(EnumFaseVida.class,"fase");
-		ParameterExpression<EnumUF> pUf 				= builder.parameter(EnumUF.class,"uf");
-		ParameterExpression<Cidade> pCidade 			= builder.parameter(Cidade.class,"cidade");
-		//Building the select
-		criteria.select(root).where(
-				builder.and(
-						builder.equal(root.get("tipo")	, pTipoAnimal),
-						builder.equal(root.get("flSexo"), pSexoAnimal),
-						builder.equal(root.get("fase")	, pFaseVida),
-						builder.equal(root.get("endereco").get("uf"), pUf),
-						builder.equal(root.get("endereco").get("cidade"), pCidade)
-				)
-		);
+
+		Path<EnumTipoAnimal> pTipoAnimal = root.get("tipo"); 
+		Path<EnumSexo> pSexoAnimal 		 = root.get("flSexo"); 
+		Path<EnumFaseVida> pFaseVida 	 = root.get("fase"); 
+		Path<EnumUF> pUf 				 = root.get("endereco").get("uf"); 
+		Path<Cidade> pCidade 			 = root.get("endereco").get("cidade"); 
 		
-		TypedQuery<Adocao> qry = getManager().createQuery(criteria).setMaxResults(query.getLimiteRegistros())
-				.setParameter("tipo"  , query.getTpAnimal())
-				.setParameter("sexo"  , query.getSexo())
-				.setParameter("uf"	  , query.getUf())
-				.setParameter("cidade", query.getCidade())
-				.setParameter("fase"  , query.getFase());
-		return qry.getResultList();
+		Predicate predicate = builder.conjunction();
+		
+		if(query.getTpAnimal() != null){
+			predicate = builder.and(predicate,builder.equal(pTipoAnimal, query.getTpAnimal()));
+		}
+		if(query.getSexo() != null){
+			predicate = builder.and(predicate,builder.equal(pSexoAnimal, query.getSexo()));
+		}
+		if(query.getUf() != null){
+			predicate = builder.and(predicate,builder.equal(pUf, query.getUf()));
+		}
+		if(query.getCidade() != null){
+			predicate = builder.and(predicate,builder.equal(pCidade, query.getCidade()));
+		}
+		if(query.getFase() != null){
+			predicate = builder.and(predicate,builder.equal(pFaseVida, query.getFase()));
+		}
+		
+		criteria.where(predicate);
+		criteria.select(root);
+		return getManager().createQuery(criteria).setMaxResults(30).getResultList();
+		
 	}
 
 }
