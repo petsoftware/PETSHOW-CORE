@@ -45,13 +45,22 @@ public class Notificacao  extends Entidade {
 	private Date dtNotificacao;
 	
 	@Column(name = "FL_ENVIADA")
-	private boolean flEnviada;
+	private boolean flEnviada = false;
 	
 	@Column(name = "FL_LIDA")
-	private boolean flLida;
+	private boolean flLida = false;
 	
 	@Column(name = "FL_EXCLUIDA")
-	private boolean flExcluida;
+	private boolean flExcluida = false;
+	
+	@Column(name = "FL_RESPONDEU")
+	private boolean flRespondeu = false;
+	
+	@Column(name = "MENSAGEM_RESPONDIDA", length=250)
+	private String mensagemRespondida = "";
+	
+	@Column(name = "RESPOSTA", length=250)
+	private String resposta = "";
 	
 	@Column(name = "TP_NOTIFICACAO")
 	private String tpNotificacao;
@@ -176,5 +185,29 @@ public class Notificacao  extends Entidade {
 
 	public void setGetTempoDePublicacao(String getTempoDePublicacao) {
 		this.getTempoDePublicacao = getTempoDePublicacao;
+	}
+
+	public boolean isFlRespondeu() {
+		return flRespondeu;
+	}
+
+	public void setFlRespondeu(boolean flRespondeu) {
+		this.flRespondeu = flRespondeu;
+	}
+
+	public String getMensagemRespondida() {
+		return mensagemRespondida;
+	}
+
+	public void setMensagemRespondida(String mensagemRespondida) {
+		this.mensagemRespondida = mensagemRespondida;
+	}
+
+	public String getResposta() {
+		return resposta;
+	}
+
+	public void setResposta(String resposta) {
+		this.resposta = resposta;
 	}
 }
