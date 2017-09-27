@@ -32,7 +32,9 @@ import br.com.petshow.util.IDUtil;
 
 
 
-@NamedQueries({ @NamedQuery(name = Adocao.FIND_POR_USUARIO, query = "FROM Adocao a WHERE a.usuario.id = :id order by a.dataAdocao desc")})
+@NamedQueries({ 	
+	@NamedQuery(name = Adocao.FIND_POR_USUARIO, query = "FROM Adocao a WHERE a.usuario.id = :id order by a.dataAdocao desc")
+})
 
 
 @Entity
@@ -101,7 +103,10 @@ public class Adocao extends Entidade {
 	
 	@Column(name="RACA")
 	private String raca;
-	
+	@Column(name="FL_ADOTADO")
+	private boolean flAdotado = false;
+	@Column(name="FL_EXPIROU")
+	private boolean flExpirou = false;
 	
 	@Column(name = "FL_SEXO")
 	@Enumerated(EnumType.ORDINAL)
@@ -299,6 +304,22 @@ public class Adocao extends Entidade {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public boolean isFlAdotado() {
+		return flAdotado;
+	}
+
+	public void setFlAdotado(boolean flAdotado) {
+		this.flAdotado = flAdotado;
+	}
+
+	public boolean isFlExpirou() {
+		return flExpirou;
+	}
+
+	public void setFlExpirou(boolean flExpirou) {
+		this.flExpirou = flExpirou;
 	}
 	
 	

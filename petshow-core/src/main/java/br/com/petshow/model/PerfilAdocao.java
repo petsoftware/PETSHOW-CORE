@@ -4,10 +4,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.com.petshow.enums.EnumFaseVida;
@@ -20,6 +22,7 @@ import br.com.petshow.enums.EnumTipoAnimal;
  * @since versao 1.0 dia 11/08/2017 as 14:31
  * @version 1.0
  */
+import br.com.petshow.enums.EnumUF;
 @NamedQueries({
 	@NamedQuery(name=PerfilAdocao.FIND_BY_USER,query="FROM PerfilAdocao WHERE usuario = :usuario")
 })
@@ -53,6 +56,12 @@ public class PerfilAdocao extends Entidade {
 	private EnumSexo sexo;
 	@Column(name="FL_ATIVO")
 	private boolean flAtivo = true;
+	@Column(name="UF",length=2)
+	@Enumerated(EnumType.STRING)
+	private EnumUF uf;
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="CIDADE",referencedColumnName="COD_CIDADE")
+	private Cidade cidade;
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
@@ -104,6 +113,22 @@ public class PerfilAdocao extends Entidade {
 
 	public void setFlAtivo(boolean flAtivo) {
 		this.flAtivo = flAtivo;
+	}
+
+	public EnumUF getUf() {
+		return uf;
+	}
+
+	public void setUf(EnumUF uf) {
+		this.uf = uf;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 

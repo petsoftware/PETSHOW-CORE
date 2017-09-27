@@ -1,18 +1,16 @@
 package br.com.petshow.dao;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
+
 import org.springframework.stereotype.Repository;
 
 import br.com.petshow.enums.EnumFaseVida;
@@ -95,16 +93,13 @@ public class AdocaoDAO extends SuperClassDAO<Adocao> {
 		
 		for(HashMap<String,Object> item :filtros){
 			query.setParameter(item.get("chave").toString(), item.get("valor"));
-		}
-		
-		List<Adocao> retorno = (List<Adocao>) query.getResultList();
-		
-		
+		}		
+		List<Adocao> retorno =  query.getResultList();
 		return retorno;
 	}
 
 	public List<Adocao> consultaPorUsuario(Long id)  {
-		return manager.createNamedQuery(Adocao.FIND_POR_USUARIO).setParameter("id", id).getResultList();
+		return manager.createNamedQuery(Adocao.FIND_POR_USUARIO,Adocao.class).setParameter("id", id).getResultList();
 	}
 	/**
 	 * R
