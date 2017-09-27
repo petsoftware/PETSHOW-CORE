@@ -102,6 +102,7 @@ public class Adocao extends Entidade {
 	@Column(name="RACA")
 	private String raca;
 	
+	
 	@Column(name = "FL_SEXO")
 	@Enumerated(EnumType.ORDINAL)
 	private EnumSexo flSexo = EnumSexo.MACHO;

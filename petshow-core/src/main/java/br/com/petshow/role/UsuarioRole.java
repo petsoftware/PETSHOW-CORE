@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.petshow.constants.EmailConstants;
 import br.com.petshow.dao.UsuarioDAO;
 import br.com.petshow.enums.EnumFlTpEstabelecimento;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
@@ -130,7 +131,7 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	}
 	
 	public void sendEmail(Usuario usuario, SecurityLogin securityLogin) {
-		Thread runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),"contato@barcadero.com.br", getEmailContet(usuario,securityLogin), getSubjectNewUser()));
+		Thread runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),EmailConstants.senderContato, getEmailContet(usuario,securityLogin), getSubjectNewUser()));
 		runEmail.start();
 	}
 	

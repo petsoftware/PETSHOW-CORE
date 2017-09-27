@@ -1,11 +1,11 @@
 package br.com.petshow.model;
 
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -15,7 +15,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
-
 import br.com.petshow.enums.EnumAssuntoNotificacao;
 import br.com.petshow.util.DateUtil;
 import br.com.petshow.util.IDUtil;
@@ -60,7 +59,11 @@ public class Notificacao  extends Entidade {
 	private String mensagemRespondida = "";
 	
 	@Column(name = "RESPOSTA", length=250)
-	private String resposta = "";
+	private String resposta ;
+	
+	@Column(name = "DT_RESPOSTA")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtResposta;
 	
 	@Column(name = "TP_NOTIFICACAO")
 	private String tpNotificacao;
@@ -78,6 +81,14 @@ public class Notificacao  extends Entidade {
 	private String contato = "";
 	@Column(name = "NOME",length=15)
 	private String nome = "";
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "PERDIDO" ,referencedColumnName=IDUtil.ID)
+	private Perdido perdido;
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "ADOCAO" ,referencedColumnName=IDUtil.ID)
+	private Adocao adocao;
 	
 	@Transient
 	private String getTempoDePublicacao = "";
@@ -210,4 +221,29 @@ public class Notificacao  extends Entidade {
 	public void setResposta(String resposta) {
 		this.resposta = resposta;
 	}
+
+	public Perdido getPerdido() {
+		return perdido;
+	}
+
+	public void setPerdido(Perdido perdido) {
+		this.perdido = perdido;
+	}
+
+	public Adocao getAdocao() {
+		return adocao;
+	}
+
+	public void setAdocao(Adocao adocao) {
+		this.adocao = adocao;
+	}
+
+	public Date getDtResposta() {
+		return dtResposta;
+	}
+
+	public void setDtResposta(Date dtResposta) {
+		this.dtResposta = dtResposta;
+	}
+
 }
