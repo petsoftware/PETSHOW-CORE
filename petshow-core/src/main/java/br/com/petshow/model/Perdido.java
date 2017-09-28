@@ -117,6 +117,10 @@ public class Perdido extends Entidade {
 	@Column(name = "FL_SEXO")
 	@Enumerated(EnumType.ORDINAL)
 	private EnumSexo flSexo;
+	@Column(name = "FL_ENCONTRADO")
+	private boolean flEncontrado = false;
+	@Column(name = "DT_ENCONTRADO")
+	private Date dtEncontrado;
 	
 	@Transient
 	private String getTempoDePublicacao = "";
@@ -289,6 +293,22 @@ public class Perdido extends Entidade {
 
 	public void setFlSexo(EnumSexo flSexo) {
 		this.flSexo = flSexo;
+	}
+
+	public boolean isFlEncontrado() {
+		return flEncontrado;
+	}
+
+	public void setFlEncontrado(boolean flEncontrado) {
+		this.flEncontrado = flEncontrado;
+	}
+
+	public Date getDtEncontrado() {
+		return dtEncontrado;
+	}
+
+	public void setDtEncontrado(Date dtEncontrado) {
+		this.dtEncontrado = dtEncontrado;
 	}
 	
 }
