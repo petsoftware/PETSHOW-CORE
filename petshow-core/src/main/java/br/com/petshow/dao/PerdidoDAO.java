@@ -3,18 +3,13 @@ package br.com.petshow.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
 import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
 import org.springframework.stereotype.Repository;
-
 import br.com.petshow.enums.EnumAchadoPerdido;
 import br.com.petshow.enums.EnumSexo;
 import br.com.petshow.enums.EnumTipoAnimal;
@@ -116,10 +111,11 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 
 	}
 	/**
+	 * Consulta animais achado e perdidos
 	 * @author Rafael Rocha
 	 * @return
 	 */
-	public List<Perdido> consultaAnimaisPerdidos(PerdidoQuery query)  {
+	public List<Perdido> consultaAnimaisAchadosEPerdidos(PerdidoQuery query)  {
 		CriteriaBuilder builder = getManager().getCriteriaBuilder();
 		CriteriaQuery<Perdido> criteria = builder.createQuery(Perdido.class);
 		Root<Perdido> root = criteria.from(Perdido.class);
@@ -127,8 +123,9 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 		Path<EnumSexo> pSexoAnimal 		 = root.get("flSexo");
 		Path<EnumUF> pUf 				 = root.get("endereco").get("uf");
 		Path<Cidade> pCidade 			 = root.get("endereco").get("cidade");
+		Path<EnumAchadoPerdido> perdido	 = root.get("flAcontecimento");
 		Predicate predicate = builder.conjunction();
-		
+		predicate = builder.and(predicate,builder.equal(perdido, query.getAchadoPerdido()));
 		if(query.getTpAnimal() != null){
 			predicate = builder.and(predicate,builder.equal(pTipoAnimal, query.getTpAnimal()));
 		}

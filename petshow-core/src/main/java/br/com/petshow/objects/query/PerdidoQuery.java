@@ -1,5 +1,6 @@
 package br.com.petshow.objects.query;
 
+import br.com.petshow.enums.EnumAchadoPerdido;
 import br.com.petshow.enums.EnumSexo;
 import br.com.petshow.enums.EnumTipoAnimal;
 import br.com.petshow.enums.EnumUF;
@@ -16,6 +17,7 @@ public class PerdidoQuery {
 	private EnumSexo sexo 			;
 	private EnumUF	uf 				= EnumUF.CE;
 	private Cidade cidade			;
+	private EnumAchadoPerdido achadoPerdido;
 	
 	public int getLimiteRegistros() {
 		return limiteRegistros;
@@ -47,6 +49,12 @@ public class PerdidoQuery {
 	}
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+	public EnumAchadoPerdido getAchadoPerdido() {
+		return achadoPerdido;
+	}
+	public void setAchadoPerdido(EnumAchadoPerdido achadoPerdido) {
+		this.achadoPerdido = achadoPerdido;
 	} 
 	
 

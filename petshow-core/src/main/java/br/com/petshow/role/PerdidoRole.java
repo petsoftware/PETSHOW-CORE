@@ -68,6 +68,12 @@ public class PerdidoRole extends SuperClassRole<Perdido> {
 	 * @return
 	 */
 	public List<Perdido> consultaAnimaisPerdidos(PerdidoQuery query)  {
-		return this.perdidoDAO.consultaAnimaisPerdidos(query);
+		query.setAchadoPerdido(EnumAchadoPerdido.PERDIDO);
+		return this.perdidoDAO.consultaAnimaisAchadosEPerdidos(query);
+	}
+	
+	public List<Perdido> consultaAnimaisEncontrados(PerdidoQuery query)  {
+		query.setAchadoPerdido(EnumAchadoPerdido.ACHADO);
+		return this.perdidoDAO.consultaAnimaisAchadosEPerdidos(query);
 	}
 }

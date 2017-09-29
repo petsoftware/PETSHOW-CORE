@@ -31,8 +31,8 @@ import br.com.petshow.util.DateUtil;
 import br.com.petshow.util.IDUtil;
 
 @NamedQueries(value={
-		@NamedQuery(name=Perdido.QRY_COUNT,query="SELECT COUNT("+IDUtil.ID+") FROM Perdido"),
-		@NamedQuery(name = Perdido.FIND_POR_USUARIO, query = "FROM Perdido p WHERE p.usuario.id=:id order by p.dataCadastro desc")
+		@NamedQuery(name=Perdido.QRY_COUNT,query="SELECT COUNT("+IDUtil.ID+") FROM Perdido WHERE flAtivo = true"),
+		@NamedQuery(name = Perdido.FIND_POR_USUARIO, query = "FROM Perdido p WHERE p.usuario.id=:id and flAtivo = true order by p.dataCadastro desc")
 })
 	
 
@@ -51,69 +51,48 @@ public class Perdido extends Entidade {
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
 	private Usuario usuario;
-	
 	@Column(name = "DESC_ACONTECIMENTO",nullable=false)
 	private String descAcontecimento;
-	
 	@ElementCollection(fetch=FetchType.EAGER)
 	@CollectionTable(name = "FOTO_PERDIDO" )
 	@Column(length=10485760)
 	private List<String> fotos = new ArrayList<>();// no maximo 3
-	
 	@Column(name = "DT_PERDIDO_ACHADO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtPerdidoAchado;
-	
-	
 	@Embedded
 	private Endereco endereco = new Endereco();
-
-	
 	@Column(name = "TF_CELULAR",nullable=true)
 	private Long telefoneCelular;
-	
 	@Column(name = "DDD_CELULAR",nullable=true)
 	private Integer dddCelular;
-
 	@Column(name = "TF_RESIDENCIAL",nullable=true)
 	private Long telefoneResidencial;
-	
 	@Column(name = "DDD_RESIDENCIAL",nullable=true)
 	private Integer dddResidencial;
-	
 	@Column(name = "DT_CADASTRO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
-
 	@ManyToOne
 	@JoinColumn(name = "ID_RACA",referencedColumnName=IDUtil.ID,nullable=true)
 	private Racas raca;
-	
-	
-	
 	@Column(name = "DESC_NOME",nullable=true)
 	private String nome;
-	
 	@Column(name = "FL_ACONTECIMENTO",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumAchadoPerdido flAcontecimento = EnumAchadoPerdido.PERDIDO;
-	
 	@Column(name="TP_ANIMAL",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoAnimal tpAnimal;
-	
 	@Column(name="TP_COR_PRINCIPAL",nullable=true)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumCor tpCorPrincipal;
-	
 	@Column(name="TP_COR_SEGUNDARIA",nullable=true)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumCor tpCorSegundaria;
-	
 	@Column(name = "DT_RESOLVIDO",nullable=true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dtResolvido;
-	
 	@Column(name = "FL_SEXO")
 	@Enumerated(EnumType.ORDINAL)
 	private EnumSexo flSexo;
@@ -121,6 +100,11 @@ public class Perdido extends Entidade {
 	private boolean flEncontrado = false;
 	@Column(name = "DT_ENCONTRADO")
 	private Date dtEncontrado;
+	@Column(name = "FL_ATIVO")
+	private boolean flAtivo = true;
+	@Column(name="DT_DESATIVACAO")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dtDesativacao ;
 	
 	@Transient
 	private String getTempoDePublicacao = "";
@@ -309,6 +293,22 @@ public class Perdido extends Entidade {
 
 	public void setDtEncontrado(Date dtEncontrado) {
 		this.dtEncontrado = dtEncontrado;
+	}
+
+	public boolean isFlAtivo() {
+		return flAtivo;
+	}
+
+	public void setFlAtivo(boolean flAtivo) {
+		this.flAtivo = flAtivo;
+	}
+
+	public Date getDtDesativacao() {
+		return dtDesativacao;
+	}
+
+	public void setDtDesativacao(Date dtDesativacao) {
+		this.dtDesativacao = dtDesativacao;
 	}
 	
 }
