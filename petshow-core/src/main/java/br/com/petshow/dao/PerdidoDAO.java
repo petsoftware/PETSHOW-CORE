@@ -110,6 +110,12 @@ public class PerdidoDAO extends SuperClassDAO<Perdido> {
 		return manager.createNamedQuery(Perdido.FIND_POR_USUARIO,Perdido.class).setParameter("id", id).getResultList();
 
 	}
+	
+	public List<Perdido> getEncontradosPorUsuario(Long id)  {
+		return manager.createNamedQuery(Perdido.FIND_ENCONTRADO_POR_USUARIO,Perdido.class)
+				.setParameter("id", id)
+				.setParameter("flAcontecimento", EnumAchadoPerdido.ACHADO).getResultList();
+	}
 	/**
 	 * Consulta animais achado e perdidos
 	 * @author Rafael Rocha

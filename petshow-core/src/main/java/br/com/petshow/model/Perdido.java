@@ -31,8 +31,9 @@ import br.com.petshow.util.DateUtil;
 import br.com.petshow.util.IDUtil;
 
 @NamedQueries(value={
-		@NamedQuery(name=Perdido.QRY_COUNT,query="SELECT COUNT("+IDUtil.ID+") FROM Perdido WHERE flAtivo = true"),
-		@NamedQuery(name = Perdido.FIND_POR_USUARIO, query = "FROM Perdido p WHERE p.usuario.id=:id and flAtivo = true order by p.dataCadastro desc")
+		@NamedQuery(name=Perdido.QRY_COUNT					  , query = "SELECT COUNT("+IDUtil.ID+") FROM Perdido WHERE flAtivo = true"),
+		@NamedQuery(name = Perdido.FIND_POR_USUARIO			  , query = "FROM Perdido p WHERE p.usuario.id=:id and flAtivo = true order by p.dataCadastro desc"),
+		@NamedQuery(name = Perdido.FIND_ENCONTRADO_POR_USUARIO, query = "FROM Perdido p WHERE p.usuario.id=:id AND p.flAtivo = true AND p.flAcontecimento = :flAcontecimento  order by p.dataCadastro desc")
 })
 	
 
@@ -47,6 +48,7 @@ public class Perdido extends Entidade {
 
 	public static final String QRY_COUNT = "Pedido.qryCount";
 	public static final String FIND_POR_USUARIO = "Perdido.porUsuario";
+	public static final String FIND_ENCONTRADO_POR_USUARIO = "br.com.petshow.model.Perdido.encontradosPorUsuario";
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO" ,referencedColumnName="ID")
