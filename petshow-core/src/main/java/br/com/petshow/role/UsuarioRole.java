@@ -157,7 +157,7 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		String emailCrypt = HandleEncrypt.encrypt(securityLogin.getEmail());
 		String erro = "";
 		try {
-			return "http://petmooby.com.br/petmooby/PageValidateNewUser.xhtml?seckey="+URLEncoder.encode(securityLogin.getKey(), "UTF-8") +"&lg="+URLEncoder.encode(emailCrypt,"UTF-8") ;
+			return "http://petmooby.com.br/pet/PageValidateNewUser.xhtml?seckey="+URLEncoder.encode(securityLogin.getKey(), "UTF-8") +"&lg="+URLEncoder.encode(emailCrypt,"UTF-8") ;
 		} catch (UnsupportedEncodingException e) {
 			// TODO Auto-generated catch block
 			erro = e.getMessage();

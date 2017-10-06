@@ -1,5 +1,6 @@
 package br.com.tarefa.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -77,10 +78,13 @@ public class Tarefa extends Entidade {
 	private EnumStatus status;
 	
 	@Column(name="DESC_TAREFA",nullable=false,length=6000)
-	
 	private String descTarefa;
 	
-
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name = "FOTO_TAREFA" )
+	@Column(length=10485760)
+	private List<String> fotos = new ArrayList<String>();
+	
 	public Date getDataCriacao() {
 		return dataCriacao;
 	}
@@ -155,6 +159,14 @@ public class Tarefa extends Entidade {
 
 	public void setStatus(EnumStatus status) {
 		this.status = status;
+	}
+
+	public List<String> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(List<String> fotos) {
+		this.fotos = fotos;
 	}
 	
 		

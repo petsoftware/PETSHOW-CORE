@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -51,12 +52,8 @@ public class Evento extends Entidade {
 	@Temporal(TemporalType.DATE)
 	private Date dataTermino = new Date();
 	
-	@Column( name="CIDADE",length=50)
-	private String cidade ="";
-	
-	@Column( name="ESTADO")
-	@Enumerated(EnumType.ORDINAL)
-	private EnumUF uf = EnumUF.CE;
+	@Embedded
+	private Endereco endereco = new Endereco();
 	
 	@ManyToOne
 	@JoinColumn(name = "ID_LOCAL" ,referencedColumnName="ID")
@@ -138,20 +135,12 @@ public class Evento extends Entidade {
 		this.bunner = bunner;
 	}
 
-	public String getCidade() {
-		return cidade;
+	public Endereco getEndereco() {
+		return endereco;
 	}
 
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public EnumUF getUf() {
-		return uf;
-	}
-
-	public void setUf(EnumUF uf) {
-		this.uf = uf;
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 	
 }

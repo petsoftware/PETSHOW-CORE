@@ -11,7 +11,7 @@ public class Sender {
 		iSender = new SenderMail();
 		iSender.setPassword("rafa1>rafa2");
 		iSender.setUserName(EmailConstants.senderContato);
-		iSender.setHostEmail("mail.barcadero.com.br");
+		iSender.setHostEmail("mail.petmooby.com.br");
 		iSender.setSmtpPort(587);
 	}
 	
