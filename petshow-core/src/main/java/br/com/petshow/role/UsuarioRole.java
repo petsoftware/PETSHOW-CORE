@@ -138,7 +138,7 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	private String getEmailContet(Usuario usuario, SecurityLogin securityLogin) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Olá ").append(usuario.getNome()).append(", tudo bem?").append("\n\n")
-			.append("Você está recebendo este e-mail porque se cadatrou na plataforma PETMOOBY").append("\n")
+			.append("Você está recebendo este e-mail porque se cadastrou na plataforma PETMOOBY").append("\n")
 			.append("Para você realmente efetivar seu cadastro, clique no link abaixo:").append("\n")
 			.append(genarateSecuryteLink(securityLogin)).append("\n");
 		builder.append("Muito obrigado e aproveite o sistema.");
