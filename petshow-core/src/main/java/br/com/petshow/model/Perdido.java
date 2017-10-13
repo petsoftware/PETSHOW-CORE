@@ -82,7 +82,7 @@ public class Perdido extends Entidade {
 	private String nome;
 	@Column(name = "FL_ACONTECIMENTO",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
-	private EnumAchadoPerdido flAcontecimento = EnumAchadoPerdido.PERDIDO;
+	private EnumAchadoPerdido flAcontecimento;
 	@Column(name="TP_ANIMAL",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoAnimal tpAnimal;
