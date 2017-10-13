@@ -313,4 +313,11 @@ public class Perdido extends Entidade {
 		this.dtDesativacao = dtDesativacao;
 	}
 	
+	@JsonIgnore
+	public String isFoiEncontrado(){
+		if(this.dtEncontrado != null){
+			return "Sim";
+		}
+		return "Não";
+	}
 }
