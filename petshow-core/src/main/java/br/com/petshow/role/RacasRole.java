@@ -39,9 +39,8 @@ public class RacasRole extends SuperClassRole<Racas> {
 
 
 	@Override
-	public Racas insert(Racas entidade) throws ExceptionValidation {
-		// TODO Auto-generated method stub
-		return null;
+	public Racas insert(Racas raca) throws ExceptionValidation {
+		return this.racaDao.insert(raca);
 	}
 
 
@@ -49,7 +48,7 @@ public class RacasRole extends SuperClassRole<Racas> {
 
 	@Override
 	public void delete(long codigo) throws ExceptionNotFoundRecord, ExceptionValidation {
-		// TODO Auto-generated method stub
+		this.racaDao.delete(codigo);
 		
 	}
 
@@ -58,7 +57,7 @@ public class RacasRole extends SuperClassRole<Racas> {
 
 	@Override
 	public Racas update(Racas entidade) throws ExceptionValidation {
-		return null;
+		return this.racaDao.update(entidade);
 	}
 	
 	public void inserirRacasDeCachorro() {

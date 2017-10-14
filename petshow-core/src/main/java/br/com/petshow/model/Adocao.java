@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -99,10 +100,11 @@ public class Adocao extends Entidade {
 	
 	@Column(name="TP_ANIMAL",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
-	private EnumTipoAnimal tipo = EnumTipoAnimal.CACHORRO;
+	private EnumTipoAnimal tipo;
 	
-	@Column(name="RACA")
-	private String raca;
+	@OneToOne
+	@JoinColumn(name = "ID_RACA",referencedColumnName=IDUtil.ID,nullable=true)
+	private Racas raca;
 	@Column(name="FL_ADOTADO")
 	private boolean flAdotado = false;
 	@Column(name="FL_EXPIROU")
@@ -265,14 +267,6 @@ public class Adocao extends Entidade {
 		this.tipo = tipo;
 	}
 
-	public String getRaca() {
-		return raca;
-	}
-
-	public void setRaca(String raca) {
-		this.raca = raca;
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
@@ -320,6 +314,14 @@ public class Adocao extends Entidade {
 
 	public void setFlExpirou(boolean flExpirou) {
 		this.flExpirou = flExpirou;
+	}
+
+	public Racas getRaca() {
+		return raca;
+	}
+
+	public void setRaca(Racas raca) {
+		this.raca = raca;
 	}
 	
 	

@@ -16,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -75,7 +76,7 @@ public class Perdido extends Entidade {
 	@Column(name = "DT_CADASTRO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastro;
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "ID_RACA",referencedColumnName=IDUtil.ID,nullable=true)
 	private Racas raca;
 	@Column(name = "DESC_NOME",nullable=true)

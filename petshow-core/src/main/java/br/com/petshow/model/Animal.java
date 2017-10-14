@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,6 +18,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import br.com.petshow.enums.EnumFrequenciaVermifugacao;
 import br.com.petshow.enums.EnumSexo;
 import br.com.petshow.enums.EnumTipoAnimal;
+import br.com.petshow.util.IDUtil;
 
 
 
@@ -44,8 +47,9 @@ public class Animal extends Entidade {
 	@Enumerated(EnumType.ORDINAL)
 	private EnumTipoAnimal tipo;
 	
-	@Column(name="RACA")
-	private String raca;
+	@OneToOne
+	@JoinColumn(name = "ID_RACA",referencedColumnName=IDUtil.ID,nullable=true)
+	private Racas raca;
 	
 	@Column(name="NM_ANIMAL",nullable=false)
 	private String nome;
@@ -103,14 +107,6 @@ public class Animal extends Entidade {
 
 	public void setFrequenciaVermifugacao(EnumFrequenciaVermifugacao frequenciaVermifugacao) {
 		this.frequenciaVermifugacao = frequenciaVermifugacao;
-	}
-
-	public String getRaca() {
-		return raca;
-	}
-
-	public void setRaca(String raca) {
-		this.raca = raca;
 	}
 
 	public String getNome() {
@@ -188,5 +184,13 @@ public class Animal extends Entidade {
 
 	public void setImageAnimal(String imageAnimal) {
 		this.imageAnimal = imageAnimal;
+	}
+
+	public Racas getRaca() {
+		return raca;
+	}
+
+	public void setRaca(Racas raca) {
+		this.raca = raca;
 	}
 }
