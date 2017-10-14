@@ -1,0 +1,113 @@
+package br.com.petshow.core.jobs;
+
+import java.util.Arrays;
+import java.util.List;
+
+
+public class JobCadMunicipiosRioDeJaneiro {
+	
+	
+	public static List<String> getMunicipios() {
+		List<String> municipios = Arrays.asList(	
+				"1|  Rio de Janeiro",
+				"2|  Sao Gonçalo",
+				"3|  Duque de Caxias",
+				"4|  Nova Friburgo",
+				"5|  Nova Iguacu",
+				"6|  Angra dos Reis",
+				"7|  Aperibe",
+				"8|  Araruama",
+				"9|  Areal",
+				"10| Armacao de Buzios",
+				"11| Arraial do Cabo",
+				"12| Barra Mansa",
+				"13| Barra do Pirai",
+				"14| Belford Roxo",
+				"15| Bom Jardim",
+				"16| Bom Jesus do Itabapoana",
+				"17| Cabo Frio",
+				"18| Cachoeiras de Macacu",
+				"19| Cambuci",
+				"20| Campos dos Goytacazes",
+				"21| Cantagalo",
+				"22| Carapebus",
+				"23| Cardoso Moreira",
+				"24| Carmo",
+				"25| Casimiro de Abreu",
+				"26| Comendador Levy Gasparian",
+				"27| Conceicao de Macabu",
+				"28| Cordeiro",
+				"29| Duas Barras",
+				"30| Engenheiro Paulo de Frontin",
+				"31| Guapimirim",
+				"32| Iguaba Grande",
+				"33| Itaborai",
+				"34| Itaguai",
+				"35| Italva",
+				"36| Itaocara",
+				"37| Itaperuna",
+				"38| Itatiaia",
+				"39| Japeri",
+				"40| Laje do Muriae",
+				"41| Macae",
+				"42| Macuco",
+				"43| Mage",
+				"44| Mangaratiba",
+				"45| Marica",
+				"46| Mendes",
+				"47| Miguel Pereira",
+				"48| Miracema",
+				"49| Natividade",
+				"51| Nilopolis",
+				"52| Niteroi",
+				"53| Nova Friburgo",
+				"54| Nova Iguacu",
+				"55| Paracambi",
+				"56| Paraiba do Sul",
+				"57| Parati",
+				"58| Paty do Alferes",
+				"59| Petropolis",
+				"60| Pinheiral",
+				"61| Pirai",
+				"62| Porciuncula",
+				"63| Porto Real",
+				"64| Quatis",
+				"65| Queimados",
+				"66| Quissama",
+				"67| Resende",
+				"68| Rio Bonito",
+				"69| Rio Claro",
+				"70| Rio das Flores",
+				"71| Rio das Ostras",
+				"72| Santa Maria Madalena",
+				"73| Santo Antonio de Padua",
+				"74| Sao Fidelis",
+				"75| Sao Francisco de Itabapoana",
+				"76| Sao Joao da Barra",
+				"77| Sao Joao de Meriti",
+				"78| Sao Jose de Uba",
+				"79| Sao Jose do Vale do Rio Preto",
+				"80| Sao Pedro da Aldeia",
+				"81| Sao Sebastiao do Alto",
+				"82| Sapucaia",
+				"83| Saquarema",
+				"84| Seropedica",
+				"85| Silva Jardim",
+				"86| Sumidouro",
+				"87| Tangua",
+				"88| Teresopolis",
+				"89| Trajano de Morais",
+				"91| Tres Rios",
+				"92| Valenca",
+				"93| Varre-Sai",
+				"94| Vassouras",
+				"95| Volta Redonda"
+								
+		);
+		return municipios;
+	}
+	
+
+}
+
+

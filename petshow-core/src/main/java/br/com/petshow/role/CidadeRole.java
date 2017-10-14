@@ -19,9 +19,12 @@ import br.com.petshow.core.jobs.JobCadMunicipiosMaranhao;
 import br.com.petshow.core.jobs.JobCadMunicipiosMatoGrosso;
 import br.com.petshow.core.jobs.JobCadMunicipiosMatoGrossoDoSul;
 import br.com.petshow.core.jobs.JobCadMunicipiosMinasGerais;
+import br.com.petshow.core.jobs.JobCadMunicipiosPara;
 import br.com.petshow.core.jobs.JobCadMunicipiosParaiba;
+import br.com.petshow.core.jobs.JobCadMunicipiosParana;
 import br.com.petshow.core.jobs.JobCadMunicipiosPernambuco;
 import br.com.petshow.core.jobs.JobCadMunicipiosPiaui;
+import br.com.petshow.core.jobs.JobCadMunicipiosRioDeJaneiro;
 import br.com.petshow.core.jobs.JobCadMunicipiosSaoPaulo;
 import br.com.petshow.dao.CidadeDAO;
 import br.com.petshow.enums.EnumUF;
@@ -290,6 +293,45 @@ public class CidadeRole extends SuperClassRole<Cidade> {
 			cidade.setEstado(null);
 			cidade.setNome(municipio[1].trim());
 			cidade.setUf(EnumUF.MG);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesPAJob() {
+		for (String mun : JobCadMunicipiosPara.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.PA.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.PA);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesPRJob() {
+		for (String mun : JobCadMunicipiosParana.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.PR.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.PR);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesRJJob() {
+		for (String mun : JobCadMunicipiosRioDeJaneiro.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.RJ.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.RJ);
 			this.cidadeDAO.insert(cidade);
 		}
 	}
