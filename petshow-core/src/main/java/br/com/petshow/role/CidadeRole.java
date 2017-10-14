@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.petshow.core.jobs.JobCadMunicipiosAcre;
 import br.com.petshow.core.jobs.JobCadMunicipiosAlagoas;
+import br.com.petshow.core.jobs.JobCadMunicipiosAmapa;
 import br.com.petshow.core.jobs.JobCadMunicipiosAmazonas;
 import br.com.petshow.core.jobs.JobCadMunicipiosBahia;
 import br.com.petshow.core.jobs.JobCadMunicipiosCeara;
@@ -25,7 +26,14 @@ import br.com.petshow.core.jobs.JobCadMunicipiosParana;
 import br.com.petshow.core.jobs.JobCadMunicipiosPernambuco;
 import br.com.petshow.core.jobs.JobCadMunicipiosPiaui;
 import br.com.petshow.core.jobs.JobCadMunicipiosRioDeJaneiro;
+import br.com.petshow.core.jobs.JobCadMunicipiosRioGrandeDoNorte;
+import br.com.petshow.core.jobs.JobCadMunicipiosRioGrandeDoSul;
+import br.com.petshow.core.jobs.JobCadMunicipiosRondonia;
+import br.com.petshow.core.jobs.JobCadMunicipiosRoraima;
+import br.com.petshow.core.jobs.JobCadMunicipiosSantaCatarina;
 import br.com.petshow.core.jobs.JobCadMunicipiosSaoPaulo;
+import br.com.petshow.core.jobs.JobCadMunicipiosSergipe;
+import br.com.petshow.core.jobs.JobCadMunicipiosTocantins;
 import br.com.petshow.dao.CidadeDAO;
 import br.com.petshow.enums.EnumUF;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
@@ -43,7 +51,7 @@ public class CidadeRole extends SuperClassRole<Cidade> {
 	private CidadeDAO cidadeDAO;
 	
 	public CidadeRole() {
-		System.out.println("TODO Auto-generated constructor stub " );
+		System.out.println("TODO Auto-generated constructor stub Cidade" );
 	}
 	
 	
@@ -332,6 +340,110 @@ public class CidadeRole extends SuperClassRole<Cidade> {
 			cidade.setEstado(null);
 			cidade.setNome(municipio[1].trim());
 			cidade.setUf(EnumUF.RJ);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesRNJob() {
+		for (String mun : JobCadMunicipiosRioGrandeDoNorte.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.RN.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.RN);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesRSJob() {
+		for (String mun : JobCadMunicipiosRioGrandeDoSul.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.RS.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.RS);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesROJob() {
+		for (String mun : JobCadMunicipiosRondonia.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.RO.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.RO);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesRRJob() {
+		for (String mun : JobCadMunicipiosRoraima.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.RR.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.RR);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesSCJob() {
+		for (String mun : JobCadMunicipiosSantaCatarina.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.SC.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.SC);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesSEJob() {
+		for (String mun : JobCadMunicipiosSergipe.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.SE.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.SE);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesTOJob() {
+		for (String mun : JobCadMunicipiosTocantins.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.TO.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.TO);
+			this.cidadeDAO.insert(cidade);
+		}
+	}
+	
+	public void inserirCidadesAPJob() {
+		for (String mun : JobCadMunicipiosAmapa.getMunicipios()) {
+			String[] municipio 	= mun.split(Pattern.quote("|"));
+			Cidade cidade 		= new Cidade();
+			String codCidade 	= ""+EnumUF.AP.getCdIbge()+ municipio[0].trim();
+			cidade.setCodCidade(Long.parseLong(codCidade));
+			cidade.setEstado(null);
+			cidade.setNome(municipio[1].trim());
+			cidade.setUf(EnumUF.AP);
 			this.cidadeDAO.insert(cidade);
 		}
 	}
