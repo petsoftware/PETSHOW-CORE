@@ -45,8 +45,8 @@ public class Adocao extends Entidade {
 	/**
 	 * 
 	 */
-	public static final String FIND_POR_USUARIO = "Adocao.porUsuario";
-	private static final long serialVersionUID 	= -2535670503647345911L;
+	public static final String FIND_POR_USUARIO 	= "Adocao.porUsuario";
+	private static final long serialVersionUID 		= -2535670503647345911L;
 
 	@Column(name = "DT_ADOCAO")
 	@Temporal(TemporalType.DATE)

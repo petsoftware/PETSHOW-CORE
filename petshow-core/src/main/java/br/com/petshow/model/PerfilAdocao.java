@@ -24,8 +24,7 @@ import br.com.petshow.enums.EnumTipoAnimal;
  */
 import br.com.petshow.enums.EnumUF;
 @NamedQueries({
-	@NamedQuery(name=PerfilAdocao.FIND_BY_USER,query="FROM PerfilAdocao WHERE usuario = :usuario"),
-	@NamedQuery(name=PerfilAdocao.COUNT_BY_USER,query="SELECT COUNT(p) FROM PerfilAdocao p WHERE p.usuario = :usuario")
+	@NamedQuery(name=PerfilAdocao.FIND_BY_USER,query="FROM PerfilAdocao WHERE usuario = :usuario")
 })
 @Entity
 @Table(name="PERFIL_ADOCAO")
@@ -39,7 +38,6 @@ public class PerfilAdocao extends Entidade {
 	}
 	
 	public static final String FIND_BY_USER = "br.com.petshow.model.PerfilAdocao.findByUser";
-	public static final String COUNT_BY_USER = "br.com.petshow.model.PerfilAdocao.countByUser";
 	/**
 	 * 
 	 */

@@ -75,10 +75,43 @@ public class PerfilAdocaoDAO extends SuperClassDAO<PerfilAdocao> {
 	 * @param idUsuario
 	 * @return
 	 */
-	public long countAdocoesNoPerfil(Usuario idUsuario) {
-		return getManager().createNamedQuery(PerfilAdocao.COUNT_BY_USER, Long.class)
-				.setParameter("usuario", idUsuario)
-				.getSingleResult();
+	public long countAdocoesNoPerfil(PerfilAdocao perfilAdocao) {
+		return countAdocoesByPerfil(perfilAdocao);
+	}
+	
+	public long countAdocoesByPerfil(PerfilAdocao perfilAdocao) {
+		CriteriaBuilder builder = getManager().getCriteriaBuilder();
+		CriteriaQuery<Long> criteria = builder.createQuery(Long.class);
+		Root<Adocao> root = criteria.from(Adocao.class);
+
+		Path<EnumTipoAnimal> pTipoAnimal = root.get("tipo"); 
+		Path<EnumSexo> pSexoAnimal 		 = root.get("flSexo"); 
+		Path<EnumFaseVida> pFaseVida 	 = root.get("fase"); 
+		Path<EnumUF> pUf 				 = root.get("endereco").get("uf"); 
+		Path<Cidade> pCidade 			 = root.get("endereco").get("cidade"); 
+		
+		Predicate predicate = builder.conjunction();
+		
+		if(perfilAdocao.getTipoAnimal() != null){
+			predicate = builder.and(predicate,builder.equal(pTipoAnimal, perfilAdocao.getTipoAnimal()));
+		}
+		if(perfilAdocao.getSexo() != null){
+			predicate = builder.and(predicate,builder.equal(pSexoAnimal, perfilAdocao.getSexo()));
+		}
+		if(perfilAdocao.getUf() != null){
+			predicate = builder.and(predicate,builder.equal(pUf, perfilAdocao.getUf()));
+		}
+		if(perfilAdocao.getCidade() != null){
+			predicate = builder.and(predicate,builder.equal(pCidade, perfilAdocao.getCidade()));
+		}
+		if(perfilAdocao.getFaseVida() != null){
+			predicate = builder.and(predicate,builder.equal(pFaseVida, perfilAdocao.getFaseVida()));
+		}
+		
+		
+		criteria.select(builder.count(root) );
+		criteria.where(predicate);
+		return getManager().createQuery(criteria).getSingleResult();
 	}
 
 }
