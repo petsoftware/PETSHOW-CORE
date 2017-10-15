@@ -122,7 +122,9 @@ public class NotificacaoRole extends SuperClassRole<Notificacao> {
 		return content.toString();
 	}
 	
-
+	public long countNotificacaoDoUsuario(long usuarioID)  {
+		return this.dao.countNotificacaoDoUsuario(usuarioID);
+	}
 	
 
 }

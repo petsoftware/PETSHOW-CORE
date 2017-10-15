@@ -246,6 +246,7 @@ public class Perdido extends Entidade {
 	}
 	
 	public String getGetTempoDePublicacao() {
+		System.out.println("getGetTempoDePublicacao:"+this.getClass().getName());
 		if(dataCadastro != null){
 			getTempoDePublicacao = DateUtil.getTempoEntreDatasPorExtenso(dataCadastro, new Date());
 		}else{

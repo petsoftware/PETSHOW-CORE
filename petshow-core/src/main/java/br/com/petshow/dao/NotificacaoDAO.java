@@ -18,4 +18,11 @@ public class NotificacaoDAO extends SuperClassDAO<Notificacao> {
 		return manager.createNamedQuery(Notificacao.IDX_POR_USUARIO,Notificacao.class).setParameter("idUsuario", usuarioID).getResultList();
 
 	}
+	
+	public long countNotificacaoDoUsuario(long usuarioID)  {
+
+		return manager.createNamedQuery(Notificacao.COUNT_POR_USUARIO,Long.class)
+				.setParameter("idUsuario", usuarioID).getSingleResult();
+
+	}
 }

@@ -20,7 +20,8 @@ import br.com.petshow.util.DateUtil;
 import br.com.petshow.util.IDUtil;
 
 @NamedQueries({ 
-	@NamedQuery(name = Notificacao.IDX_POR_USUARIO, query = "FROM Notificacao n WHERE n.usuarioDestinatario.id = :idUsuario  and flExcluida =false order by dtNotificacao desc")
+	@NamedQuery(name = Notificacao.IDX_POR_USUARIO, query = "FROM Notificacao n WHERE n.usuarioDestinatario.id = :idUsuario  and flExcluida =false order by dtNotificacao desc"),
+	@NamedQuery(name = Notificacao.COUNT_POR_USUARIO, query = "SELECT COUNT(n) FROM Notificacao n WHERE n.usuarioDestinatario.id = :idUsuario  and flExcluida =false ")
    
 })
 
@@ -31,6 +32,7 @@ public class Notificacao  extends Entidade {
 
 	private static final long serialVersionUID = 8948303763460801474L;
 	public static final String IDX_POR_USUARIO	= "Notificacao_USUARIO";
+	public static final String COUNT_POR_USUARIO= "br.com.petshow.model.Notificacao.countPorUsuario";
 	@ManyToOne
 	@JoinColumn(name = "ID_USUARIO_REMETENTE" ,referencedColumnName=IDUtil.ID)
 	private Usuario usuarioRemetente;
@@ -190,6 +192,7 @@ public class Notificacao  extends Entidade {
 	}
 
 	public String getGetTempoDePublicacao() {
+		System.out.println("getGetTempoDePublicacao:"+this.getClass().getName());
 		getTempoDePublicacao = DateUtil.getTempoEntreDatasPorExtenso(dtNotificacao, new Date());
 		return getTempoDePublicacao;
 	}

@@ -284,6 +284,7 @@ public class Adocao extends Entidade {
 	}
 
 	public String getGetTempoDePublicacao() {
+		System.out.println("getGetTempoDePublicacao:"+this.getClass().getName());
 		getTempoDePublicacao = DateUtil.getTempoEntreDatasPorExtenso(dataCadastro, new Date());
 		return getTempoDePublicacao;
 	}
