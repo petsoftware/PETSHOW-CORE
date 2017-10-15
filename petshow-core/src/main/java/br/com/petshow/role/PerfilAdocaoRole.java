@@ -51,5 +51,7 @@ public class PerfilAdocaoRole extends SuperClassRole<PerfilAdocao>{
 		return dao.findAdocoesByPerfil(perfilAdocao);
 	}
 
-	
+	public long countAdocoesNoPerfil(Usuario idUsuario) {
+		return this.dao.countAdocoesNoPerfil(idUsuario);
+	}
 }

@@ -70,5 +70,15 @@ public class PerfilAdocaoDAO extends SuperClassDAO<PerfilAdocao> {
 		criteria.select(root);
 		return getManager().createQuery(criteria).setMaxResults(30).getResultList();
 	}
+	/**
+	 * Tras o numero de animais que estão no perfil de adoção do usuário.
+	 * @param idUsuario
+	 * @return
+	 */
+	public long countAdocoesNoPerfil(Usuario idUsuario) {
+		return getManager().createNamedQuery(PerfilAdocao.COUNT_BY_USER, Long.class)
+				.setParameter("usuario", idUsuario)
+				.getSingleResult();
+	}
 
 }
