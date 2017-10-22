@@ -2,11 +2,20 @@ package br.com.petshow.util;
 
 import java.security.Timestamp;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ValidationUtil {
 /* 
+ * 
  * TODAS AS VALIDACOES INDEPENDENTES DO NOME DO METODO DEVERÁ RETORNAR FALSE CASO SEJA INVALIDO E TRUE CASO ESTEJA VALIDADO, PARA EVITAR CONFUSOES
- */ 
+ */
+	private static final String EMAIL_PATTERN = 
+	        "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+	        + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+	private static final Pattern pattern = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+	
 	
 	
 	public static boolean validarDtIniFin(Date dtInicial,Date dtFinal){
@@ -81,5 +90,11 @@ public class ValidationUtil {
 		}
 	}
 	
+	public static boolean isEmailValid(String email){
+		
+		Matcher  matcher = pattern.matcher(email);
+	    
+	    return matcher.matches();
+	}
 	
 }

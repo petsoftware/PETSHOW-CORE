@@ -5,10 +5,14 @@ import java.util.List;
 
 public enum EnumCor {
 	
-	PRETO(0,"Preto"),
-	BRANCO(1,"Branco"),
-	MARRON(2,"Marron"),
-	AMARELO(3,"Amarelo");
+	AMARELO(0,"Amarelo"),
+	BEGE(1,"Bege"),
+	BRANCO(2,"Branco"),
+	CARAMELO(3,"Caramelo"),
+	CINZA(4,"Cinza"),
+	CREME(5,"Creme"),
+	MARRON(6,"Marron"),
+	PRETO(7,"Preto");
 	
 	
 	private int id;

@@ -9,7 +9,7 @@ public class JobCadRacas {
 	public static List<String> getRacasCachorro() {
 		List<String> cachorros = Arrays.asList(
 				"SRD (vira-lata)         ",
-				"Afghan Hound'            ",
+				"Afghan Hound            ",
 				"Airedale Terrier         ",
 				"Akita-Inu                ",
 				"American Staf.Terrier    ",
