@@ -6,16 +6,20 @@ import java.util.List;
 
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 
-import org.hibernate.Criteria;
-
-import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import br.com.petshow.model.Anuncio;
+import br.com.petshow.enums.EnumCategoria;
+import br.com.petshow.enums.EnumUF;
+import br.com.petshow.model.Cidade;
 import br.com.petshow.model.Usuario;
 import br.com.petshow.model.Venda;
+import br.com.petshow.objects.query.VendasQuery;
 /**
  * 
  * @author antoniorafael
@@ -84,6 +88,31 @@ public class VendaDAO extends SuperClassDAO<Venda> {
 		TypedQuery<Long> qry = manager.createNamedQuery(Venda.COUNT_VENDAS, Long.class)
 				.setParameter("usuario", usuario);
 		return qry.getSingleResult();
+	}
+	
+	public List<Venda> consultarVendas(VendasQuery query) {
+		CriteriaBuilder builder 		 = getManager().getCriteriaBuilder();
+		CriteriaQuery<Venda> criteria 	 = builder.createQuery(Venda.class);
+		Root<Venda> root 				 = criteria.from(Venda.class);
+		Path<EnumCategoria> pCategoria   = root.get("categoria");  
+		Path<EnumUF> pUf 				 = root.get("endereco").get("uf"); 
+		Path<Cidade> pCidade 			 = root.get("endereco").get("cidade"); 
+		Predicate predicate 			 = builder.conjunction();
+		if(query.getCategoria() != null){
+			predicate = builder.and(predicate,builder.equal(pCategoria, query.getCategoria()));
+		}
+		
+		if(query.getUf() != null){
+			predicate = builder.and(predicate,builder.equal(pUf, query.getUf()));
+		}
+		if(query.getCidade() != null){
+			predicate = builder.and(predicate,builder.equal(pCidade, query.getCidade()));
+		}
+		
+		criteria.where(predicate);
+		criteria.select(root);
+		return getManager().createQuery(criteria).setMaxResults(30).getResultList();
+		
 	}
 
 }

@@ -11,6 +11,7 @@ import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Usuario;
 import br.com.petshow.model.Venda;
+import br.com.petshow.objects.query.VendasQuery;
 import br.com.petshow.util.ValidationUtil;
 /**
  * 
@@ -106,6 +107,11 @@ public class VendaRole extends SuperClassRole<Venda> {
 	public long numeroDeVendasRegistradasNoSistema(Usuario usuario) {
 		return vendaDAO.numeroDeVendasRegistradoNoSistema(usuario);
 	}
+	
+	public List<Venda> consultarVendas(VendasQuery query) {
+		return vendaDAO.consultarVendas(query);
+	}
 
+	
 	
 }

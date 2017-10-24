@@ -9,6 +9,8 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -17,8 +19,12 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+
+import br.com.petshow.enums.EnumCategoria;
+import br.com.petshow.util.DateUtil;
 
 
 @NamedQueries({ 
@@ -78,6 +84,11 @@ public class Venda extends Entidade {
 	
 	@Column(name = "VL_VENDA")
 	private double vlVenda;
+	@Column(name="CATEGORIA")
+	@Enumerated(EnumType.ORDINAL)
+	private EnumCategoria categoria;
+	@Transient
+	private String getTempoDePublicacao = "";
 	
 	@Embedded
 	private Endereco endereco = new Endereco();
@@ -189,6 +200,24 @@ public class Venda extends Entidade {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public EnumCategoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(EnumCategoria categoria) {
+		this.categoria = categoria;
+	}
+	
+	public String getGetTempoDePublicacao() {
+		System.out.println("getGetTempoDePublicacao Venda:"+this.getClass().getName());
+		getTempoDePublicacao = DateUtil.getTempoEntreDatasPorExtenso(dataCadastro, new Date());
+		return getTempoDePublicacao;
+	}
+
+	public void setGetTempoDePublicacao(String getTempoDePublicacao) {
+		this.getTempoDePublicacao = getTempoDePublicacao;
 	}
 	
 }
