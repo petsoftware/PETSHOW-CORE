@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -22,7 +23,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 @NamedQueries({ 
 	@NamedQuery(name = Venda.VENDA_POR_USUARIO, query = "FROM Venda v where usuario.id=:idUsuario order by v.dataCadastro desc" ),
-	@NamedQuery(name = Venda.VENDA_POR_FILTRO, 	query = "FROM Venda v where v.descResumida like :palavraChave and estado.id=:idEstado and cidade.id=:idCidade order by v.dataCadastro desc" ),
+//	@NamedQuery(name = Venda.VENDA_POR_FILTRO, 	query = "FROM Venda v where v.descResumida like :palavraChave and estado.id=:idEstado and cidade.id=:idCidade order by v.dataCadastro desc" ),
 	@NamedQuery(name = Venda.COUNT_VENDAS, 		query = "SELECT COUNT(v) FROM Venda v WHERE usuario = :usuario" )
 })
 
@@ -36,7 +37,7 @@ public class Venda extends Entidade {
 	 */
 	private static final long serialVersionUID 		= -3092300933879378313L;
 	public static final String VENDA_POR_USUARIO	= "vendaUsuario";
-	public static final String VENDA_POR_FILTRO		= "vendas";
+	//public static final String VENDA_POR_FILTRO		= "vendas";
 	public static final String COUNT_VENDAS			= "br.com.petshow.model.Venda.countVendas";
 
 	@ElementCollection(fetch=FetchType.EAGER)
@@ -78,18 +79,8 @@ public class Venda extends Entidade {
 	@Column(name = "VL_VENDA")
 	private double vlVenda;
 	
-	
-	@ManyToOne
-	@JoinColumn(name = "ID_CIDADE" ,referencedColumnName="ID")
-	private Cidade cidade;
-	
-	@ManyToOne
-	@JoinColumn(name = "ID_ESTADO" ,referencedColumnName="ID")
-	private Estado estado;
-	
-	@ManyToOne
-	@JoinColumn(name = "ID_BAIRRO" ,referencedColumnName="ID")
-	private Bairro bairro;
+	@Embedded
+	private Endereco endereco = new Endereco();
 	
 	public Usuario getUsuario() {
 		return usuario;
@@ -190,30 +181,14 @@ public class Venda extends Entidade {
 
 	public void setFotos(List<String> fotos) {
 		this.fotos = fotos;
-	}
-
-	public Cidade getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
-	}
-
-	public Estado getEstado() {
-		return estado;
-	}
-
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-
-	public Bairro getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(Bairro bairro) {
-		this.bairro = bairro;
 	}	
+	
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
 	
 }
