@@ -69,9 +69,9 @@ public class Adocao extends Entidade {
 	@Column(length=10485760)
 	private List<String> fotos = new ArrayList<String>();// no maximo 3
 	
-	@Column(name="FASE",nullable=true)
+	@Column(name="FASE",nullable=false)
 	@Enumerated(EnumType.ORDINAL)
-	private EnumFaseVida fase = EnumFaseVida.FILHOTE;
+	private EnumFaseVida fase ;
 	
 	@Column(name = "FL_VACINADO")
 	private boolean flVacinado = false;
@@ -112,7 +112,7 @@ public class Adocao extends Entidade {
 	
 	@Column(name = "FL_SEXO")
 	@Enumerated(EnumType.ORDINAL)
-	private EnumSexo flSexo = EnumSexo.MACHO;
+	private EnumSexo flSexo;
 	
 	
 	@Column(name="TP_PORTE",nullable=true)

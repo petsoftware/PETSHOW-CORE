@@ -186,11 +186,12 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	}
 
 	public String getNmLogin() {
-		return nmLogin;
+		
+		return nmLogin==null?null:nmLogin.toLowerCase();
 	}
 
 	public void setNmLogin(String nmLogin) {
-		this.nmLogin = nmLogin;
+		this.nmLogin = nmLogin.toLowerCase();
 	}
 	
 	public String getPassword() {
