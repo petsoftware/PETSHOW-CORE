@@ -64,7 +64,7 @@ public enum EnumCategoria {
 	}
 	
 	
-	private List<EnumCategoria> getListEnum(EnumTipoClassificado tpClassificado){
+	public static List<EnumCategoria> getListEnum(EnumTipoClassificado tpClassificado){
 		
 		EnumCategoria[] all = EnumCategoria.values();
 		

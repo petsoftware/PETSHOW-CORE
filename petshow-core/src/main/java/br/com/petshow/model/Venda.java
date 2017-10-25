@@ -29,7 +29,6 @@ import br.com.petshow.util.DateUtil;
 
 @NamedQueries({ 
 	@NamedQuery(name = Venda.VENDA_POR_USUARIO, query = "FROM Venda v where usuario.id=:idUsuario order by v.dataCadastro desc" ),
-//	@NamedQuery(name = Venda.VENDA_POR_FILTRO, 	query = "FROM Venda v where v.descResumida like :palavraChave and estado.id=:idEstado and cidade.id=:idCidade order by v.dataCadastro desc" ),
 	@NamedQuery(name = Venda.COUNT_VENDAS, 		query = "SELECT COUNT(v) FROM Venda v WHERE usuario = :usuario" )
 })
 
@@ -43,7 +42,6 @@ public class Venda extends Entidade {
 	 */
 	private static final long serialVersionUID 		= -3092300933879378313L;
 	public static final String VENDA_POR_USUARIO	= "vendaUsuario";
-	//public static final String VENDA_POR_FILTRO		= "vendas";
 	public static final String COUNT_VENDAS			= "br.com.petshow.model.Venda.countVendas";
 
 	@ElementCollection(fetch=FetchType.EAGER)
@@ -63,7 +61,7 @@ public class Venda extends Entidade {
 		
 	@Column(name = "DT_CADASTRO",nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataCadastro;
+	private Date dataCadastro = new Date();
 	
 	@Column(name = "DT_VENCIMENTO",nullable=false)
 	
