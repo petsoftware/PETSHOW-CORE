@@ -95,18 +95,22 @@ public class VendaDAO extends SuperClassDAO<Venda> {
 		CriteriaQuery<Venda> criteria 	 = builder.createQuery(Venda.class);
 		Root<Venda> root 				 = criteria.from(Venda.class);
 		Path<EnumCategoria> pCategoria   = root.get("categoria");  
+		Path<String> pDescResumida   	 = root.get("descResumida");
 		Path<EnumUF> pUf 				 = root.get("endereco").get("uf"); 
-		Path<Cidade> pCidade 			 = root.get("endereco").get("cidade"); 
+		Path<Cidade> pCidade 			 = root.get("endereco").get("cidade");
+		
 		Predicate predicate 			 = builder.conjunction();
 		if(query.getCategoria() != null){
 			predicate = builder.and(predicate,builder.equal(pCategoria, query.getCategoria()));
 		}
-		
 		if(query.getUf() != null){
 			predicate = builder.and(predicate,builder.equal(pUf, query.getUf()));
 		}
 		if(query.getCidade() != null){
 			predicate = builder.and(predicate,builder.equal(pCidade, query.getCidade()));
+		}
+		if(query.getDescResumida() != null && !query.getDescResumida().trim().isEmpty()){
+			predicate = builder.and(predicate,builder.like(pDescResumida, query.getDescResumida()));
 		}
 		
 		criteria.where(predicate);
