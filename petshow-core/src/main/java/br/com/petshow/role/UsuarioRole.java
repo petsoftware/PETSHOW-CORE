@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.petshow.constants.EmailConstants;
 import br.com.petshow.dao.UsuarioDAO;
 import br.com.petshow.enums.EnumFlTpEstabelecimento;
+import br.com.petshow.enums.EnumTipoUser;
 import br.com.petshow.exceptions.ExceptionNotFoundRecord;
 import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.SecurityLogin;
@@ -131,11 +132,20 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 	}
 	
 	public void sendEmail(Usuario usuario, SecurityLogin securityLogin) {
-		Thread runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),EmailConstants.senderContato, getEmailContet(usuario,securityLogin), getSubjectNewUser()));
+		
+		Thread runEmail = null;
+		
+		if(usuario.getFlTpEstabelecimento() == EnumFlTpEstabelecimento.PETSHOP){
+			runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),EmailConstants.senderContato, getEmailContentPetShop(usuario,securityLogin), getSubjectNewUser()));
+		}else{
+			runEmail = new Thread(new ThreadSendMail(usuario.getEmail(),EmailConstants.senderContato, getEmailContent(usuario,securityLogin), getSubjectNewUser()));
+		}
+		
+		
 		runEmail.start();
 	}
 	
-	private String getEmailContet(Usuario usuario, SecurityLogin securityLogin) {
+	private String getEmailContent(Usuario usuario, SecurityLogin securityLogin) {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Olá ").append(usuario.getNome()).append(", tudo bem?").append("\n\n")
 			.append("Você está recebendo este e-mail porque se cadastrou na plataforma PETMOOBY").append("\n")
@@ -144,6 +154,20 @@ public class UsuarioRole extends SuperClassRole<Usuario> {
 		builder.append("Muito obrigado e aproveite o sistema.");
 		return builder.toString();
 	}
+	
+	
+	private String getEmailContentPetShop(Usuario usuario, SecurityLogin securityLogin) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Olá ").append(usuario.getNome()).append(", tudo bem?").append("\n\n")
+			.append("Você está recebendo este e-mail porque se cadastrou na plataforma PETMOOBY").append("\n")
+			.append("Desculpe, mas estamos concluindo nosso aplicativo, guardaremos seus dados e entraremos em contato através do e-mail cadastrado.\n")
+			.append("Aguarde o lançamento do nosso aplicativo, será uma nova e otima forma dos petshops trabalharem, com uma grande interação com seus clientes!");
+			
+		builder.append("Muito obrigado e aguarde novidades.");
+		return builder.toString();
+	}
+	
+	
 	
 	private String getSubjectNewUser () {
 		return "NOVO USUÁRIO - Solicitação PETMOOBY";

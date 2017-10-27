@@ -82,17 +82,17 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 	private String razaoSocial;
 	
 	@Column(name="TF_USUARIO")
-	private int telefone;
+	private Integer telefone;
 	
 	@Column(name="DDD_USUARIO")
-	private int ddd;
+	private Integer ddd;
 	
 	
 	@Column(name="TF_USUARIO2")
-	private int telefone2;
+	private Integer telefone2;
 	
 	@Column(name="DDD_USUARIO2")
-	private int ddd2;
+	private Integer ddd2;
 	
 	@JsonIgnore
 	@OneToMany
@@ -161,20 +161,29 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 		this.flPreCadastro = flPreCadastro;
 	}
 
-	public int getTelefone2() {
+
+	public Integer getTelefone2() {
 		return telefone2;
 	}
 
-	public void setTelefone2(int telefone2) {
+	public void setTelefone2(Integer telefone2) {
 		this.telefone2 = telefone2;
 	}
 
-	public int getDdd2() {
+	public Integer getDdd2() {
 		return ddd2;
 	}
 
-	public void setDdd2(int ddd2) {
+	public void setDdd2(Integer ddd2) {
 		this.ddd2 = ddd2;
+	}
+
+	public void setTelefone(Integer telefone) {
+		this.telefone = telefone;
+	}
+
+	public void setDdd(Integer ddd) {
+		this.ddd = ddd;
 	}
 
 	public String getFoto() {
@@ -285,19 +294,12 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 		this.razaoSocial = razaoSocial;
 	}
 	
-	public int getTelefone() {
-		return telefone;
-	}
-	public void setTelefone(int telefone) {
-		this.telefone = telefone;
-	}
 	
-	public int getDdd() {
+	
+	public Integer getDdd() {
 		return ddd;
 	}
-	public void setDdd(int ddd) {
-		this.ddd = ddd;
-	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
@@ -388,6 +390,10 @@ public class Usuario extends Entidade  implements UserDetails// comentar impleme
 
 		public void setEndereco(Endereco endereco) {
 			this.endereco = endereco;
+		}
+
+		public Integer getTelefone() {
+			return telefone;
 		}
 		
 		
