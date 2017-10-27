@@ -57,7 +57,7 @@ public class Adocao extends Entidade {
 	@JoinColumn(name = IDUtil.ID_USUARIO ,referencedColumnName=IDUtil.ID)
 	private Usuario usuario;
 
-	@Column(name = "DESC_ADOCAO")
+	@Column(name = "DESC_ADOCAO",length=720)
 	private String descAdocao = "";
 	
 	@Column(name = "TITULO")
