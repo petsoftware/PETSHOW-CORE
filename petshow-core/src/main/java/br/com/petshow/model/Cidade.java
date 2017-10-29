@@ -39,6 +39,10 @@ public class Cidade  extends Entidade {
 	@Column(name="COD_CIDADE")
 	private long codCidade = 0;
 	
+	@Column(name="FL_CAPITAL")
+	private boolean flCapital ;
+	
+	
 	@Column(name="UF",length=3)
 	@Enumerated(EnumType.STRING)
 	private EnumUF uf = EnumUF.CE;
@@ -93,6 +97,14 @@ public class Cidade  extends Entidade {
 
 	public void setUf(EnumUF uf) {
 		this.uf = uf;
+	}
+
+	public boolean isFlCapital() {
+		return flCapital;
+	}
+
+	public void setFlCapital(boolean flCapital) {
+		this.flCapital = flCapital;
 	}
 	
 }
