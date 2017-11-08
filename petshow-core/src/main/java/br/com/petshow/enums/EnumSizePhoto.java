@@ -1,9 +1,9 @@
 package br.com.petshow.enums;
 
 public enum EnumSizePhoto {
-	PERFIL(800),
-	PERDIDO(800),
-	ADOCAO(800);
+	PERFIL(1000),
+	PERDIDO(1000),
+	ADOCAO(1000);
 	
 	private int size;
 	
