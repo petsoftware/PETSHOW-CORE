@@ -92,6 +92,10 @@ public class Notificacao  extends Entidade {
 	@JoinColumn(name = "ADOCAO" ,referencedColumnName=IDUtil.ID)
 	private Adocao adocao;
 	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "VENDA" ,referencedColumnName=IDUtil.ID)
+	private Venda venda;
+	
 	@Transient
 	private String getTempoDePublicacao = "";
 	
@@ -247,6 +251,14 @@ public class Notificacao  extends Entidade {
 
 	public void setDtResposta(Date dtResposta) {
 		this.dtResposta = dtResposta;
+	}
+
+	public Venda getVenda() {
+		return venda;
+	}
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
 	}
 
 }
