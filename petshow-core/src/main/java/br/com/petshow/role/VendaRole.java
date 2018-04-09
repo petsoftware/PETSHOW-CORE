@@ -1,5 +1,6 @@
 package br.com.petshow.role;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import br.com.petshow.exceptions.ExceptionValidation;
 import br.com.petshow.model.Usuario;
 import br.com.petshow.model.Venda;
 import br.com.petshow.objects.query.VendasQuery;
+import br.com.petshow.util.FileUtil;
 import br.com.petshow.util.ValidationUtil;
 /**
  * 
@@ -38,9 +40,17 @@ public class VendaRole extends SuperClassRole<Venda> {
 		if(!ValidationUtil.isCampoComValor(entidade.getDataVencimento())){
 			throw new ExceptionValidation("A data de vencimento não foi informada!");
 		}
-		
-
-		return (Venda) this.vendaDAO.insert(entidade);
+		List<String>listFotosTmp = entidade.getFotos();
+		entidade.setFotos(null);
+		entidade = this.vendaDAO.insert(entidade);
+		List<String>listOfPaths = new ArrayList<>();
+		for (String foto : listFotosTmp) {
+			String path = FileUtil.saveCertificateOnFileSystem(entidade, foto);
+			listOfPaths.add(path);
+		}
+		entidade.setFotos(listOfPaths);
+		entidade = update(entidade);
+		return entidade;
 	}
 
 	
@@ -96,7 +106,17 @@ public class VendaRole extends SuperClassRole<Venda> {
 		if(!ValidationUtil.isCampoComValor(id)){
 			throw new ExceptionValidation("O código não foi informado!");
 		}
-		return this.vendaDAO.consultaPorUsuario(id);
+		List<Venda> vendas = this.vendaDAO.consultaPorUsuario(id);
+		for (Venda venda : vendas) {
+			List<String> fotos = venda.getFotos();
+			List<String> fotosTmp = new ArrayList<>();
+			for (String foto : fotos) {
+				foto = RoleParametros.paramSiteBaseUrl+foto;
+				fotosTmp.add(foto);
+			}
+			venda.setFotos(fotosTmp);
+		}
+		return vendas;
 	}
 	
 	public List<Venda> consultaVendasFiltros(String palavraChave,long idCidade,long idEstado,int limiteRegistros)  throws  ExceptionValidation{

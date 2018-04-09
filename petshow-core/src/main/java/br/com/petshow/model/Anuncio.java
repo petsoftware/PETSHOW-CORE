@@ -38,9 +38,6 @@ public class Anuncio extends Entidade {
 	public static final String ANUNCIO_POR_USUARIO="usuariosAnuncios";
 	public static final String COUNT_ANUNCIO_USUARIO="br.com.petshow.model.Anuncio.countAnuncioUsuario";
 	
-	//@JsonIgnore
-	//@ElementCollection
-	//@CollectionTable(name = "FOTO_ANUNCIO")
 	@Column(name="FOTO_ANUNCIO" , length=10485760)
 	private String foto;
 	
