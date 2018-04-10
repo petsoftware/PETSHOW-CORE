@@ -41,7 +41,7 @@ public class FileUtil {
 				String fileName = HelperUniqueID.get()+".jpg";
 				File fileImage = new File(file.getAbsolutePath()+File.separator+fileName);
 				HelperBase64.toFile(imgBase64, fileImage);
-				return VariableUtil.docBaseRepoFiles +getPathName(entidade).replaceAll(File.separator, "/")+"/"+fileName;
+				return RoleParametros.paramSiteBaseUrl+VariableUtil.docBaseRepoFiles +getPathName(entidade).replaceAll(File.separator, "/")+"/"+fileName;
 			} catch (IOException e) {
 				e.printStackTrace();
 				return "";

@@ -68,15 +68,11 @@ public class VendaRole extends SuperClassRole<Venda> {
 		if(!ValidationUtil.isCampoComValor(entidade.getId())){
 			throw new ExceptionValidation("O codigo não foi informado!");
 		}
-		
 
 		Venda venda = vendaDAO.find(entidade.getId());
 		if(venda==null){
 			throw new ExceptionValidation("Venda informada não existe!");
 		}
-		
-		
-		
 		
 		if(!ValidationUtil.isDateIquals(venda.getDataCadastro(), entidade.getDataCadastro())){
 			throw new ExceptionValidation("Data de cadastro não pode ser alterada!");
@@ -99,7 +95,9 @@ public class VendaRole extends SuperClassRole<Venda> {
 		if(!ValidationUtil.isCampoComValor(codigo)){
 			throw new ExceptionValidation("O codigo não foi informado!");
 		}
-		return this.vendaDAO.find(codigo);
+		Venda venda = this.vendaDAO.find(codigo);
+		//setUrlPhoto(venda);
+		return venda;
 	}
 	
 	public List<Venda> consultaPorUsuario(long id)  throws  ExceptionValidation{
@@ -107,17 +105,27 @@ public class VendaRole extends SuperClassRole<Venda> {
 			throw new ExceptionValidation("O código não foi informado!");
 		}
 		List<Venda> vendas = this.vendaDAO.consultaPorUsuario(id);
-		for (Venda venda : vendas) {
-			List<String> fotos = venda.getFotos();
-			List<String> fotosTmp = new ArrayList<>();
-			for (String foto : fotos) {
-				foto = RoleParametros.paramSiteBaseUrl+foto;
-				fotosTmp.add(foto);
-			}
-			venda.setFotos(fotosTmp);
-		}
+		//extractVendasWithURL(vendas);
 		return vendas;
 	}
+
+
+//	private void extractVendasWithURL(List<Venda> vendas) {
+//		for (Venda venda : vendas) {
+//			setUrlPhoto(venda);
+//		}
+//	}
+//
+//
+//	private void setUrlPhoto(Venda venda) {
+//		List<String> fotos = venda.getFotos();
+//		List<String> photosToShow = new ArrayList<>();
+//		for (String foto : fotos) {
+//			foto = RoleParametros.paramSiteBaseUrl+foto;
+//			photosToShow.add(foto);
+//		}
+//		venda.setFotos(photosToShow);
+//	}
 	
 	public List<Venda> consultaVendasFiltros(String palavraChave,long idCidade,long idEstado,int limiteRegistros)  throws  ExceptionValidation{
 		
@@ -129,7 +137,9 @@ public class VendaRole extends SuperClassRole<Venda> {
 	}
 	
 	public List<Venda> consultarVendas(VendasQuery query) {
-		return vendaDAO.consultarVendas(query);
+		List<Venda> consultarVendas = vendaDAO.consultarVendas(query);
+		//extractVendasWithURL(consultarVendas);
+		return consultarVendas;
 	}
 
 	
